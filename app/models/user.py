@@ -6,10 +6,17 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    #columns
+    id = db.Column(db.Integer, primary_key= True)
+    name = db.Column(db.String, nullable= False, unique= True)
+    email = db.Column(db.String, nullable= False, unique = True)
+    hashed_password = db.Column(db.String, nullable=False)
+    profileUrl = db.Column(db.String, nullable=False)
+    jobId = db.Column(db.Integer, db.ForeignKey("jobs.id"))
+    level = db.Column(db.Integer, nullable= False)
+    createdAt = db.Column(db.DateTime , nullable= False)
+    updatedAt = db.Column(db.DateTime , nullable= False)
+
 
     @property
     def password(self):
