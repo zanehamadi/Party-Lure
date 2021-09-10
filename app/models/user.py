@@ -17,6 +17,13 @@ class User(db.Model, UserMixin):
     createdAt = db.Column(db.DateTime , nullable= False)
     updatedAt = db.Column(db.DateTime , nullable= False)
 
+    #relationships
+    job = db.relationship('Job', back_populates= 'users')
+
+    posts = db.relationship('Post', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
+
+    parties = db.relationship('Party', secondary='users_parties', back_populates= 'users')
 
     @property
     def password(self):
@@ -26,12 +33,22 @@ class User(db.Model, UserMixin):
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 
+    #methods
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def get_posts(self):
+        post_dics = {post.id:post.toDict() for post in self.posts}
+
+        return post_dics
 
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'name': self.name,
+            'email': self.email,
+            'jobId': self.jobId,
+            'level': self.level,
+            'job': self.job.name,
+            'role': self.job.role.name
         }
