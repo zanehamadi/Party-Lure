@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
 
     #columns
     id = db.Column(db.Integer, primary_key= True)
-    name = db.Column(db.String, nullable= False, unique= True)
+    username = db.Column(db.String, nullable= False, unique= True)
     email = db.Column(db.String, nullable= False, unique = True)
     hashed_password = db.Column(db.String, nullable=False)
     profileUrl = db.Column(db.String, nullable=False)
