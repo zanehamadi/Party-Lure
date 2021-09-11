@@ -26,5 +26,8 @@ def seed_roles():
         new_dps = Job(name=pdps, roleId = 4, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
         db.session.add(new_dps)
 
+    db.session.commit()
 
+def undo_jobs():
+    db.session.execute('TRUNCATE jobs RESTART IDENTITY CASCADE;')
     db.session.commit()

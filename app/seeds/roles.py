@@ -9,3 +9,7 @@ def seed_roles():
         db.session.add(new_role)
 
     db.session.commit()
+
+def undo_roles():
+    db.session.execute('TRUNCATE roles RESTART IDENTITY CASCADE;')
+    db.session.commit()
