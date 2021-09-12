@@ -4,8 +4,12 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
-
+import * as sessionActions from './store/session'
 const store = configureStore();
+
+window.store = store
+window.sessionActions = sessionActions
+
 
 ReactDOM.render(
   <React.StrictMode>
