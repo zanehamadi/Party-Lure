@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const GET_USER = 'session/GET_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -11,7 +12,11 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+const getUser = (user) => ({
+    type: GET_USER,
+    user
+})
+const initialState = { user: null, profile: null };
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -24,7 +29,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +45,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -82,7 +87,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -97,12 +102,28 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
+export const getOneUser = (userId) => async (dispatch) =>{
+    const response = await fetch(`/api/users/${userId}`)
+    let data ;
+    if(response.ok){
+        data = await response.json()
+        dispatch(getUser(data))
+    }
+    else if(data.errors){
+        return
+    }
+
+    return
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      return { user: action.payload, profile: state.profile }
     case REMOVE_USER:
       return { user: null }
+    case GET_USER:
+        return {user: state.user, profile: action.user}
     default:
       return state;
   }
