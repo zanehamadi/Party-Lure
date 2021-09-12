@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-
+// import LoginFormModal from './auth/LoginFormModal';
 const NavBar = () => {
   return (
     <nav>
