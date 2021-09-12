@@ -1,6 +1,6 @@
 from app.models import db, Job
 import datetime
-def seed_roles():
+def seed_jobs():
     tanks = ['Turtle', 'Giant Clam', 'Crab', 'Whale']
 
     supports = ['Manatee', 'Cleaner Wrasse', 'Remora', 'Barnacle']
