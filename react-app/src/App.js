@@ -49,7 +49,7 @@ function App() {
 
 
   return (
-    
+
     <BrowserRouter>
       <NavBar sessionUser={sessionUser} authenticated={authenticated} />
       <Switch>
