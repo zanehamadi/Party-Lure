@@ -1,3 +1,4 @@
+from app.seeds.comments import seed_comments, undo_comments
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .jobs import seed_jobs, undo_jobs
@@ -19,12 +20,14 @@ def seed():
     seed_types()
     seed_activities()
     seed_posts()
+    seed_comments()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_comments()
     undo_posts()
     undo_users()
     undo_jobs()

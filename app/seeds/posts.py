@@ -2,7 +2,7 @@ from app.seeds.utils import assign_from_dict, gen_count_dict
 from faker import Faker
 import datetime
 
-from app.models import activity, db, Post, User, Activity
+from app.models import db, Post, User, Activity
 
 fake = Faker()
 Faker.seed(0)
