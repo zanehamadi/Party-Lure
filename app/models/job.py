@@ -6,9 +6,9 @@ class Job(db.Model):
     #columns
     id = db.Column(db.Integer, primary_key= True)
     name = db.Column(db.String(50), nullable= False)
-    roleId = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    createdAt = db.Column(db.DateTime , nullable= False)
-    updatedAt = db.Column(db.DateTime , nullable= False)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    created_at = db.Column(db.DateTime , nullable= False)
+    updated_at = db.Column(db.DateTime , nullable= False)
 
     #relationships
     role = db.relationship('Role', back_populates= 'jobs')

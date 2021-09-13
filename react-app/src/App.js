@@ -10,14 +10,14 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
-import {getPosts} from './store/posts'
+import { getPosts } from './store/posts'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -34,7 +34,7 @@ function App() {
   }
 
 
-  
+
 
   return (
     <BrowserRouter>
@@ -47,17 +47,17 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/posts' exact={true}>
-          <Posts posts={posts}/>
+          <Posts posts={posts} />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
     </BrowserRouter>

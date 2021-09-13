@@ -11,11 +11,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String, nullable= False, unique= True)
     email = db.Column(db.String, nullable= False, unique = True)
     hashed_password = db.Column(db.String, nullable=False)
-    profileUrl = db.Column(db.String, nullable=False)
-    jobId = db.Column(db.Integer, db.ForeignKey("jobs.id"))
+    profile_url = db.Column(db.String, nullable=False)
+    job_id = db.Column(db.Integer, db.ForeignKey("jobs.id"))
     level = db.Column(db.Integer, nullable= False)
-    createdAt = db.Column(db.DateTime , nullable= False)
-    updatedAt = db.Column(db.DateTime , nullable= False)
+    created_at = db.Column(db.DateTime , nullable= False)
+    updated_at = db.Column(db.DateTime , nullable= False)
 
     #relationships
     job = db.relationship('Job', back_populates= 'users')
@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', back_populates='user')
 
     parties = db.relationship('Party', secondary='users_parties', back_populates= 'users')
+    party_requests = db.relationship('Party', secondary='parties_requests', back_populates='requests')
 
     @property
     def password(self):
@@ -38,7 +39,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def get_posts(self):
-        post_dics = {post.id:post.toDict() for post in self.posts}
+        post_dics = {post.id:post.to_dict() for post in self.posts}
 
         return post_dics
 
@@ -47,7 +48,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'jobId': self.jobId,
+            'job_id': self.job_id,
             'level': self.level,
             'job': self.job.name,
             'role': self.job.role.name
