@@ -8,4 +8,4 @@ def jobs():
 
     jobs = Job.query.all()
 
-    return {job.id:job for job in jobs}
+    return {job.id:job.to_dict() for job in jobs}
