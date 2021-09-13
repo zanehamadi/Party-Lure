@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
 import Profile from './components/Profile'
+import Home from './components/Home'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
@@ -71,7 +72,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <Home sessionUser={sessionUser} authenticated={authenticated} />
         </Route>
         <Route>
           404 Not Found
