@@ -12,11 +12,8 @@ def gen_count_dict(Model):
 
 def assign_from_dict(count_dict, limit):
     key = random.choice(list(count_dict.keys()))
-    print('key',key)
     current_count = count_dict[str(key)]['count']
-    print('current_count', current_count)
-
-    if current_count + 1 > limit:
+    if current_count + 1 >= limit:
         del count_dict[str(key)]
     else:
         count_dict[str(key)]['count'] += 1
