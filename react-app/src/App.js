@@ -5,11 +5,10 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
+import Post from './components/Post'
 import Profile from './components/Profile'
 import Home from './components/Home'
 import { getPosts } from './store/posts'
@@ -60,12 +59,9 @@ function App() {
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
+        <Route path='/posts/:id' exact={true}>
+          <Post posts={posts} />
+        </Route>
         <Route path='/' exact={true} >
           <Home sessionUser={sessionUser} authenticated={authenticated} />
         </Route>
