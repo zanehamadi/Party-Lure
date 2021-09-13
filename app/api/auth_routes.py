@@ -73,19 +73,19 @@ def sign_up():
         uploaded_file = request.files['image']
         tmp_file_name = 'app/api/tmp/' + secure_filename(uploaded_file.filename)
         uploaded_file.save(tmp_file_name)
-        profileUrl = public_file_upload(tmp_file_name, 'partylureawsbucket' )
+        profile_url = public_file_upload(tmp_file_name, 'partylureawsbucket' )
         os.remove(tmp_file_name)
-        jobId = request.form['jobId']
+        job_id = request.form['jobId']
 
         user = User(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
             level = form.data['level'],
-            profileUrl = profileUrl,
-            jobId = jobId,
-            createdAt=datetime.datetime.now(),
-            updatedAt = datetime.datetime.now()
+            profile_url = profile_url,
+            job_id = job_id,
+            created_at=datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
         )
         db.session.add(user)
         db.session.commit()
