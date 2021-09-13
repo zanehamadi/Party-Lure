@@ -38,7 +38,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to='/profile/:id' exact={true} activeClassName='active'>
+              <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
                 👤
               </NavLink>
             </li>
