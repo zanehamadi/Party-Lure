@@ -4,13 +4,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 post_routes = Blueprint('posts', __name__)
 
-@post_routes.route('/<int:postId>')
-# @login_required
-def post(post_id):
-    post = Post.query.get(post_id)
-    print(post.to_dict())
-    return post.to_dict()
-
 @post_routes.route('/')
 def posts():
 
@@ -35,4 +28,12 @@ def new_post():
         # a if condition else b
         post.content = content if content else post.content
         post.recruit_level = recruit_level if recruit_level else post.recruit_level
-    else
+    else:
+        pass
+
+@post_routes.route('/<int:post_id>')
+# @login_required
+def post(post_id):
+    post = Post.query.get(post_id)
+    print(post.to_dict())
+    return post.to_dict()

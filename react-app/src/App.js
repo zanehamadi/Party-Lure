@@ -10,7 +10,9 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
-import { getPosts } from './store/posts'
+import Profile from './components/Profile'
+import {getPosts} from './store/posts'
+import {getUsers} from './store/users'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,12 +24,15 @@ function App() {
       setLoaded(true);
     })();
     dispatch(getPosts())
+    dispatch(getUsers())
   }, [dispatch]);
 
 
   const postsSlice = useSelector(state => state.posts)
+  const usersSlice = useSelector(state => state.users)
 
   const posts = Object.values(postsSlice)
+  const users = Object.values(usersSlice)
 
   if (!loaded) {
     return null;
@@ -46,6 +51,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/test' exact={true}>
+          <Profile users={users}/>
+        </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
         </Route>
@@ -57,6 +65,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+        </Route>
+        <Route>
+          404 Not Found
         </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
