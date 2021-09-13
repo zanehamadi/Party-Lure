@@ -11,5 +11,5 @@ def seed_types():
     db.session.commit()
 
 def undo_types():
-    db.session.execute('TRUNCATE types RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE activity_types RESTART IDENTITY CASCADE;')
     db.session.commit()

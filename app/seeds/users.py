@@ -1,18 +1,26 @@
-from app.models import db, User
 import datetime
+import random
+from faker import Faker
+from app.models import db, User, Job
+from .utils import assign_from_dict, gen_count_dict
 
+fake = Faker()
+Faker.seed(0)
 # Adds a demo user, you can add other users here if you want
-def seed_users():
-    demo = User(
-        username='Clarence', email='demo@aa.io', password='password',profileUrl='replace me', jobId = 15, level = 1, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
-    marnie = User(
-        username='Beelbub', email='marnie@aa.io', password='password',profileUrl='replace me', jobId = 10, level = 2, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
-    bobbie = User(
-         username='Phil', email='phil@aa.io', password='password',profileUrl='replace me', jobId = 3, level = 50, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+def seed_users(num_users = 25):
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    jobs_dict = gen_count_dict(Job)
+
+    for i in range(num_users):
+        new_user = User(
+            username = fake.user_name(),
+            email = fake.email(),
+            profileUrl = fake.image_url(),
+            jobId = assign_from_dict(jobs_dict, 4),
+            level = random.randrange(50),
+            createdAt=datetime.datetime.now(),
+            updatedAt = datetime.datetime.now()
+        )
 
     db.session.commit()
 
