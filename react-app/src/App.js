@@ -10,7 +10,9 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
-import { getPosts } from './store/posts'
+import Users from './components/Users'
+import {getPosts} from './store/posts'
+import {getUsers} from './store/users'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,12 +24,15 @@ function App() {
       setLoaded(true);
     })();
     dispatch(getPosts())
+    dispatch(getUsers())
   }, [dispatch]);
 
 
   const postsSlice = useSelector(state => state.posts)
+  const usersSlice = useSelector(state => state.users)
 
   const posts = Object.values(postsSlice)
+  const users = Object.values(usersSlice)
 
   if (!loaded) {
     return null;
@@ -45,6 +50,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/test' exact={true}>
+          <Users users={users}/>
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />

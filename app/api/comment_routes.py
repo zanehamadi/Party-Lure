@@ -8,7 +8,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 comment_routes = Blueprint('comments', __name__)
 
 
-@comment_routes.route('/<int:commentId>')
+@comment_routes.route('/<int:comment_id>')
 # @login_required
 def comment(comment_id):
     comment = Comment.query.get(comment_id)

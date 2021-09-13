@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import session from './session'
 
 import postReducer from './posts'
+import userReducer from './users'
 
 
 import jobs from './job'
@@ -10,7 +11,8 @@ import jobs from './job'
 const rootReducer = combineReducers({
   session,
   jobs,
-  posts:postReducer
+  posts:postReducer,
+  users:userReducer
 });
 
 
