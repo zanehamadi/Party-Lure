@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: cdc93af86f8e
+Revision ID: 9081a2733b24
 Revises: 
-Create Date: 2021-09-13 16:16:19.203427
+Create Date: 2021-09-13 15:07:06.031396
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'cdc93af86f8e'
+revision = '9081a2733b24'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -71,7 +71,7 @@ def upgrade():
     sa.Column('content', sa.Text(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('recruit_level', sa.Integer(), nullable=False),
-    sa.Column('recruit_role', postgresql.ARRAY(sa.Integer(), dimensions=4), nullable=True),
+    sa.Column('recruit_role', postgresql.ARRAY(sa.Integer()), nullable=True),
     sa.Column('activity_id', sa.Integer(), nullable=True),
     sa.Column('open', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
