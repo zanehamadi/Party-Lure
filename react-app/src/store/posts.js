@@ -10,7 +10,7 @@ const loadPosts = (posts) => ({
 export const getPosts = () => async (dispatch) => {
     const res = await fetch('/api/posts');
     if(res.ok){
-        const posts = await posts.json();
+        const posts = await res.json();
         dispatch((loadPosts(posts)))
     }
 };
@@ -20,12 +20,10 @@ const initialState = {}
 const postReducer = (state = initialState, action ) => {
     switch(action.type){
         case LOAD_POSTS: {
-            const allPosts = {};
-            action.posts.forEach(post => {
-                allPosts[post.id] = post
-            })
-            return allPosts
+            return {...action.posts}
         }
+        default:
+            return state
     }
 }
 

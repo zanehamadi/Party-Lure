@@ -1,5 +1,11 @@
-export default function Posts(){
+export default function Posts({posts}){
     return(
-        <h1>Yo!</h1>
+        <>
+        <div>
+            {posts.map(post => 
+            <div key={post.id}>{post.title}</div>
+            )}
+        </div>
+        </>
     )
 }

@@ -24,7 +24,7 @@ class Post(db.Model):
             "title":self.title,
             "content":self.content,
             "userId": self.userId,
-            "user": self.user.name,
+            "user": self.user.username,
             "type": self.activity.type.name,
             "mission": self.activity.name
         }
