@@ -5,7 +5,7 @@ def seed_roles():
     roles = ['Tank','Support','Magical DPS','Physical DPS']
 
     for role in roles:
-        new_role = Role(name=role, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_role = Role(name=role, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_role)
 
     db.session.commit()

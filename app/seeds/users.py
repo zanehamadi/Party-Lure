@@ -20,12 +20,12 @@ def seed_users(num_users = 25):
         new_user = User(
             username = username,
             email = fake.email(),
-            profileUrl = fake.image_url(),
+            profile_url = fake.image_url(),
             password = 'password',
-            jobId = assign_from_dict(jobs_dict, 2),
+            job_id = assign_from_dict(jobs_dict, 2),
             level = random.randrange(50),
-            createdAt=datetime.datetime.now(),
-            updatedAt = datetime.datetime.now()
+            created_at=datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
         )
 
         db.session.add(new_user)
