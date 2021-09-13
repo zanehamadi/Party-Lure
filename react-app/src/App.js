@@ -11,12 +11,14 @@ import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
 import Profile from './components/Profile'
-import {getPosts} from './store/posts'
-import {getUsers} from './store/users'
+import { getPosts } from './store/posts'
+import { getUsers } from './store/users'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session?.user)
+  const authenticated = sessionUser !== null
 
   useEffect(() => {
     (async () => {
@@ -43,7 +45,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar sessionUser={sessionUser} authenticated={authenticated} />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -52,7 +54,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/test' exact={true}>
-          <Profile users={users}/>
+          <Profile users={users} />
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
