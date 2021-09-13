@@ -10,7 +10,7 @@ class Post(db.Model):
     content = db.Column(db.Text)
     user_id  = db.Column(db.Integer, db.ForeignKey("users.id"))
     recruit_level = db.Column(db.Integer, nullable=False)
-    recruit_role = db.Column(postgresql.ARRAY(db.Integer, dimensions=4))
+    recruit_role = db.Column(db.Integer)
     activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'))
     open = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime , nullable= False)
