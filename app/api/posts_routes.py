@@ -14,6 +14,13 @@ def posts():
 
     return {post.id:post.to_dict() for post in posts}
 
+@post_routes.route('/<int:post_id>')
+# @login_required
+def post(post_id):
+    post = Post.query.get(post_id)
+    print(post.to_dict())
+    return post.to_dict()
+
 @post_routes.route('/', methods=['POST'])
 def new_post():
     data = request.get_json()
@@ -56,9 +63,10 @@ def new_post():
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
-@post_routes.route('/<int:post_id>')
-# @login_required
-def post(post_id):
-    post = Post.query.get(post_id)
-    print(post.to_dict())
-    return post.to_dict()
+
+@post_routes.delete('/<int:post_id>')
+def delete_post(post_id):
+    post = Post.query.get(int(post_id))
+    db.session.delete(post)
+    db.session.commit()
+    return 'deleted'
