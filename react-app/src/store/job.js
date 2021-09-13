@@ -19,7 +19,7 @@ export const getAllJobs = () => async (dispatch) => {
     return
 
 }
-const intialState = {}
+const intialState = []
 
 export default function reducer(state = intialState, action) {
     switch(action.type){
