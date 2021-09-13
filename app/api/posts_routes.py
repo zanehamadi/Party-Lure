@@ -12,7 +12,7 @@ def posts():
     return {post.id:post.to_dict() for post in posts}
 
 
-@post_routes.route('/<int:postId>')
+@post_routes.route('/<int:post_id>')
 # @login_required
 def post(post_id):
     post = Post.query.get(post_id)
