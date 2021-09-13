@@ -1,7 +1,7 @@
 import datetime
 import random
 from faker import Faker
-from app.models import db, User, Job
+from app.models import db, User, Job, user
 from .utils import assign_from_dict, gen_count_dict
 
 fake = Faker()
@@ -12,15 +12,23 @@ def seed_users(num_users = 25):
     jobs_dict = gen_count_dict(Job)
 
     for i in range(num_users):
+        if i%2 == 0:
+            username = fake.user_name()
+        else:
+            username = fake.name_nonbinary()
+
         new_user = User(
-            username = fake.user_name(),
+            username = username,
             email = fake.email(),
             profileUrl = fake.image_url(),
-            jobId = assign_from_dict(jobs_dict, 4),
+            password = 'password',
+            jobId = assign_from_dict(jobs_dict, 2),
             level = random.randrange(50),
             createdAt=datetime.datetime.now(),
             updatedAt = datetime.datetime.now()
         )
+
+        db.session.add(new_user)
 
     db.session.commit()
 
