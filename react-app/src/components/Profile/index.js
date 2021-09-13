@@ -1,7 +1,4 @@
 import { useParams } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function Profile({users, posts, parties}){
     
@@ -13,8 +10,6 @@ export default function Profile({users, posts, parties}){
 
     return(
     <>
-        {console.log(parties)}
-        {console.log(user)}
         <h1>
             {`${user?.username}'s Profile`}
         </h1>

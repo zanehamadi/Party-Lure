@@ -14,6 +14,15 @@ class Party(db.Model):
     post = db.relationship('Post', back_populates='party')
     users = db.relationship('User', secondary='users_parties', back_populates= 'parties')
     requests = db.relationship('User', secondary='parties_requests', back_populates='party_requests')
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "post_id": self.post_id,
+            "owner_id": self.owner_id,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }
 
 users_parties = db.Table(
     "users_parties",
@@ -36,11 +45,3 @@ parties_requests = db.Table(
     )
     )
 
-def to_dict(self):
-    return {
-        "id": self.id,
-        "post_id": self.post_id,
-        "ower_id": self.owner_id,
-        "created_at": self.created_at,
-        "updated_at": self.updated_at
-    }
