@@ -10,7 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
-import Users from './components/Users'
+import Profile from './components/Profile'
 import {getPosts} from './store/posts'
 import {getUsers} from './store/users'
 
@@ -52,7 +52,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/test' exact={true}>
-          <Users users={users}/>
+          <Profile users={users}/>
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
@@ -65,6 +65,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+        </Route>
+        <Route>
+          404 Not Found
         </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
