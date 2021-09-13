@@ -14,3 +14,9 @@ class Job(db.Model):
     role = db.relationship('Role', back_populates= 'jobs')
 
     users = db.relationship('User', back_populates='job')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }

@@ -6,11 +6,12 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import * as sessionActions from './store/session'
+import * as jobActions from './store/job'
 const store = configureStore();
 
 window.store = store
 window.sessionActions = sessionActions
-
+window.jobActions = jobActions
 
 ReactDOM.render(
   <React.StrictMode>
