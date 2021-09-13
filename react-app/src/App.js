@@ -14,6 +14,7 @@ import Profile from './components/Profile'
 import Home from './components/Home'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
+import { getParties } from './store/parties'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,14 +29,17 @@ function App() {
     })();
     dispatch(getPosts())
     dispatch(getUsers())
+    dispatch(getParties())
   }, [dispatch]);
 
 
   const postsSlice = useSelector(state => state.posts)
   const usersSlice = useSelector(state => state.users)
+  const partiesSlice = useSelector(state => state.parties)
 
   const posts = Object.values(postsSlice)
   const users = Object.values(usersSlice)
+  const parties = Object.values(partiesSlice)
 
   if (!loaded) {
     return null;
@@ -45,6 +49,7 @@ function App() {
 
 
   return (
+    
     <BrowserRouter>
       <NavBar sessionUser={sessionUser} authenticated={authenticated} />
       <Switch>
@@ -55,7 +60,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/users/:id' exact={true}>
-          <Profile users={users} posts={posts} />
+          <Profile users={users} posts={posts} parties={parties}/>
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
