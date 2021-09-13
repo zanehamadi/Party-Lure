@@ -9,8 +9,10 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const [image, setImage] = useState('')
+
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -21,6 +23,9 @@ const SignUpForm = () => {
       }
     }
   };
+  const updateProfilePic = (e) => {
+      setImage(e.target.value)
+  }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -50,6 +55,14 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
+        <label htmlFor = 'profile-pic'>Profile Picture</label>
+        <input
+        type = 'file'
+        name = 'profile-pic'
+        id = 'profile-pic'
+        value = {image}
+        onChange = {updateProfilePic}
+        />
         <label>User Name</label>
         <input
           type='text'
