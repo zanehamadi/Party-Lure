@@ -35,3 +35,12 @@ parties_requests = db.Table(
         'party_id', db.Integer, db.ForeignKey("parties.id")
     )
     )
+
+def to_dict(self):
+    return {
+        "id": self.id,
+        "post_id": self.post_id,
+        "ower_id": self.owner_id,
+        "created_at": self.created_at,
+        "updated_at": self.updated_at
+    }
