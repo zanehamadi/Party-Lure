@@ -75,7 +75,7 @@ def sign_up():
         uploaded_file.save(tmp_file_name)
         profile_url = public_file_upload(tmp_file_name, 'partylureawsbucket' )
         os.remove(tmp_file_name)
-        job_id = request.form['job_id']
+        job_id = request.form['jobId']
 
         user = User(
             username=form.data['username'],

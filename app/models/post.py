@@ -1,7 +1,6 @@
 from .db import db
 from sqlalchemy.dialects.postgresql import ARRAY
 
-
 class Post(db.Model):
     __tablename__ = 'posts'
 
