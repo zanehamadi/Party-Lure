@@ -13,7 +13,8 @@ def post(postId):
 
 @post_routes.route('/')
 def posts():
-    posts = Post.query.all()
-    return {"posts": [post.toDict() for post in posts]}
 
+    posts = Post.query.all()
+
+    return {post.id:post.toDict() for post in posts}
 

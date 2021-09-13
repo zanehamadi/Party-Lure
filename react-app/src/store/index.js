@@ -10,7 +10,7 @@ import jobs from './job'
 const rootReducer = combineReducers({
   session,
   jobs,
-  posts = postReducer
+  posts:postReducer
 });
 
 
