@@ -1,7 +1,7 @@
-from app.seeds.utils import assign_from_dict, gen_count_dict
 from faker import Faker
 import datetime
 
+from app.seeds.utils import assign_from_dict, gen_count_dict
 from app.models import db, Post, User, Activity
 
 fake = Faker()
@@ -19,6 +19,7 @@ def seed_posts(num_posts = 50):
             content = fake.paragraph(nb_sentences=5),
             userId = assign_from_dict(user_dict,3),
             activityId = assign_from_dict(activity_dict,2),
+            open = True,
             createdAt=datetime.datetime.now(),
             updatedAt = datetime.datetime.now()
         )

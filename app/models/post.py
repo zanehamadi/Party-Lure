@@ -9,6 +9,7 @@ class Post(db.Model):
     content = db.Column(db.Text)
     userId  = db.Column(db.Integer, db.ForeignKey("users.id"))
     activityId = db.Column(db.Integer, db.ForeignKey('activities.id'))
+    open = db.Column(db.Boolean)
     createdAt = db.Column(db.DateTime , nullable= False)
     updatedAt = db.Column(db.DateTime , nullable= False)
     #relationships
