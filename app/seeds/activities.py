@@ -13,23 +13,23 @@ def seed_activities():
 
 
     for activity in leveling:
-        new_activity = Activity(name=activity, typeId = 1 , createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_activity = Activity(name=activity, type_id = 1 , created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_activity)
 
     for activity in questing:
-        new_activity = Activity(name=activity, typeId = 2, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_activity = Activity(name=activity, type_id = 2, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_activity)
 
     for activity in gathering:
-        new_activity = Activity(name=activity, typeId = 3, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_activity = Activity(name=activity, type_id = 3, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_activity)
 
     for activity in dungeons:
-        new_activity = Activity(name=activity, typeId = 4, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_activity = Activity(name=activity, type_id = 4, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_activity)
 
     for activity in raids:
-        new_activity = Activity(name=activity, typeId = 5, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_activity = Activity(name=activity, type_id = 5, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_activity)
 
     db.session.commit()

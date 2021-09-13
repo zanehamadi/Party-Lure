@@ -13,6 +13,16 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to='/posts' exact={true} activeClassName='active'>
+            Posts
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/post' exact={true} activeClassName='active'>
+            ➕
+          </NavLink>
+        </li>
+        <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
@@ -23,8 +33,8 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
+          <NavLink to='/profile/:id' exact={true} activeClassName='active'>
+            👤
           </NavLink>
         </li>
         <li>

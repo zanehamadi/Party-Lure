@@ -9,14 +9,13 @@ def posts():
 
     posts = Post.query.all()
 
-    return {post.id:post.toDict() for post in posts}
+    return {post.id:post.to_dict() for post in posts}
 
 
 @post_routes.route('/<int:postId>')
 # @login_required
-def post(postId):
-    post = Post.query.get(postId)
-    print(post.toDict())
-    return post.toDict()
-
+def post(post_id):
+    post = Post.query.get(post_id)
+    print(post.to_dict())
+    return post.to_dict()
 

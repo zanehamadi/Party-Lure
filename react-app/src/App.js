@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -39,7 +39,7 @@ function App() {
   }
 
 
-  
+
 
   return (
     <BrowserRouter>
@@ -55,17 +55,17 @@ function App() {
           <Users users={users}/>
         </Route>
         <Route path='/posts' exact={true}>
-          <Posts posts={posts}/>
+          <Posts posts={posts} />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
     </BrowserRouter>

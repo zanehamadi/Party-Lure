@@ -17,11 +17,11 @@ def seed_posts(num_posts = 50):
         new_post = Post(
             title = fake.paragraph(nb_sentences=2),
             content = fake.paragraph(nb_sentences=5),
-            userId = assign_from_dict(user_dict,3),
-            activityId = assign_from_dict(activity_dict,2),
+            user_id = assign_from_dict(user_dict,3),
+            activity_id = assign_from_dict(activity_dict,2),
             open = True,
-            createdAt=datetime.datetime.now(),
-            updatedAt = datetime.datetime.now()
+            created_at=datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
         )
 
         db.session.add(new_post)

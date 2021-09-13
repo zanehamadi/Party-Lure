@@ -11,19 +11,19 @@ def seed_parties():
     posts = Post.query.all()
 
     for post in posts:
-        ownerId = post.userId
+        owner_id = post.user_id
         user_dict = gen_count_dict(User)
-        del user_dict[str(ownerId)]
+        del user_dict[str(owner_id)]
 
-        party_members = [User.query.get(ownerId)]
+        party_members = [User.query.get(owner_id)]
         for i in range(1):
             party_members.append(User.query.get(assign_from_dict(user_dict,1)))
 
         new_party = Party(
-            postId = post.id,
-            ownerId = ownerId,
-            createdAt=datetime.datetime.now(),
-            updatedAt = datetime.datetime.now()
+            post_id = post.id,
+            owner_id = owner_id,
+            created_at=datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
 
         )
 
