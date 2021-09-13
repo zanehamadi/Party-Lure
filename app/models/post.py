@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.dialects import postgresql
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -7,23 +8,26 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     title = db.Column(db.String)
     content = db.Column(db.Text)
-    userId  = db.Column(db.Integer, db.ForeignKey("users.id"))
-    activityId = db.Column(db.Integer, db.ForeignKey('activities.id'))
+    user_id  = db.Column(db.Integer, db.ForeignKey("users.id"))
+    recruit_level = db.Column(db.Integer, nullable=False)
+    recruit_role = db.Column(postgresql.ARRAY(db.Integer, dimensions=4))
+    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'))
     open = db.Column(db.Boolean)
-    createdAt = db.Column(db.DateTime , nullable= False)
-    updatedAt = db.Column(db.DateTime , nullable= False)
+    created_at = db.Column(db.DateTime , nullable= False)
+    updated_at = db.Column(db.DateTime , nullable= False)
     #relationships
+    party = db.relationship('Party', back_populates='post')
     user = db.relationship('User', back_populates= 'posts')
     activity= db.relationship('Activity', back_populates= 'posts')
     comments = db.relationship('Comment', back_populates='post')
 
 
-    def toDict(self):
+    def to_dict(self):
         return {
             "id":self.id,
             "title":self.title,
             "content":self.content,
-            "userId": self.userId,
+            "user_id": self.user_id,
             "user": self.user.username,
             "type": self.activity.type.name,
             "mission": self.activity.name

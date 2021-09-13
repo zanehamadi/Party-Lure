@@ -6,11 +6,11 @@ class Comment(db.Model):
 
     # columns
     id = db.Column(db.Integer, primary_key=True)
-    postId = db.Column(db.Integer, db.ForeignKey('posts.id'))
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     content = db.Column(db.Text, nullable=False)
-    createdAt = db.Column(db.DateTime, nullable=False)
-    updatedAt = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
     # relationships
     post = db.relationship('Post', back_populates='comments')
     user = db.relationship('User', back_populates='comments')
@@ -18,9 +18,9 @@ class Comment(db.Model):
     def toDict(self):
         return {
             "id": self.id,
-            "postId": self.postId,
-            "userId": self.userId,
+            "post_id": self.post_id,
+            "user_id": self.user_id,
             "content": self.content,
-            "createdAt": self.createdAt,
-            "updatedAt": self.updatedAt,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
