@@ -16,10 +16,10 @@ def seed_comments(num_comments = 100):
 
         new_comment = Comment(
             content = fake.paragraph(nb_sentences=3),
-            userId = assign_from_dict(user_dict,6),
-            postId = assign_from_dict(post_dict,10),
-            createdAt=datetime.datetime.now(),
-            updatedAt = datetime.datetime.now()
+            user_id = assign_from_dict(user_dict,6),
+            post_id = assign_from_dict(post_dict,10),
+            created_at=datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
         )
 
         db.session.add(new_comment)

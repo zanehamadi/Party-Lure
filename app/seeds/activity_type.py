@@ -5,7 +5,7 @@ def seed_types():
     a_types = ['Leveling','Questing','Gathering','Dungeons', 'Raids']
 
     for a_type in a_types:
-        new_type = ActivityType(name=a_type, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_type = ActivityType(name=a_type, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_type)
 
     db.session.commit()

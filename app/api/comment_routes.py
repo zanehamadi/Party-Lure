@@ -10,14 +10,14 @@ comment_routes = Blueprint('comments', __name__)
 
 @comment_routes.route('/<int:commentId>')
 # @login_required
-def comment(commentId):
-    comment = Comment.query.get(commentId)
-    print(comment.toDict())
-    return comment.toDict()
+def comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    print(comment.to_dict())
+    return comment.to_dict()
 
 
 @comment_routes.route('/')
 # @login_required
 def comments():
     comments = Comment.query.all()
-    return {"comments": [comment.toDict() for comment in comments]}
+    return {"comments": [comment.to_dict() for comment in comments]}

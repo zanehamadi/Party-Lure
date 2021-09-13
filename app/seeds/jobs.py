@@ -11,19 +11,19 @@ def seed_jobs():
 
 
     for tank in tanks:
-        new_tank = Job(name=tank, roleId = 1 , createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_tank = Job(name=tank, role_id = 1 , created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_tank)
 
     for support in supports:
-        new_support = Job(name=support, roleId = 2, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_support = Job(name=support, role_id = 2, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_support)
 
     for mdps in magical_dps:
-        new_dps = Job(name=mdps, roleId = 3, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_dps = Job(name=mdps, role_id = 3, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_dps)
 
     for pdps in physical_dps:
-        new_dps = Job(name=pdps, roleId = 4, createdAt=datetime.datetime.now(),updatedAt = datetime.datetime.now())
+        new_dps = Job(name=pdps, role_id = 4, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
         db.session.add(new_dps)
 
     db.session.commit()
