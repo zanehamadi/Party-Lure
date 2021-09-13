@@ -4,6 +4,14 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 post_routes = Blueprint('posts', __name__)
 
+@post_routes.route('/')
+def posts():
+
+    posts = Post.query.all()
+
+    return {post.id:post.toDict() for post in posts}
+
+
 @post_routes.route('/<int:postId>')
 # @login_required
 def post(postId):
@@ -11,10 +19,4 @@ def post(postId):
     print(post.toDict())
     return post.toDict()
 
-@post_routes.route('/')
-def posts():
-
-    posts = Post.query.all()
-
-    return {post.id:post.toDict() for post in posts}
 
