@@ -17,3 +17,22 @@ def posts():
     posts = Post.query.all()
 
     return {post.id:post.to_dict() for post in posts}
+
+@post_routes.route('/', methods=['POST'])
+def new_post():
+    data = request.get_json()
+    post_id = data['postId']
+    title = data['title']
+    content = data['content']
+    user_id = data['userId']
+    recruit_level = data['recruitLevel']
+    activity_id = data['activityId']
+
+
+
+    if post_id:
+        post = Post.query.get(int(post_id))
+        # a if condition else b
+        post.content = content if content else post.content
+        post.recruit_level = recruit_level if recruit_level else post.recruit_level
+    else
