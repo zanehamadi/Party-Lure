@@ -7,8 +7,8 @@ class Activity(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     name = db.Column(db.String(200))
     type_id = db.Column(db.Integer, db.ForeignKey('activity_types.id'))
-    created_at = db.Column(db.DateTime , nullable= False)
-    updated_at = db.Column(db.DateTime , nullable= False)
+    created_at = db.Column(db.DateTime, nullable= False)
+    updated_at = db.Column(db.DateTime, nullable= False)
     #relationships
     type = db.relationship('ActivityType', back_populates= 'activities')
     posts = db.relationship('Post', back_populates= 'activity')
