@@ -23,11 +23,11 @@ def username_exists(form, field):
 
 
 class SignUpForm(FlaskForm):
-    jobs = Job.query.all()
+    # jobs = Job.query.all()
     image = FileField('profile-pic')
-    job = SelectField('job', choices= [(job.id, job.name) for job in jobs])
+    # job = SelectField('job', choices= [(job.id, job.name) for job in jobs])
     level = IntegerField('level')
-    
+
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists])

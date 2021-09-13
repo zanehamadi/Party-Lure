@@ -86,11 +86,10 @@ export const signUp = (username, email, password, jobId, level, image) => async 
   formData.append('level', level)
   formData.append('image', image)
 
+
+
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
     body: formData,
   });
 

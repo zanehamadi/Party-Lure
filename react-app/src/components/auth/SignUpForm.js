@@ -34,7 +34,8 @@ const SignUpForm = () => {
     }
   };
   const updateProfilePic = (e) => {
-      setImage(e.target.value)
+      let file = e.target.files[0]
+      setImage(file)
   }
   const updateJob = (e) => {
       setJobId(e.target.value)
@@ -75,7 +76,7 @@ const SignUpForm = () => {
         type = 'file'
         name = 'profile-pic'
         id = 'profile-pic'
-        value = {image}
+        // value = {image}
         onChange = {updateProfilePic}
         />
         </div>
@@ -91,7 +92,7 @@ const SignUpForm = () => {
       <div>
           <label>Job</label>
           <select
-            name='jobs'
+            name='jobId'
             id = 'jobs'
             onChange = {updateJob}
           >

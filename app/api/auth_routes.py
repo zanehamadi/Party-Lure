@@ -1,8 +1,14 @@
+import os
+import datetime
+from app.api.aws import public_file_upload
 from flask import Blueprint, jsonify, session, request
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import ImmutableMultiDict
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -60,12 +66,26 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
+    print('request data' , dict(request.form))
+    print('request file', request.files['image'])
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        uploaded_file = request.files['image']
+        tmp_file_name = 'app/api/tmp/' + secure_filename(uploaded_file.filename)
+        uploaded_file.save(tmp_file_name)
+        profileUrl = public_file_upload(tmp_file_name, 'partylureawsbucket' )
+        os.remove(tmp_file_name)
+        jobId = request.form['jobId']
+
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            level = form.data['level'],
+            profileUrl = profileUrl,
+            jobId = jobId,
+            createdAt=datetime.datetime.now(),
+            updatedAt = datetime.datetime.now()
         )
         db.session.add(user)
         db.session.commit()
