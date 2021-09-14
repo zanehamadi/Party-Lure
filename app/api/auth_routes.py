@@ -83,7 +83,7 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             level = form.data['level'],
-            profile_url = profile_url,
+            profile_url = profile_url if profile_url else 'https://partylureawsbucket.s3.amazonaws.com/default.jpg',
             job_id = job_id,
             created_at=datetime.datetime.now(),
             updated_at = datetime.datetime.now()
