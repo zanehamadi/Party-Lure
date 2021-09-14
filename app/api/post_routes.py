@@ -2,7 +2,7 @@
 from operator import pos
 from flask import Blueprint, jsonify, session, request
 import datetime
-from app.models import db, User, Post, Comment
+from app.models import db, User, Post, Comment, Party
 from flask_login import current_user, login_user, logout_user, login_required
 
 post_routes = Blueprint('posts', __name__)
@@ -64,6 +64,28 @@ def new_post():
         )
         db.session.add(post)
         db.session.commit()
+        post_dict = post.to_dict()
+        party_title = f"{post_dict['user']}'s {post_dict['mission']} {post_dict['type']}"
+
+        party = Party(
+            owner_id = user_id,
+            post_id = post.id,
+            title = party_title,
+            created_at=datetime.datetime.now(),
+            updated_at=datetime.datetime.now(),
+        )
+
+        db.session.add(party)
+        db.session.commit()
+
+        user = User.query.get(int(user_id))
+
+        party.users.append(user)
+
+        db.session.add(party)
+        db.session.commit()
+
+        print('NEW PARTY', party.to_dict())
         return post.to_dict()
 
 

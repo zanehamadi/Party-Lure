@@ -12,6 +12,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities }) => {
     const [activityType, setActivityType] = useState('');
     const [activity, setActivity] = useState('');
 
+
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
@@ -75,6 +76,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities }) => {
                 <label htmlFor='title'>Title: </label>
                 <input name='title' type='text' placeholder='Set Title Name' value={title} onChange={updateTitle} />
             </div>
+
             <div>
                 <label htmlFor='description'>Description: </label>
                 <textarea name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
@@ -111,6 +113,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities }) => {
                     <label htmlFor='level'>Level: </label>
                     <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
                 </div>
+
                 <div>
                     <label htmlFor='title'>Role: </label>
                     <div>
