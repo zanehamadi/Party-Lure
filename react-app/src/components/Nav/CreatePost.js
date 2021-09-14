@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/posts';
 
-const CreatePostForm = ({ roles, activityTypes, posts, activities }) => {
+const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal }) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -28,6 +28,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities }) => {
             recruitRole: Object.values(role),
         }
         dispatch(createNewPost(payload))
+        closeModal()
     }
 
     const updateTitle = (e) => {
