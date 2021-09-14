@@ -8,7 +8,6 @@ party_routes = Blueprint('parties', __name__)
 def parties():
 
     parties = Party.query.all()
-    print(f'PARTY TODICT {parties[0]}')
     return {party.id:party.to_dict() for party in parties}
 
 
@@ -16,5 +15,4 @@ def parties():
 
 def party(party_id):
     party = Party.query.get(party_id)
-    print(party.to_dict())
     return party.to_dict()

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
@@ -11,9 +11,15 @@ import Posts from './components/Posts'
 import Post from './components/Post'
 import Profile from './components/Profile'
 import Home from './components/Home'
+import PageNotFound from './components/404'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
+import { getRoles } from './store/roles'
+import { getAllJobs } from './store/job'
+import { getComments } from './store/comments'
+import { getActivities } from './store/activities'
+import { getActivityTypes } from './store/activity_types.js'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,6 +35,11 @@ function App() {
     dispatch(getPosts())
     dispatch(getUsers())
     dispatch(getParties())
+    dispatch(getRoles())
+    dispatch(getAllJobs())
+    dispatch(getComments())
+    dispatch(getActivities())
+    dispatch(getActivityTypes())
   }, [dispatch]);
 
 
@@ -59,7 +70,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/users/:id' exact={true}>
-          <Profile users={users} posts={posts} parties={parties}/>
+          <Profile users={users} posts={posts} parties={parties} />
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
@@ -71,7 +82,7 @@ function App() {
           <Home sessionUser={sessionUser} authenticated={authenticated} />
         </Route>
         <Route>
-          404 Not Found
+          <PageNotFound />
         </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>

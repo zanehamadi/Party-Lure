@@ -8,4 +8,6 @@ def jobs():
 
     jobs = Job.query.all()
 
+    print('THIS IS JOBS IN ROUTE ----->', jobs)
+
     return {job.id:job.to_dict() for job in jobs}

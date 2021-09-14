@@ -5,6 +5,10 @@ import session from './session'
 import postReducer from './posts'
 import userReducer from './users'
 import partyReducer from './parties';
+import rolesReducer from './roles';
+import commentsReducer from './comments';
+import activitiesReducer from './activities';
+import activityTypesReducer from './activity_types.js';
 
 
 import jobs from './job'
@@ -12,9 +16,13 @@ import jobs from './job'
 const rootReducer = combineReducers({
   session,
   jobs,
-  posts:postReducer,
-  users:userReducer,
-  parties:partyReducer
+  posts: postReducer,
+  users: userReducer,
+  parties: partyReducer,
+  roles: rolesReducer,
+  comments: commentsReducer,
+  activities: activitiesReducer,
+  activityTypes: activityTypesReducer
 });
 
 

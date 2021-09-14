@@ -1,9 +1,20 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import { useSelector } from 'react-redux';
+import LogoutButton from '../auth/LogoutButton';
+import CreatePostFormModal from './CreatePostModal';
 // import LoginFormModal from './auth/LoginFormModal';
 const NavBar = ({ sessionUser, authenticated }) => {
+
+  // const rolesSlice = useSelector(state => state.roles)
+  // const usersSlice = useSelector(state => state.users)
+  // const partiesSlice = useSelector(state => state.parties)
+
+  // const roles = Object.values(rolesSlice)
+  // console.log('THIS IS ROLES ------>', roles)
+  // const users = Object.values(usersSlice)
+  // const parties = Object.values(partiesSlice)
+
   return (
     <nav>
       <ul>
@@ -33,9 +44,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
           :
           <>
             <li>
-              <NavLink to='/post' exact={true} activeClassName='active'>
-                ➕
-              </NavLink>
+              <CreatePostFormModal />
             </li>
             <li>
               <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>

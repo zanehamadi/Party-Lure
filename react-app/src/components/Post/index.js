@@ -9,6 +9,12 @@ export default function Post({ posts }) {
             <div>
                 {post.content}
             </div>
+            <div>
+                <button>Request to Join</button>
+                <button>Cancel Request</button>
+                <button>Edit Post</button>
+                <button>Delete Post</button>
+            </div>
         </>
     )
 }
