@@ -13,6 +13,7 @@ function Search({posts, activities, activityTypes}) {
     const [showActivities, setShowActivities] = useState(false)
     const [listActivities, setListActivities] = useState([])
     const [activityTypeId, setActivityTypeId] = useState('')
+    const [showResults, setShowResults] = useState(false)
 
     console.log(activityTypes)
     const resetFunc = () => {
@@ -21,10 +22,10 @@ function Search({posts, activities, activityTypes}) {
         setActivity('')
         setTitle('')
         setActivityType('')
-        setSearchPosts([])
         setLevel('')
         setShowActivities(false)
         setUserClass('')
+        setShowResults(false)
     }
 
     const activityTypeFunc= (e) => {
@@ -38,18 +39,22 @@ function Search({posts, activities, activityTypes}) {
     }
 
     useEffect(() => {
-        if((title || (role || activity))){
+        if( (title || userClass) || (role || activity) ){
             let postsArr = posts
             if(title){
+                setShowResults(true)
                 postsArr = postsArr.filter(post => ((post?.title).toUpperCase()).includes((title.toUpperCase())))
             }
             if(level){
+                setShowResults(true)
                 postsArr = postsArr.filter(post => +post?.recruit_level === +level)
             }
             if(activity && activity !== 'All Activities'){
+                setShowResults(true)
                 postsArr = postsArr.filter(post => post?.mission === activity)
             }
             if(activityType && activityType !== 'All Activity Types'){
+                setShowResults(true)
                 postsArr = postsArr.filter(post => post?.type === activityType)
                 let tempActivities = activities
                 tempActivities = tempActivities.filter(aType => +aType.type_id === activityTypeId)
@@ -57,6 +62,7 @@ function Search({posts, activities, activityTypes}) {
                 setShowActivities(true)
             }
             if(userClass && userClass !== 'All Roles'){
+                setShowResults(true)
                 postsArr = postsArr.filter(post => post?.recruit_role.includes(+userClass))
             }
             setSearchPosts(postsArr)
@@ -104,11 +110,10 @@ function Search({posts, activities, activityTypes}) {
 
 
                     </form>
-                    <h1>Yup</h1>
                 </> 
             
             : <></>}
-            {searchPosts.length !== 0 ? 
+            {showResults ? 
                 <>
                     {searchPosts.map(post => <div><Link to={`/posts/${post.id}`}>{post.title}</Link></div>)}
                 </> 
