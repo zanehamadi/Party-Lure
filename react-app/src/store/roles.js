@@ -12,7 +12,9 @@ export const getRoles = () => async (dispatch) => {
         const roles = await response.json()
         console.log('roles', roles)
         dispatch(loadRoles(roles))
+        return
     }
+    return
 }
 
 const initialState = {}
