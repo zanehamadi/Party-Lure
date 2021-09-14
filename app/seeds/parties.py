@@ -16,7 +16,7 @@ def seed_parties():
         del user_dict[str(owner_id)]
 
         party_members = [User.query.get(owner_id)]
-        for i in range(1):
+        for i in range(4):
             party_members.append(User.query.get(assign_from_dict(user_dict,1)))
 
         new_party = Party(
