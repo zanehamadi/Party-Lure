@@ -29,5 +29,8 @@ class Post(db.Model):
             "user_id": self.user_id,
             "user": self.user.username,
             "type": self.activity.type.name,
-            "mission": self.activity.name
+            "mission": self.activity.name,
+            "recruit_level": self.recruit_level,
+            "recruit_role": self.recruit_role
+
         }

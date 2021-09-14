@@ -7,7 +7,7 @@ export default function Post({ posts }) {
     return (
         <>
             <div>
-                {post.content}
+                {post?.content}
             </div>
             <div>
                 <button>Request to Join</button>

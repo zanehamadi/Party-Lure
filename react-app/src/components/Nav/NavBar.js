@@ -33,7 +33,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
           </NavLink>
         </li>
         <li>
-          <Search />
+          <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
         </li>
         {!authenticated ?
           <>

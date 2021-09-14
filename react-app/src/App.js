@@ -11,6 +11,7 @@ import Posts from './components/Posts'
 import Post from './components/Post'
 import Profile from './components/Profile'
 import Home from './components/Home'
+import Search from './components/Search'
 import PageNotFound from './components/404'
 import Comment from './components/Comments'
 import { getPosts } from './store/posts'
@@ -47,12 +48,17 @@ function App() {
   const postsSlice = useSelector(state => state.posts)
   const usersSlice = useSelector(state => state.users)
   const partiesSlice = useSelector(state => state.parties)
+  const activitiesSlice = useSelector(state => state.activities)
+  const aTypesSlice = useSelector(state => state.activityTypes)
   const commentsSlice = useSelector(state => state.comments)
 
   const posts = Object.values(postsSlice)
   const users = Object.values(usersSlice)
   const parties = Object.values(partiesSlice)
+  const activities = Object.values(activitiesSlice)
+  const activityTypes = Object.values(aTypesSlice)
   const comments = Object.values(commentsSlice)
+
 
   if (!loaded) {
     return null;
@@ -86,6 +92,9 @@ function App() {
         </Route>
         <Route path='/' exact={true} >
           <Home sessionUser={sessionUser} authenticated={authenticated} />
+        </Route>
+        <Route path='/search' exact={true}>
+          <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
         </Route>
         <Route path='/comments' exact={true} >
           <Comment comments={comments} />

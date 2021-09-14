@@ -17,5 +17,6 @@ class Activity(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "type":self.type.name
+            "type":self.type.name,
+            "type_id": self.type_id
         }
