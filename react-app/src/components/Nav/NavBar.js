@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
 import Search from '../Search';
+import DemoButton from '../auth/DemoButton';
 
 const NavBar = ({ sessionUser, authenticated }) => {
 
@@ -37,14 +38,17 @@ const NavBar = ({ sessionUser, authenticated }) => {
         {!authenticated ?
           <>
             <li>
+              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                Sign Up
+              </NavLink>
+            </li>
+            <li>
               <NavLink to='/login' exact={true} activeClassName='active'>
                 Login
               </NavLink>
             </li>
             <li>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
+              <DemoButton />
             </li>
           </>
           :
