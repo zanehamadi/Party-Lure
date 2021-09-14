@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
+import DemoLogin from './components/auth/DemoButton';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -12,6 +13,7 @@ import Profile from './components/Profile'
 import Home from './components/Home'
 import Search from './components/Search'
 import PageNotFound from './components/404'
+import Comment from './components/Comments'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
@@ -48,15 +50,14 @@ function App() {
   const partiesSlice = useSelector(state => state.parties)
   const activitiesSlice = useSelector(state => state.activities)
   const aTypesSlice = useSelector(state => state.activityTypes)
-
+  const commentsSlice = useSelector(state => state.comments)
 
   const posts = Object.values(postsSlice)
   const users = Object.values(usersSlice)
   const parties = Object.values(partiesSlice)
   const activities = Object.values(activitiesSlice)
   const activityTypes = Object.values(aTypesSlice)
-
-
+  const comments = Object.values(commentsSlice)
 
 
   if (!loaded) {
@@ -73,6 +74,9 @@ function App() {
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
+        </Route>
+        <Route path='/demo' exact={true}>
+          <DemoLogin />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
@@ -91,6 +95,9 @@ function App() {
         </Route>
         <Route path='/search' exact={true}>
           <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
+        </Route>
+        <Route path='/comments' exact={true} >
+          <Comment comments={comments} />
         </Route>
         <Route>
           <PageNotFound />
