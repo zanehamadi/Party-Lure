@@ -4,6 +4,7 @@ import session from './session'
 
 import postReducer from './posts'
 import userReducer from './users'
+import partyReducer from './parties';
 
 
 import jobs from './job'
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   session,
   jobs,
   posts:postReducer,
-  users:userReducer
+  users:userReducer,
+  parties:partyReducer
 });
 
 

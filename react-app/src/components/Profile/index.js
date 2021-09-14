@@ -1,10 +1,6 @@
 import { useParams } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Posts from "../Posts";
 
-export default function Profile({users, posts}){
+export default function Profile({users, posts, parties}){
     
     const {id} = useParams()
     const user = users?.find(specUser => +specUser.id === +id)
@@ -14,8 +10,6 @@ export default function Profile({users, posts}){
 
     return(
     <>
-
-        {console.log(user)}
         <h1>
             {`${user?.username}'s Profile`}
         </h1>
