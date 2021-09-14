@@ -64,6 +64,14 @@ const postReducer = (state = initialState, action) => {
 
             return {...newState}
         }
+        case UPDATE_POST :{
+            if(!action.post){return {...state}}
+
+            return {
+                ...state,
+                [action.post.id]: action.post
+            }
+        }
         default:
             return state
     }
