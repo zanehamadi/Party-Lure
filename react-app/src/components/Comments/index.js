@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
+import CreateCommentForm from "./commentForm";
+
 
 export default function Comments({ comments }) {
     return (
         <>
-        {console.log("COMMENTS", comments[1])}
-            {/* <div>
-                {comments.map(comment =>
-                    <div key={comment.id}><Link to={`/comments/${comment.id}`}>{comment.content}</Link></div>
+           
+            <CreateCommentForm/>
+            {/* <ul>
+                {comments.map (comment => 
+                    <li>{comment.content}</li>
                 )}
-            </div> */}
-            <ul>
-            {comments.map (comment => 
-                <li>{comment.content}</li>
-            )}
-            </ul>
+            </ul> */}
         </>
     )
 }

@@ -46,7 +46,7 @@ export const thunk_fetchPostComments = (postId) => async (dispatch) => {
 }
 
 export const createNewComment = (data) => async (dispatch) => {
-    const res = await fetch('/api/comment', {
+    const res = await fetch('/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -69,6 +69,7 @@ export const thunk_editComment = (payload) => async (dispatch) => {
 
     if (res.ok) {
         dispatch(updateComment(newComment));
+        return
     }
     return newComment;
 };
