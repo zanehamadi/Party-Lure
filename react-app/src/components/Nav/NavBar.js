@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
+import Search from '../Search';
 // import LoginFormModal from './auth/LoginFormModal';
 const NavBar = ({ sessionUser, authenticated }) => {
 
@@ -29,7 +30,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
           </NavLink>
         </li>
         <li>
-          <input placeholder='Here you go, Zane!'></input>
+          <Search />
         </li>
         {!authenticated ?
           <>
