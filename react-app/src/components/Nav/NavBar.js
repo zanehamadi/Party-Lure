@@ -1,10 +1,20 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
 // import LoginFormModal from './auth/LoginFormModal';
 const NavBar = ({ sessionUser, authenticated }) => {
+
+  // const rolesSlice = useSelector(state => state.roles)
+  // const usersSlice = useSelector(state => state.users)
+  // const partiesSlice = useSelector(state => state.parties)
+
+  // const roles = Object.values(rolesSlice)
+  // console.log('THIS IS ROLES ------>', roles)
+  // const users = Object.values(usersSlice)
+  // const parties = Object.values(partiesSlice)
+
   return (
     <nav>
       <ul>

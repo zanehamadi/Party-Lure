@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { createNewPost } from '../../store/posts';
 
-const CreatePostForm = () => {
+const CreatePostForm = ({ roles }) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [level, setLevel] = useState('');
     const [role, setRole] = useState('');
     const [activity, setActivity] = useState('');
-    const user = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
 
-    const onCreate = async (e) => {
-        e.preventDefault();
-        const data = await dispatch(createNewPost(title, description, level, role, activity));
-        if (data) {
-            setErrors(data);
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const sessionUser = useSelector(state => state.session.user);
+    const roleList = roles?.find(role => role.id === +id)
+    console.log('THIS IS ROLE ------>', roles)
+
+    const createPost = e => {
+        e.preventDefault()
+        const payload = {
+            user_id: sessionUser?.id,
+            title: title,
+            content: description,
+            recruit_level: +level,
+            activity_id: +activity,
+            recruit_role: +role,
+
         }
-    };
+        dispatch(createNewPost(payload))
+    }
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
@@ -42,7 +52,7 @@ const CreatePostForm = () => {
     };
 
     return (
-        <form onSubmit={onCreate}>
+        <form onSubmit={createPost}>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>

@@ -9,7 +9,7 @@ export const getAllJobs = () => async (dispatch) => {
     const response = await fetch('/api/jobs')
     let data
 
-    if(response.ok){
+    if (response.ok) {
         data = await response.json()
         console.log('data', data)
         dispatch(loadJobs(data))
@@ -22,9 +22,9 @@ export const getAllJobs = () => async (dispatch) => {
 const intialState = []
 
 export default function reducer(state = intialState, action) {
-    switch(action.type){
+    switch (action.type) {
         case LOAD_JOBS:
-            return {...action.jobs}
+            return { ...action.jobs }
         default:
             return state
     }

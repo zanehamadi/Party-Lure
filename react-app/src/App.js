@@ -7,7 +7,6 @@ import NavBar from './components/Nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
-import CreatePostFormModal from './components/Nav/CreatePostModal';
 import Posts from './components/Posts'
 import Post from './components/Post'
 import Profile from './components/Profile'
@@ -16,6 +15,8 @@ import PageNotFound from './components/404'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
+import { getRoles } from './store/roles'
+import { getAllJobs } from './store/job'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,6 +32,8 @@ function App() {
     dispatch(getPosts())
     dispatch(getUsers())
     dispatch(getParties())
+    dispatch(getRoles())
+    dispatch(getAllJobs())
   }, [dispatch]);
 
 
@@ -77,7 +80,6 @@ function App() {
         </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
-      <CreatePostFormModal></CreatePostFormModal>
     </BrowserRouter>
   );
 }
