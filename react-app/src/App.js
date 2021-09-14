@@ -12,7 +12,8 @@ import Profile from './components/Profile'
 import Home from './components/Home'
 import Search from './components/Search'
 import PageNotFound from './components/404'
-import Comment from './components/Comments'
+import Comments from './components/Comments'
+import Comment from './components/Comment'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
@@ -87,7 +88,7 @@ function App() {
           <Posts posts={posts} />
         </Route>
         <Route path='/posts/:id' exact={true}>
-          <Post posts={posts} />
+          <Post posts={posts} comments={comments} />
         </Route>
         <Route path='/' exact={true} >
           <Home sessionUser={sessionUser} authenticated={authenticated} />
@@ -96,7 +97,10 @@ function App() {
           <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
         </Route>
         <Route path='/comments' exact={true} >
-          <Comment comments={comments} />
+          <Comments comments={comments} />
+        </Route>
+        <Route path='/comments/:id' exact={true} >
+          <Comment comments={comments}/>
         </Route>
         <Route>
           <PageNotFound />

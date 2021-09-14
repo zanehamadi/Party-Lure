@@ -24,7 +24,7 @@ def comments():
     return {comment.id: comment.to_dict() for comment in comments}
 
 
-@comment_routes.route('/', methods=["POST"])
+@comment_routes.route('', methods=["POST"])
 # @login_required
 def create_comment():
     data = request.get_json()
