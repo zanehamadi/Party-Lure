@@ -11,7 +11,6 @@ export const getAllJobs = () => async (dispatch) => {
 
     if (response.ok) {
         data = await response.json()
-        console.log('data', data)
         dispatch(loadJobs(data))
         return
     }

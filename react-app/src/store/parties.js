@@ -8,9 +8,8 @@ const loadParties = (parties) => ({
 
 export const getParties = () => async (dispatch) => {
     const res = await fetch('/api/parties')
-    if(res.ok){
+    if (res.ok) {
         const parties = await res.json();
-        console.log('PARTIES IN STORE', parties)
         dispatch((loadParties(parties)))
     }
 };
@@ -18,10 +17,10 @@ export const getParties = () => async (dispatch) => {
 const initialState = {}
 
 const partyReducer = (state = initialState, action) => {
-    
-    switch(action.type){
+
+    switch (action.type) {
         case LOAD_PARTIES: {
-            return {...action.parties}
+            return { ...action.parties }
         }
         default:
             console.log('DEFAULT')

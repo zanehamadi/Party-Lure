@@ -1,8 +1,8 @@
 from flask import Blueprint
-
 from app.models import Role
 
 role_routes = Blueprint('roles', __name__)
+
 @role_routes.route('/')
 def roles():
 
