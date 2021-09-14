@@ -3,7 +3,7 @@ import { Modal } from "../../context/Modal";
 import CreatePostForm from "../Nav/CreatePost";
 
 
-export default function CreatePostFormModal() {
+export default function CreatePostFormModal({ activityTypes, activities, roles, posts }) {
     const [showModal, setShowModal] = useState(false)
 
     const handleClick = () => {
@@ -18,7 +18,7 @@ export default function CreatePostFormModal() {
         <>
             <button onClick={handleClick}>➕</button>
             {showModal && <Modal onClose={() => setShowModal(false)}>
-                <CreatePostForm />
+                <CreatePostForm activityTypes={activityTypes} roles={roles} posts={posts} activities={activities} />
             </Modal>}
         </>
     )

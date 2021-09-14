@@ -20,7 +20,6 @@ def posts():
 # @login_required
 def post(post_id):
     post = Post.query.get(post_id)
-    print(post.to_dict())
     return post.to_dict()
 
 
@@ -31,7 +30,7 @@ def new_post():
     try:
         post_id = data['postId']
     except KeyError:
-        print('new post')
+        pass
     title = data['title']
     content = data['content']
     user_id = data['userId']
@@ -60,7 +59,8 @@ def new_post():
             recruit_role=recruit_role,
             activity_id=activity_id,
             created_at=datetime.datetime.now(),
-            updated_at=datetime.datetime.now()
+            updated_at=datetime.datetime.now(),
+            open=True
         )
         db.session.add(post)
         db.session.commit()
