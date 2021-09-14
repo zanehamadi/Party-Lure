@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
 import Search from '../Search';
-// import LoginFormModal from './auth/LoginFormModal';
+
 const NavBar = ({ sessionUser, authenticated }) => {
 
   const aTypeSlice = useSelector(state => state.activityTypes)
