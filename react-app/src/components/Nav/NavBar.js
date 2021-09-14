@@ -3,17 +3,20 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
-// import LoginFormModal from './auth/LoginFormModal';
+import Search from '../Search';
+
 const NavBar = ({ sessionUser, authenticated }) => {
 
-  // const rolesSlice = useSelector(state => state.roles)
-  // const usersSlice = useSelector(state => state.users)
-  // const partiesSlice = useSelector(state => state.parties)
+  const aTypeSlice = useSelector(state => state.activityTypes)
+  const activitySlice = useSelector(state => state.activities)
+  const rolesSlice = useSelector(state => state.roles)
+  const postsSlice = useSelector(state => state.posts)
 
-  // const roles = Object.values(rolesSlice)
-  // console.log('THIS IS ROLES ------>', roles)
-  // const users = Object.values(usersSlice)
-  // const parties = Object.values(partiesSlice)
+  const activityTypes = Object.values(aTypeSlice)
+  const activities = Object.values(activitySlice)
+  const roles = Object.values(rolesSlice)
+  const posts = Object.values(postsSlice)
+
 
   return (
     <nav>
@@ -27,6 +30,9 @@ const NavBar = ({ sessionUser, authenticated }) => {
           <NavLink to='/posts' exact={true} activeClassName='active'>
             Posts
           </NavLink>
+        </li>
+        <li>
+          <Search />
         </li>
         {!authenticated ?
           <>
@@ -44,7 +50,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
           :
           <>
             <li>
-              <CreatePostFormModal />
+              <CreatePostFormModal activityTypes={activityTypes} activities={activities} roles={roles} posts={posts} />
             </li>
             <li>
               <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>

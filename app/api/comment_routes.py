@@ -13,7 +13,6 @@ comment_routes = Blueprint('comments', __name__)
 # @login_required
 def comment(comment_id):
     comment = Comment.query.get(comment_id)
-    print(comment.to_dict())
     return comment.to_dict()
 
 
@@ -29,7 +28,6 @@ def comments():
 # @login_required
 def create_comment():
     data = request.get_json()
-    print(data)
     new_comment = Comment(
         content=data['content'],
         created_at=datetime.datetime.now(),
@@ -39,7 +37,6 @@ def create_comment():
     )
     db.session.add(new_comment)
     db.session.commit()
-    print(new_comment)
     return new_comment.to_dict()
 
 
