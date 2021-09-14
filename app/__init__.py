@@ -13,6 +13,7 @@ from .api.job_routes import job_routes
 from .api.post_routes import post_routes
 from .api.party_routes import party_routes
 from .api.role_routes import role_routes
+from .api.activity_routes import activity_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -40,6 +41,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(job_routes, url_prefix='/api/jobs')
 app.register_blueprint(role_routes, url_prefix='/api/roles')
+app.register_blueprint(activity_routes, url_prefix='/api/activities')
 db.init_app(app)
 Migrate(app, db)
 

@@ -7,6 +7,7 @@ import userReducer from './users'
 import partyReducer from './parties';
 import rolesReducer from './roles';
 import commentsReducer from './comments';
+import activitiesReducer from './activities';
 
 
 import jobs from './job'
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   users: userReducer,
   parties: partyReducer,
   roles: rolesReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  activities: activitiesReducer
 });
 
 
