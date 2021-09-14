@@ -5,11 +5,12 @@ export default function Profile({users, posts, parties}){
     const {id} = useParams()
     const user = users?.find(specUser => +specUser.id === +id)
     const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
-
+    const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
 
 
     return(
     <>
+        {console.log('PARTIES', userParties)}
         <h1>
             {`${user?.username}'s Profile`}
         </h1>
@@ -29,6 +30,15 @@ export default function Profile({users, posts, parties}){
             <div>
                 {post.title}
             </div>
+            </>
+        )}
+
+        <h2>Parties</h2>
+        {userParties.map(parties => 
+            <>
+                <div>
+                    
+                </div>
             </>
         )}
     </>
