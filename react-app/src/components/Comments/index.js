@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 
 export default function Comments({ comments }) {
     return (
@@ -10,7 +9,7 @@ export default function Comments({ comments }) {
                 )}
             </div> */}
             <ul>
-            {comments.map (comment => 
+            {comments.map (comment =>
                 <li>{comment.content}</li>
             )}
             </ul>

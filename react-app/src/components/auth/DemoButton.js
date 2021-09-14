@@ -3,7 +3,7 @@ import * as sessionActions from '../../store/session';
 
 const DemoButton = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
+    useSelector(state => state.session.user)
 
     let credential = 'Demo Fish'
     let password = 'password'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/posts';
 
@@ -12,13 +12,30 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
     const [activityType, setActivityType] = useState('');
     const [activity, setActivity] = useState('');
 
-
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
+    const errorValidation = () => {
+        let errors = []
+        if (!title) {
+            errors.push('Post must have a title')
+        }
+        if (!description) {
+            errors.push('Post must have a description')
+        }
+        if (!activityType && !activity) {
+            errors.push('Post must include an activity')
+        }
+        console.log('THIS IS ERRORS ------->', errors)
+        return errors
+    }
 
     const createPost = e => {
         e.preventDefault()
+        let validationErrors = errorValidation()
+        if (validationErrors.length > 0) {
+            return setErrors(validationErrors)
+        }
         const payload = {
             userId: sessionUser?.id,
             title: title,
@@ -28,6 +45,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
             recruitRole: Object.values(role),
         }
         dispatch(createNewPost(payload))
+        setErrors([])
         closeModal()
     }
 
@@ -84,6 +102,9 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                 <div>
                     <label htmlFor='activityType'>Activity Type: </label>
                     <select name='activityType' type='text' placeholder='Select Activity Type' value={activityType} onChange={updateActivityType}>
+                        <option value='' disabled={true}>
+                            Select a type
+                        </option>
                         {activityTypes.map(activityType => {
                             return (
                                 <option value={activityType.name} key={activityType.id}>
@@ -105,6 +126,8 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                                             {activity.name}
                                         </option>
                                     )
+                                } else {
+                                    return null
                                 }
                             })}
                         </select>
