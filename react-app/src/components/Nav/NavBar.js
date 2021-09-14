@@ -28,6 +28,9 @@ const NavBar = ({ sessionUser, authenticated }) => {
             Posts
           </NavLink>
         </li>
+        <li>
+          <input placeholder='Here you go, Zane!'></input>
+        </li>
         {!authenticated ?
           <>
             <li>
