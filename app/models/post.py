@@ -6,13 +6,13 @@ class Post(db.Model):
 
     # columns
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String)
-    content = db.Column(db.Text)
+    title = db.Column(db.String, nullable=False)
+    content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     recruit_level = db.Column(db.Integer, nullable=False)
     recruit_role = db.Column(ARRAY(db.Integer))
-    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'))
-    open = db.Column(db.Boolean)
+    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False)
+    open = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
     # relationships
@@ -29,5 +29,8 @@ class Post(db.Model):
             "user_id": self.user_id,
             "user": self.user.username,
             "type": self.activity.type.name,
-            "mission": self.activity.name
+            "mission": self.activity.name,
+            "recruit_level": self.recruit_level,
+            "recruit_role": self.recruit_role
+
         }

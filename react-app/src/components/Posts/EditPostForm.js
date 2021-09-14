@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/posts';
 
-const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal }) => {
+const CreatePostForm = (post) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -15,27 +15,9 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
-    const errorValidation = () => {
-        let errors = []
-        if (!title) {
-            errors.push('Post must have a title')
-        }
-        if (!description) {
-            errors.push('Post must have a description')
-        }
-        if (!activityType && !activity) {
-            errors.push('Post must include an activity')
-        }
-        console.log('THIS IS ERRORS ------->', errors)
-        return errors
-    }
 
     const createPost = e => {
         e.preventDefault()
-        let validationErrors = errorValidation()
-        if (validationErrors.length > 0) {
-            return setErrors(validationErrors)
-        }
         const payload = {
             userId: sessionUser?.id,
             title: title,
@@ -45,8 +27,6 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
             recruitRole: Object.values(role),
         }
         dispatch(createNewPost(payload))
-        setErrors([])
-        closeModal()
     }
 
     const updateTitle = (e) => {
@@ -95,16 +75,12 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                 <label htmlFor='title'>Title: </label>
                 <input name='title' type='text' placeholder='Set Title Name' value={title} onChange={updateTitle} />
             </div>
-
             <div>
                 <label htmlFor='description'>Description: </label>
                 <textarea name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
                 <div>
                     <label htmlFor='activityType'>Activity Type: </label>
                     <select name='activityType' type='text' placeholder='Select Activity Type' value={activityType} onChange={updateActivityType}>
-                        <option value='' disabled={true}>
-                            Select a type
-                        </option>
                         {activityTypes.map(activityType => {
                             return (
                                 <option value={activityType.name} key={activityType.id}>
@@ -126,8 +102,6 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                                             {activity.name}
                                         </option>
                                     )
-                                } else {
-                                    return null
                                 }
                             })}
                         </select>
@@ -137,7 +111,6 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                     <label htmlFor='level'>Level: </label>
                     <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
                 </div>
-
                 <div>
                     <label htmlFor='title'>Role: </label>
                     <div>

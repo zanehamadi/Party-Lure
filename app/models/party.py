@@ -25,6 +25,7 @@ class Party(db.Model):
             "id": self.id,
             "post_id": self.post_id,
             "owner_id": self.owner_id,
+            "requests": [user.to_dict() for user in self.requests ],
             "title": self.title,
             "created_at": self.created_at,
             "updated_at": self.updated_at

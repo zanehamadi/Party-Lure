@@ -18,7 +18,7 @@ export default function CreatePostFormModal({ activityTypes, activities, roles, 
         <>
             <button onClick={handleClick}>➕</button>
             {showModal && <Modal onClose={() => setShowModal(false)}>
-                <CreatePostForm activityTypes={activityTypes} roles={roles} posts={posts} activities={activities} />
+                <CreatePostForm closeModal = {closeModal} activityTypes={activityTypes} roles={roles} posts={posts} activities={activities} />
             </Modal>}
         </>
     )
