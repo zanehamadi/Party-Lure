@@ -6,7 +6,6 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
-import LoginFormModal from './components/auth/LoginFormModal';
 import Posts from './components/Posts'
 import Post from './components/Post'
 import Profile from './components/Profile'
@@ -85,7 +84,6 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
-      <LoginFormModal></LoginFormModal>
     </BrowserRouter>
   );
 }
