@@ -17,6 +17,7 @@ import { getUsers } from './store/users'
 import { getParties } from './store/parties'
 import { getRoles } from './store/roles'
 import { getAllJobs } from './store/job'
+import { getComments } from './store/comments'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +35,7 @@ function App() {
     dispatch(getParties())
     dispatch(getRoles())
     dispatch(getAllJobs())
+    dispatch(getComments())
   }, [dispatch]);
 
 

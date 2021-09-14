@@ -1,4 +1,3 @@
-
 const LOAD_POSTS = "posts/LOAD_POSTS"
 const UPDATE_POST = 'users/UPDATE_POST'
 
