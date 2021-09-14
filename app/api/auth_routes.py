@@ -67,8 +67,6 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
-    print('request data' , dict(request.form))
-    print('request file', request.files['image'])
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         uploaded_file = request.files['image']
@@ -83,7 +81,7 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             level = form.data['level'],
-            profile_url = profile_url,
+            profile_url = profile_url if profile_url else 'https://partylureawsbucket.s3.amazonaws.com/default.jpg',
             job_id = job_id,
             created_at=datetime.datetime.now(),
             updated_at = datetime.datetime.now()

@@ -27,7 +27,7 @@ export const getPosts = () => async (dispatch) => {
 };
 
 export const createNewPost = (data) => async (dispatch) => {
-    const res = await fetch ('/api/posts', {
+    const res = await fetch('/api/posts/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -41,8 +41,8 @@ export const createNewPost = (data) => async (dispatch) => {
 
 export const goDeletePost = (postId) => async (dispatch) => {
 
-    const res = await  fetch (`/api/posts/${postId}`, {
-        method : 'DELETE',
+    const res = await fetch(`/api/posts/${postId}`, {
+        method: 'DELETE',
     })
 
     if (res.ok) {
@@ -57,15 +57,15 @@ const postReducer = (state = initialState, action) => {
         case LOAD_POSTS: {
             return { ...action.posts }
         }
-        case DELETE_POST :{
-            let newState = {...state}
+        case DELETE_POST: {
+            let newState = { ...state }
 
             delete newState[action.postId]
 
-            return {...newState}
+            return { ...newState }
         }
-        case UPDATE_POST :{
-            if(!action.post){return {...state}}
+        case UPDATE_POST: {
+            if (!action.post) { return { ...state } }
 
             return {
                 ...state,
