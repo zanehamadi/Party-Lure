@@ -11,6 +11,21 @@ def seed_users(num_users = 25):
 
     jobs_dict = gen_count_dict(Job)
 
+    demo_user = User(
+        username = 'Demo Fish',
+        email= 'demo@fish.com',
+        profile_url = 'https://partylureawsbucket.s3.amazonaws.com/party_lure_demo_profile.jpg',
+        password = 'password',
+        job_id = 1,
+        level = 25,
+        created_at=datetime.datetime.now(),
+        updated_at = datetime.datetime.now()
+    )
+
+    db.session.add(demo_user)
+    db.session.commit()
+
+
     for i in range(num_users):
         if i%2 == 0:
             username = fake.user_name()
