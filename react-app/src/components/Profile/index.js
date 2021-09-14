@@ -37,7 +37,7 @@ export default function Profile({users, posts, parties}){
         {userParties.map(parties => 
             <>
                 <div>
-                    
+                    {parties?.title}
                 </div>
             </>
         )}

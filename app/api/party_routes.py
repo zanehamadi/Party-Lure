@@ -6,8 +6,9 @@ party_routes = Blueprint('parties', __name__)
 
 @party_routes.route('/')
 def parties():
-
     parties = Party.query.all()
+    # party_users = Party.query.join(Party.users).all()
+    # return {'party_users': [party_user.to_dict() for party_user in party_users]}
     return {party.id:party.to_dict() for party in parties}
 
 
