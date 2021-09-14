@@ -67,8 +67,6 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
-    print('request data' , dict(request.form))
-    print('request file', request.files['image'])
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         uploaded_file = request.files['image']

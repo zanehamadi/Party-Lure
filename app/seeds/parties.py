@@ -2,6 +2,10 @@
 from app.models.party import Party
 import datetime
 from operator import pos
+from faker import Faker
+
+fake = Faker()
+Faker.seed(0)
 
 from app.models import db, Post, User, user
 from app.seeds.utils import assign_from_dict, gen_count_dict
@@ -22,6 +26,7 @@ def seed_parties():
         new_party = Party(
             post_id = post.id,
             owner_id = owner_id,
+            title = fake.paragraph(nb_sentences=1),
             created_at=datetime.datetime.now(),
             updated_at = datetime.datetime.now()
 
