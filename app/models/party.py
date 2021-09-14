@@ -7,6 +7,7 @@ class Party(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    title = db.Column(db.String, nullable= False)
     created_at = db.Column(db.DateTime , nullable= False)
     updated_at = db.Column(db.DateTime , nullable= False)
 
@@ -20,6 +21,7 @@ class Party(db.Model):
             "id": self.id,
             "post_id": self.post_id,
             "owner_id": self.owner_id,
+            "title": self.title,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
