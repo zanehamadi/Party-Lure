@@ -17,9 +17,9 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
 
   useEffect(() => {
-      dispatch(getAllJobs())
+    dispatch(getAllJobs())
 
-  },[dispatch])
+  }, [dispatch])
 
   let jobState = useSelector(state => state.jobs)
   let jobs = Object.values(jobState)
@@ -34,14 +34,14 @@ const SignUpForm = () => {
     }
   };
   const updateProfilePic = (e) => {
-      let file = e.target.files[0]
-      setImage(file)
+    let file = e.target.files[0]
+    setImage(file)
   }
   const updateJob = (e) => {
-      setJobId(e.target.value)
+    setJobId(e.target.value)
   }
   const updateLevel = (e) => {
-      setLevel(e.target.value)
+    setLevel(e.target.value)
   };
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -71,16 +71,16 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label htmlFor = 'profile-pic'>Profile Picture</label>
+        <label htmlFor='profile-pic'>Profile Picture</label>
         <input
-        type = 'file'
-        name = 'profile-pic'
-        id = 'profile-pic'
-        // value = {image}
-        onChange = {updateProfilePic}
+          type='file'
+          name='profile-pic'
+          id='profile-pic'
+          // value = {image}
+          onChange={updateProfilePic}
         />
-        </div>
-        <div>
+      </div>
+      <div>
         <label>User Name</label>
         <input
           type='text'
@@ -90,40 +90,39 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-          <label>Job</label>
-          <select
-            name='jobId'
-            id = 'jobs'
-            onChange = {updateJob}
+        <label>Job</label>
+        <select
+          name='jobId'
+          id='jobs'
+          onChange={updateJob}
+        >
+          <option
+            value=''
+            disabled
+            selected
           >
-              <option
-                value = ''
-                disabled
-                selected
-                >
-                What's your job?
-                </option>
-              {jobs && jobs.map(job => {
-                  return (
-                      <option key = {job.id}value = {job.id}>
-                          {job.name}
-                      </option>
-                  )
-              } )}
-          </select>
+            What's your job?
+          </option>
+          {jobs && jobs.map(job => {
+            return (
+              <option key={job.id} value={job.id}>
+                {job.name}
+              </option>
+            )
+          })}
+        </select>
 
       </div>
       <div>
-          <label>Level</label>
-          <input
-            type= 'number'
-            name = 'level'
-            onChange = {setLevel}
-            min = '0'
-            max = '50'
-            value = {level}
-            onChange = {updateLevel}
-            />
+        <label>Level</label>
+        <input
+          type='number'
+          name='level'
+          min='0'
+          max='50'
+          value={level}
+          onChange={updateLevel}
+        />
       </div>
       <div>
         <label>Email</label>
