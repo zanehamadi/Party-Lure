@@ -47,14 +47,16 @@ function App() {
   const usersSlice = useSelector(state => state.users)
   const partiesSlice = useSelector(state => state.parties)
   const activitiesSlice = useSelector(state => state.activities)
-  const rolesSlice = useSelector(state => state.roles)
+  const aTypesSlice = useSelector(state => state.activityTypes)
 
 
   const posts = Object.values(postsSlice)
   const users = Object.values(usersSlice)
   const parties = Object.values(partiesSlice)
   const activities = Object.values(activitiesSlice)
-  const roles = Object.values(rolesSlice)
+  const activityTypes = Object.values(aTypesSlice)
+
+
 
 
   if (!loaded) {
@@ -88,7 +90,7 @@ function App() {
           <Home sessionUser={sessionUser} authenticated={authenticated} />
         </Route>
         <Route path='/search' exact={true}>
-          <Search posts={posts} activities={activities}/>
+          <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
         </Route>
         <Route>
           <PageNotFound />

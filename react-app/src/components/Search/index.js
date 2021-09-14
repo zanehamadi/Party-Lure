@@ -1,22 +1,40 @@
 import { useEffect, useState } from "react"
 import {Link} from 'react-router-dom';
 
-function Search({posts, activities}) {
-
+function Search({posts, activities, activityTypes}) {
     const [title, setTitle] = useState('')
-    // const [level, setLevel] = useState('')
+    const [level, setLevel] = useState('')
     const [role,setRole] = useState([])
     const [activity, setActivity] = useState('')
     const [filter, setFilter] = useState(false)
     const [searchPosts, setSearchPosts] = useState([])
     const [activityType, setActivityType] = useState('')
+    const [userClass, setUserClass] = useState('')
+    const [showActivities, setShowActivities] = useState(false)
+    const [listActivities, setListActivities] = useState([])
+    const [activityTypeId, setActivityTypeId] = useState('')
 
+    console.log(activityTypes)
     const resetFunc = () => {
         setSearchPosts([])
         setRole([])
         setActivity('')
         setTitle('')
         setActivityType('')
+        setSearchPosts([])
+        setLevel('')
+        setShowActivities(false)
+        setUserClass('')
+    }
+
+    const activityTypeFunc= (e) => {
+        if(e.target.value === 'Leveling') setActivityTypeId(1)
+        else if(e.target.value === 'Questing') setActivityTypeId(2)
+        else if(e.target.value === 'Gathering') setActivityTypeId(3)
+        else if(e.target.value === 'Dungeons') setActivityTypeId(4)
+        else if(e.target.value === 'Raids') setActivityTypeId(5)
+        setActivityType(e.target.value)
+        return
     }
 
     useEffect(() => {
@@ -24,26 +42,29 @@ function Search({posts, activities}) {
             let postsArr = posts
             if(title){
                 postsArr = postsArr.filter(post => ((post?.title).toUpperCase()).includes((title.toUpperCase())))
-                console.log(postsArr)
             }
-            console.log(activityType)
-            // if(level){
-            //     console.log(postsArr)
-            //     // postsArr.forEach(post => console.log(post?.recruit_level))
-            //     // postsArr = postsArr.filter(post => +post?.recruit_level === +level)
-            // }
-
-            if(activity){
+            if(level){
+                postsArr = postsArr.filter(post => +post?.recruit_level === +level)
+            }
+            if(activity && activity !== 'All Activities'){
                 postsArr = postsArr.filter(post => post?.mission === activity)
             }
-            if(activityType){
+            if(activityType && activityType !== 'All Activity Types'){
                 postsArr = postsArr.filter(post => post?.type === activityType)
+                let tempActivities = activities
+                tempActivities = tempActivities.filter(aType => +aType.type_id === activityTypeId)
+                setListActivities(tempActivities)
+                setShowActivities(true)
+            }
+            if(userClass && userClass !== 'All Roles'){
+                postsArr = postsArr.filter(post => post?.recruit_role.includes(+userClass))
             }
             setSearchPosts(postsArr)
         }
 
 
-    }, [title, role, activity, activityType])
+    }, [level, title, role, activity, activityType, userClass])
+
 
     return (
         <>
@@ -54,28 +75,40 @@ function Search({posts, activities}) {
                 <>
                     <button onClick={e => setFilter(false)}>Close</button>
                     <form>
-                        {/* <label> Level
+                        <label> Level
                             <span> <input type='range' min='1' max='50' value={level} onChange={e => setLevel(e.target.value)}></input> {level}</span>
-                        </label> */}
-                        <select value={activity} onChange={e => setActivity(e.target.value)}>
-                            {activities.map(eActivity => 
-                                <option>{eActivity.name}</option>
-                            )}
+                        </label>
+                        <select value={activityType} onChange={e => activityTypeFunc(e)}>
+                            <option>All Activity Types</option>
+                            {activityTypes.map(atype => <option>{atype.name}</option>)}
                         </select>
-                        <select onChange={e => setActivityType(e.target.value)}>
-                            <option>Leveling</option>
-                            <option>Questing</option>
-                            <option>Gathering</option>
-                            <option>Dungeons</option>
-                            <option>Raids</option>
+                        {showActivities ? 
+                            <>
+                                <select value={activity} onChange={e => setActivity(e.target.value)}>
+                                    
+                                    <option>All Activities</option>
+                                    {listActivities.map(eActivity => 
+                                        <option>{eActivity.name}</option>
+                                    )}
+                                </select>
+                            </> 
+                        : <></>}
+                        <select onChange={e => setUserClass(e.target.value)}>
+                            <option>All Roles</option>
+                            <option value='1'>Tank</option>
+                            <option value='2'>Support</option>
+                            <option value='3'>Magical DPS</option>
+                            <option value='4'>Physical DPS</option>
 
                         </select>
+
+
                     </form>
                     <h1>Yup</h1>
                 </> 
             
             : <></>}
-            {searchPosts ? 
+            {searchPosts.length !== 0 ? 
                 <>
                     {searchPosts.map(post => <div><Link to={`/posts/${post.id}`}>{post.title}</Link></div>)}
                 </> 
