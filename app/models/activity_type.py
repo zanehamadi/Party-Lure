@@ -11,3 +11,9 @@ class ActivityType(db.Model):
 
     #relationships
     activities = db.relationship('Activity', back_populates= 'type')
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+        }

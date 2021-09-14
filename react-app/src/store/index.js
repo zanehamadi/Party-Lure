@@ -8,6 +8,7 @@ import partyReducer from './parties';
 import rolesReducer from './roles';
 import commentsReducer from './comments';
 import activitiesReducer from './activities';
+import activityTypesReducer from './activity_types.js';
 
 
 import jobs from './job'
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   parties: partyReducer,
   roles: rolesReducer,
   comments: commentsReducer,
-  activities: activitiesReducer
+  activities: activitiesReducer,
+  activityTypes: activityTypesReducer
 });
 
 

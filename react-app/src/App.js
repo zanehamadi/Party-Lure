@@ -19,6 +19,7 @@ import { getRoles } from './store/roles'
 import { getAllJobs } from './store/job'
 import { getComments } from './store/comments'
 import { getActivities } from './store/activities'
+import { getActivityTypes } from './store/activity_types.js'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,6 +39,7 @@ function App() {
     dispatch(getAllJobs())
     dispatch(getComments())
     dispatch(getActivities())
+    dispatch(getActivityTypes())
   }, [dispatch]);
 
 
