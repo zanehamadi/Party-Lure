@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -11,6 +11,7 @@ import Posts from './components/Posts'
 import Post from './components/Post'
 import Profile from './components/Profile'
 import Home from './components/Home'
+import PageNotFound from './components/404'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 
@@ -66,7 +67,7 @@ function App() {
           <Home sessionUser={sessionUser} authenticated={authenticated} />
         </Route>
         <Route>
-          404 Not Found
+          <PageNotFound />
         </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
