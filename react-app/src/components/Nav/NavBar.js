@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
+import CreatePostFormModal from './CreatePostModal';
 // import LoginFormModal from './auth/LoginFormModal';
 const NavBar = ({ sessionUser, authenticated }) => {
   return (
@@ -33,9 +34,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
           :
           <>
             <li>
-              <NavLink to='/post' exact={true} activeClassName='active'>
-                ➕
-              </NavLink>
+              <CreatePostFormModal />
             </li>
             <li>
               <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>

@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Nav/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import LoginFormModal from './components/auth/LoginFormModal';
+import CreatePostFormModal from './components/Nav/CreatePostModal';
 import Posts from './components/Posts'
 import Post from './components/Post'
 import Profile from './components/Profile'
@@ -60,7 +61,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/users/:id' exact={true}>
-          <Profile users={users} posts={posts} parties={parties}/>
+          <Profile users={users} posts={posts} parties={parties} />
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
@@ -76,6 +77,7 @@ function App() {
         </Route>
       </Switch>
       <LoginFormModal></LoginFormModal>
+      <CreatePostFormModal></CreatePostFormModal>
     </BrowserRouter>
   );
 }
