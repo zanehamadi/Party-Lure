@@ -59,7 +59,7 @@ export const createNewComment = (data) => async (dispatch) => {
 }
 
 export const thunk_editComment = (payload) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${payload.id}/`, {
+    const res = await fetch(`/api/comments/${payload.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -75,7 +75,7 @@ export const thunk_editComment = (payload) => async (dispatch) => {
 };
 
 export const thunk_deleteComment = (id) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${id}/`, {
+    const res = await fetch(`/api/comments/${id}`, {
         method: 'DELETE',
     })
     if (res.ok) {
