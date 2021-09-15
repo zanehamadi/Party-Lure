@@ -64,13 +64,13 @@ export default function Profile({ users, parties, roles }) {
             <img src={user?.profile_url} width={300} height={300} />
             <>
                 <div>
-                    <img src={user?.role_url} width={24} height={24} />{`Job: ${user?.job}`}
+                    Job: <img src={user?.role_url} width={24} height={24} /> {`${user?.job}`}
                 </div>
                 <div>
                     {`Level: ${user?.level}`}
                 </div>
                 <div>
-                    {`Role: ${user?.role}`}
+                    Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
                 </div>
             </>
             <h2>Posts</h2>
