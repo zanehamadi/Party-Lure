@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getRecievedRequests, getSentRequests } from "../../store/party_request";
+import PartyCounter from "./PartyCounter";
 import ProfileRecievedRequests from "./ProfileReceivedRequests";
 import ProfileSentRequests from "./ProfileSentRequests";
 import RecievedRequest from "./RecievedRequest";
@@ -12,7 +13,7 @@ export default function Profile({users, posts, parties}){
     const user = users?.find(specUser => +specUser.id === +id)
     const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
-
+    console.log('UP',userParties)
     useEffect(() => {
         if(id){
         console.log('HERE', id)
@@ -54,11 +55,15 @@ export default function Profile({users, posts, parties}){
             </>
         )}
 
+
         <h2>Parties</h2>
         {userParties.map(parties =>
             <>
                 <div>
                     {parties?.title}
+                </div>
+                <div>
+                <PartyCounter requests = {parties.requests} />
                 </div>
             </>
         )}
