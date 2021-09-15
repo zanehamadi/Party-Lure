@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, Party, db
+from app.models import User, Party, db, user
 from flask_login import current_user, login_user, logout_user, login_required
 
 party_routes = Blueprint('parties', __name__)
@@ -81,3 +81,10 @@ def get_user_parties(user_id):
     this_users_parties = Party.query.filter(Party.owner_id == int(user_id))
 
     return {'user_parties': [el.to_dict() for el in this_users_parties]}
+@party_routes.route('/user/<int:user_id>/requests')
+def get_user_requests(user_id):
+    user = User.query.get(int(user_id))
+    
+    parties_user_wants = Party.query.filter(Party.requests.contains(user))
+
+    return {'user_party_reqs' : el.to_dict() for el in parties_user_wants}
