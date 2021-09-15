@@ -37,8 +37,6 @@ export default function Post({comments, parties,}) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
 
 
-    console.log(userComments[0])
-
 
 
 
@@ -155,6 +153,16 @@ export default function Post({comments, parties,}) {
                 </div>
             </div>
             <div>
+                
+                {userComments.map(comment=>
+                    <div key={comment?.id}>
+                        <img src={comment.profile_url} width='50' height='50'/>
+                        <Link to={`/users/${comment?.user_id}`}>{comment.username}</Link>
+                        <span>{comment?.created_at}</span>
+                        <Link to={`/comments/${comment?.id}`}>{comment.content}</Link>
+                    </div>
+                )}
+
             </div>
         </>
     )
