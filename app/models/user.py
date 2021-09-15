@@ -55,5 +55,6 @@ class User(db.Model, UserMixin):
             'level': self.level,
             'job': self.job.name,
             'role': self.job.role.name,
-            'profile_url': self.profile_url
+            'profile_url': self.profile_url,
+            'role_url': self.job.icon_url
         }
