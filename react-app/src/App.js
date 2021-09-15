@@ -12,6 +12,7 @@ import Profile from './components/Profile'
 import Home from './components/Home'
 import Search from './components/Search'
 import PageNotFound from './components/404'
+import AboutUs from './components/Aboutus'
 import Comments from './components/Comments'
 import Comment from './components/Comment'
 import { getPosts } from './store/posts'
@@ -64,9 +65,6 @@ function App() {
     return null;
   }
 
-
-
-
   return (
 
     <BrowserRouter>
@@ -88,19 +86,22 @@ function App() {
           <Posts posts={posts} />
         </Route>
         <Route path='/posts/:id' exact={true}>
-          <Post posts={posts} comments={comments} parties = {parties} />
+          <Post posts={posts} comments={comments} parties={parties} />
         </Route>
         <Route path='/' exact={true} >
           <Home sessionUser={sessionUser} authenticated={authenticated} />
         </Route>
         <Route path='/search' exact={true}>
-          <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
+          <Search posts={posts} activities={activities} activityTypes={activityTypes} />
         </Route>
         <Route path='/comments' exact={true} >
           <Comments comments={comments} />
         </Route>
         <Route path='/comments/:id' exact={true} >
-          <Comment comments={comments}/>
+          <Comment comments={comments} />
+        </Route>
+        <Route path='/about-us' exact={true}>
+          <AboutUs />
         </Route>
         <Route>
           <PageNotFound />

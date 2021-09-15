@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router';
 import CreateCommentForm from '../Comments/commentForm';
-import { thunk_fetchPostComments } from '../../store/comments';
+import EditPostForm from '../Posts/EditPostForm';
+import { goDeletePost } from '../../store/posts';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,13 +10,25 @@ import { Modal } from "../../context/Modal";
 import {goDeletePost} from "../../store/posts"
 
 
+import { useHistory } from 'react-router';
 
+export default function Post({comments, parties,}) {
+    const history = useHistory()
+    const aTypeSlice = useSelector(state => state.activityTypes)
+    const activitySlice = useSelector(state => state.activities)
+    const rolesSlice = useSelector(state => state.roles)
+    const postsSlice = useSelector(state => state.posts)
 
-export default function Post({ posts, comments, parties }) {
+    const activityTypes = Object.values(aTypeSlice)
+    const activities = Object.values(activitySlice)
+    const roles = Object.values(rolesSlice)
+    const posts = Object.values(postsSlice)
+
     const [isMember, setIsMember] = useState(false)
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
+    
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
     // console.log('party', party)
@@ -36,6 +49,7 @@ export default function Post({ posts, comments, parties }) {
     const closeModal = () => {
         setShowModal(false)
     }
+
 
 
     useEffect(() => {
@@ -85,6 +99,12 @@ export default function Post({ posts, comments, parties }) {
         setIsMember(true)
     }
 
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        await dispatch(goDeletePost(post?.id))
+        history.push(`/posts/${post?.post_id}`)
+    }
+
     return (
         <>
             <div>
@@ -96,6 +116,7 @@ export default function Post({ posts, comments, parties }) {
                 {isUser ?
                 <>
                     <button>Edit Post</button>
+                <div><EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/></div>
                     <button onClick={handleClick}>Delete Post</button>
                     {showModal ? 
                         <Modal>

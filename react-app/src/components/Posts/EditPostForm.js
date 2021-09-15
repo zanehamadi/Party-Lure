@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 import { createNewPost } from '../../store/posts';
 
-const CreatePostForm = (post) => {
+const EditPostForm = () => {
+
+    const aTypeSlice = useSelector(state => state.activityTypes)
+    const activitySlice = useSelector(state => state.activities)
+    const rolesSlice = useSelector(state => state.roles)
+    const postsSlice = useSelector(state => state.posts)
+
+    const activityTypes = Object.values(aTypeSlice)
+    const activities = Object.values(activitySlice)
+    const roles = Object.values(rolesSlice)
+    const posts = Object.values(postsSlice)
+    
+    console.log("ACTIVITY TYPES", activityTypes)
+    const { id } = useParams();
+    const post = posts?.find(post => post.id === +id)
+
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -16,17 +32,18 @@ const CreatePostForm = (post) => {
     const sessionUser = useSelector(state => state.session.user);
 
 
-    const createPost = e => {
+    const editPost = async e => {
         e.preventDefault()
         const payload = {
-            userId: sessionUser?.id,
+            postId:post.id,
+            user_id: sessionUser.id,
             title: title,
             content: description,
             recruitLevel: +level,
             activityId: +activity,
             recruitRole: Object.values(role),
         }
-        dispatch(createNewPost(payload))
+        await dispatch(createNewPost(payload))
     }
 
     const updateTitle = (e) => {
@@ -65,7 +82,7 @@ const CreatePostForm = (post) => {
     };
 
     return (
-        <form onSubmit={createPost}>
+        <form onSubmit={editPost}>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -133,10 +150,10 @@ const CreatePostForm = (post) => {
                         </>
                     }
                 </div>
-                <button type='submit'>Create</button>
+                <button type='submit'>Subit Edit</button>
             </div>
         </form >
     );
 };
 
-export default CreatePostForm;
+export default EditPostForm;
