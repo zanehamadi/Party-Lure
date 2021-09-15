@@ -15,6 +15,7 @@ export default function Post({ posts, comments, parties }) {
     const party = parties.find(party => party.post_id === +id)
     console.log('party', party)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
+    
     console.log("USER COMMENT LIST", userComments)
 
     useEffect(() => {
@@ -30,6 +31,7 @@ export default function Post({ posts, comments, parties }) {
     // useEffect(() => {
     //     userComments = comments?.filter((comment) => comment?.user_id === post?.id)
     // }, [comments])
+
 
     const doesUserHaveRequest = () => {
         if(currentUserRequests.length > 0){
@@ -79,6 +81,7 @@ export default function Post({ posts, comments, parties }) {
                 {userComments.map(comment=>
                     <div key={comment?.id}><Link to={`/comments/${comment?.id}`}>{comment.content}</Link></div>
                 )}
+                
             </div>
         </>
     )

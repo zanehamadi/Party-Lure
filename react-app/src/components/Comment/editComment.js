@@ -17,27 +17,19 @@ const EditCommentForm = ({comment, post, hideEdit, hideDelete}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-    const payload = {
-        ...comment,
-        content:content,
-        user_id:userId,
-    };
-    console.log("PAYLOAD", payload)
-
-    
-    let updatedComment = await dispatch(thunk_editComment(payload));
-    
-    if (updatedComment) {
+        const payload = {
+            ...comment,
+            content:content,
+            user_id:userId,
+        };
+        await dispatch(thunk_editComment(payload));
         history.push(`/posts/${payload?.post_id}`)
-        console.log("SUCCESS EDIT")
-        }
     };
 
     const handleDelete = async (e) => {
         e.preventDefault()
         await dispatch(thunk_deleteComment(comment?.id))
-        // history.push(`/posts/${payload?.post_id}`)
+        history.push(`/posts/${comment?.post_id}`)
     }
 
 
