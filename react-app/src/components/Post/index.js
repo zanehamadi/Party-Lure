@@ -1,21 +1,34 @@
 import { useParams } from 'react-router';
 import CreateCommentForm from '../Comments/commentForm';
+import EditPostForm from '../Posts/EditPostForm';
 import { thunk_fetchPostComments } from '../../store/comments';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
 
-export default function Post({ posts, comments, parties }) {
+export default function Post({comments, parties,}) {
+    const aTypeSlice = useSelector(state => state.activityTypes)
+    const activitySlice = useSelector(state => state.activities)
+    const rolesSlice = useSelector(state => state.roles)
+    const postsSlice = useSelector(state => state.posts)
+
+    const activityTypes = Object.values(aTypeSlice)
+    const activities = Object.values(activitySlice)
+    const roles = Object.values(rolesSlice)
+    const posts = Object.values(postsSlice)
+
     const [isMember, setIsMember] = useState(false)
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user.id)
     const { id } = useParams();
+    
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
     console.log('party', party)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
-    
+
+        
     console.log("USER COMMENT LIST", userComments)
 
     useEffect(() => {
@@ -71,7 +84,7 @@ export default function Post({ posts, comments, parties }) {
             <div>
                 {!isMember && <button onClick={requestToJoin}>Request to Join</button>}
                 {isMember && <button onClick = {cancelRequest}>Cancel Request</button>}
-                <button>Edit Post</button>
+                <div><EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/></div>
                 <button>Delete Post</button>
                 <div>
                     <CreateCommentForm post={post}/>
