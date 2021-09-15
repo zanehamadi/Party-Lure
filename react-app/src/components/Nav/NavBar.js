@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
-import CreateSearchFormModal from '../Search/search-modal';
 import Search from '../Search/index'
+import AboutUs from '../Aboutus'
 import DemoButton from '../auth/DemoButton';
 
 const NavBar = ({ sessionUser, authenticated }) => {
@@ -34,7 +34,12 @@ const NavBar = ({ sessionUser, authenticated }) => {
           </NavLink>
         </li>
         <li>
-          <Search posts={posts} activities={activities} activityTypes={activityTypes}/>
+          <Search posts={posts} activities={activities} activityTypes={activityTypes} />
+        </li>
+        <li>
+          <NavLink to='/about-us' exact={true} activeClassName='active'>
+            About Us
+          </NavLink>
         </li>
         {!authenticated ?
           <>
