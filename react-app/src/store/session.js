@@ -13,8 +13,8 @@ const removeUser = () => ({
 })
 
 const getUser = (user) => ({
-    type: GET_USER,
-    user
+  type: GET_USER,
+  user
 })
 const initialState = { user: null, profile: null };
 
@@ -35,7 +35,7 @@ export const authenticate = () => async (dispatch) => {
 }
 
 export const login = (credential, password) => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
+  const response = await fetch('/api/auth/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export const login = (credential, password) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-  const response = await fetch('/api/auth/logout', {
+  const response = await fetch('/api/auth/logout/', {
     headers: {
       'Content-Type': 'application/json',
     }
@@ -88,7 +88,7 @@ export const signUp = (username, email, password, jobId, level, image) => async 
 
 
 
-  const response = await fetch('/api/auth/signup', {
+  const response = await fetch('/api/auth/signup/', {
     method: 'POST',
     body: formData,
   });
@@ -107,18 +107,18 @@ export const signUp = (username, email, password, jobId, level, image) => async 
   }
 }
 
-export const getOneUser = (userId) => async (dispatch) =>{
-    const response = await fetch(`/api/users/${userId}`)
-    let data ;
-    if(response.ok){
-        data = await response.json()
-        dispatch(getUser(data))
-    }
-    else if(data.errors){
-        return
-    }
-
+export const getOneUser = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}`)
+  let data;
+  if (response.ok) {
+    data = await response.json()
+    dispatch(getUser(data))
+  }
+  else if (data.errors) {
     return
+  }
+
+  return
 }
 
 export default function reducer(state = initialState, action) {
@@ -128,7 +128,7 @@ export default function reducer(state = initialState, action) {
     case REMOVE_USER:
       return { user: null }
     case GET_USER:
-        return {user: state.user, profile: action.user}
+      return { user: state.user, profile: action.user }
     default:
       return state;
   }

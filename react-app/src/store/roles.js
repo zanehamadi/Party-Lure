@@ -6,7 +6,7 @@ const loadRoles = (roles) => ({
 });
 
 export const getRoles = () => async (dispatch) => {
-    const response = await fetch('/api/roles')
+    const response = await fetch('/api/roles/')
 
     if (response.ok) {
         const roles = await response.json()

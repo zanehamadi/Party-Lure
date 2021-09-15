@@ -8,8 +8,8 @@ const loadUsers = (users) => ({
 });
 
 export const getUsers = () => async (dispatch) => {
-    const res = await fetch('/api/users');
-    if(res.ok){
+    const res = await fetch('/api/users/');
+    if (res.ok) {
         const users = await res.json();
         dispatch((loadUsers(users)))
     }
@@ -17,10 +17,10 @@ export const getUsers = () => async (dispatch) => {
 
 const initialState = {}
 
-const userReducer = (state = initialState, action ) => {
-    switch(action.type){
+const userReducer = (state = initialState, action) => {
+    switch (action.type) {
         case LOAD_USERS: {
-            return {...action.users}
+            return { ...action.users }
         }
         default:
             return state
