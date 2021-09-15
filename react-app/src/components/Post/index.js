@@ -1,14 +1,18 @@
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import CreateCommentForm from '../Comments/commentForm';
 import { thunk_fetchPostComments } from '../../store/comments';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
+import { Modal } from "../../context/Modal";
+import {goDeletePost} from "../../store/posts"
+
+
+
 
 export default function Post({ posts, comments, parties }) {
     const [isMember, setIsMember] = useState(false)
-
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
@@ -16,6 +20,22 @@ export default function Post({ posts, comments, parties }) {
     const party = parties.find(party => party.post_id === +id)
     // console.log('party', party)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
+    const session = useSelector(state => state?.session)
+    const isUser = session?.user ? session?.user.id === post?.user_id : false
+    const [showModal, setShowModal] = useState(false)
+    const history = useHistory()
+
+    const deleteFunc = () => {
+        dispatch(goDeletePost(id));
+        history.push('/')
+    }
+    const handleClick = () => {
+        setShowModal(true)
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
+    }
 
 
     useEffect(() => {
@@ -73,8 +93,25 @@ export default function Post({ posts, comments, parties }) {
             <div>
                 {!isMember && <button onClick={requestToJoin}>Request to Join</button>}
                 {isMember && <button onClick = {cancelRequest}>Cancel Request</button>}
-                <button>Edit Post</button>
-                <button>Delete Post</button>
+                {isUser ?
+                <>
+                    <button>Edit Post</button>
+                    <button onClick={handleClick}>Delete Post</button>
+                    {showModal ? 
+                        <Modal>
+                            <span>Are you sure you want to delete this post?</span>
+                            <button onClick={deleteFunc}>
+                                Yes 🐡
+                            </button>
+                            <button onClick={closeModal}>
+                                No
+                            </button>
+                        </Modal> 
+                    : <></>}
+                </>
+                :
+                <></>
+                }
                 <div>
                     <CreateCommentForm post={post}/>
                 </div>
