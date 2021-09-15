@@ -25,13 +25,16 @@ const CreateCommentForm = ({post}) => {
         if(+content.length >= 200) valid.push('Comment too long(200 character limit.)')
         if(+content.length <= 0) valid.push('Please add a valid comment(Comment too short)')
         setValidations(valid)
+        console.log('VALID', valid)
 
     }, [content])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(!validations){
+        console.log('VALIDATION', validations.length)
+        if(!validations.length > 0 ){
+            console.log('NO VALIDATION ERRORS')
             setContent("")
             setValidations([])
             const payload = {
