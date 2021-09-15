@@ -1,5 +1,7 @@
 from app.models import db, Job
 import datetime
+
+
 def seed_jobs():
     tanks = ['Turtle', 'Giant Clam', 'Crab', 'Whale']
 
@@ -7,26 +9,30 @@ def seed_jobs():
 
     magical_dps = ['Electric Eel', 'Narwhal', 'Octopus', 'Dolphin']
 
-    physical_dps = ['Shark','Orca','Swordfish','Mantis Shrimp']
-
+    physical_dps = ['Shark', 'Orca', 'Swordfish', 'Mantis Shrimp']
 
     for tank in tanks:
-        new_tank = Job(name=tank, role_id = 1 , created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
+        new_tank = Job(name=tank, role_id=1, icon_url="https://partylureawsbucket.s3.amazonaws.com/Tank.png",
+                       created_at=datetime.datetime.now(), updated_at=datetime.datetime.now())
         db.session.add(new_tank)
 
     for support in supports:
-        new_support = Job(name=support, role_id = 2, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
+        new_support = Job(name=support, role_id=2, icon_url="https://partylureawsbucket.s3.amazonaws.com/Healer.png",
+                          created_at=datetime.datetime.now(), updated_at=datetime.datetime.now())
         db.session.add(new_support)
 
     for mdps in magical_dps:
-        new_dps = Job(name=mdps, role_id = 3, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
+        new_dps = Job(name=mdps, role_id=3, icon_url="https://partylureawsbucket.s3.amazonaws.com/Magic_Ranged_DPS.png",
+                      created_at=datetime.datetime.now(), updated_at=datetime.datetime.now())
         db.session.add(new_dps)
 
     for pdps in physical_dps:
-        new_dps = Job(name=pdps, role_id = 4, created_at=datetime.datetime.now(),updated_at = datetime.datetime.now())
+        new_dps = Job(name=pdps, role_id=4, icon_url="https://partylureawsbucket.s3.amazonaws.com/Melee_DPS.png",
+                      created_at=datetime.datetime.now(), updated_at=datetime.datetime.now())
         db.session.add(new_dps)
 
     db.session.commit()
+
 
 def undo_jobs():
     db.session.execute('TRUNCATE jobs RESTART IDENTITY CASCADE;')

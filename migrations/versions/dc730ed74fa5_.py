@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7c4d13886f8e
+Revision ID: dc730ed74fa5
 Revises: 
-Create Date: 2021-09-14 16:51:29.872493
+Create Date: 2021-09-15 17:59:34.320821
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '7c4d13886f8e'
+revision = 'dc730ed74fa5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,6 +30,7 @@ def upgrade():
     sa.Column('name', sa.String(length=25), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.Column('icon_url', sa.String(length=100), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('activities',
@@ -47,15 +48,16 @@ def upgrade():
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.Column('icon_url', sa.String(length=100), nullable=False),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(), nullable=False),
-    sa.Column('email', sa.String(), nullable=False),
-    sa.Column('hashed_password', sa.String(), nullable=False),
-    sa.Column('profile_url', sa.String(), nullable=False),
+    sa.Column('username', sa.String(length=30), nullable=False),
+    sa.Column('email', sa.String(length=50), nullable=False),
+    sa.Column('hashed_password', sa.String(length=500), nullable=False),
+    sa.Column('profile_url', sa.String(length=50), nullable=False),
     sa.Column('job_id', sa.Integer(), nullable=True),
     sa.Column('level', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
@@ -67,13 +69,13 @@ def upgrade():
     )
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(), nullable=True),
-    sa.Column('content', sa.Text(), nullable=True),
+    sa.Column('title', sa.String(), nullable=False),
+    sa.Column('content', sa.Text(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('recruit_level', sa.Integer(), nullable=False),
     sa.Column('recruit_role', postgresql.ARRAY(sa.Integer()), nullable=True),
-    sa.Column('activity_id', sa.Integer(), nullable=True),
-    sa.Column('open', sa.Boolean(), nullable=True),
+    sa.Column('activity_id', sa.Integer(), nullable=False),
+    sa.Column('open', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['activity_id'], ['activities.id'], ),
@@ -95,7 +97,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=True),
-    sa.Column('title', sa.String(), nullable=False),
+    sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),

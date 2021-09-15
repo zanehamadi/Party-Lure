@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
 import { Modal } from "../../context/Modal";
-import {goDeletePost} from "../../store/posts"
 
 
-import { useHistory } from 'react-router';
+
+
 
 export default function Post({comments, parties,}) {
     const history = useHistory()
@@ -35,19 +35,26 @@ export default function Post({comments, parties,}) {
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
     const session = useSelector(state => state?.session)
     const isUser = session?.user ? session?.user.id === post?.user_id : false
-    const [showModal, setShowModal] = useState(false)
-    const history = useHistory()
+    const [showEditModal, setShowEditModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+
 
     const deleteFunc = () => {
         dispatch(goDeletePost(id));
         history.push('/')
     }
-    const handleClick = () => {
-        setShowModal(true)
+    const handleClickEdit = () => {
+        setShowEditModal(true)
+    }
+    const handleClickDelete = () => {
+        setShowDeleteModal(true)
     }
 
-    const closeModal = () => {
-        setShowModal(false)
+    const closeDeleteModal = () => {
+        setShowDeleteModal(false)
+    }
+    const closeEditModal = () => {
+        setShowEditModal(false)
     }
 
 
@@ -115,16 +122,23 @@ export default function Post({comments, parties,}) {
                 {isMember && <button onClick = {cancelRequest}>Cancel Request</button>}
                 {isUser ?
                 <>
-                    <button>Edit Post</button>
-                <div><EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/></div>
-                    <button onClick={handleClick}>Delete Post</button>
-                    {showModal ? 
+                    <button onClick={handleClickEdit}>Edit Post</button>
+                    {showEditModal ?
+                    <Modal>
+                        <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/>
+                        <button onClick={closeEditModal}>
+                                Cancel
+                            </button>
+                    </Modal>
+                    : <></>}
+                    <button onClick={handleClickDelete}>Delete Post</button>
+                    {showDeleteModal ? 
                         <Modal>
                             <span>Are you sure you want to delete this post?</span>
                             <button onClick={deleteFunc}>
                                 Yes 🐡
                             </button>
-                            <button onClick={closeModal}>
+                            <button onClick={closeDeleteModal}>
                                 No
                             </button>
                         </Modal> 
