@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getRecievedRequests, getSentRequests } from "../../store/party_request";
 import ProfileRecievedRequests from "./ProfileReceivedRequests";
+import ProfileSentRequests from "./ProfileSentRequests";
 import RecievedRequest from "./RecievedRequest";
 
 export default function Profile({users, posts, parties}){
@@ -61,12 +62,18 @@ export default function Profile({users, posts, parties}){
                 </div>
             </>
         )}
-        <h2>Requests</h2>
+        <h2>Recieved Requests</h2>
         {recievedRequests && recievedRequests.map(req => {
             return (
-                <ProfileRecievedRequests partyId={req.id} requests = {req.requests}  />
+                <ProfileRecievedRequests key = {req.id} partyId={req.id} requests = {req.requests}  />
             )
         }) }
+        <h2>Sent Requests</h2>
+        {sentRequests && sentRequests.map(req => {
+            return (
+                <ProfileSentRequests  key = {req.id} partyName = {req.title} partyId={req.id} requests = {req.requests} />
+            )
+        })}
     </>
     )
 }

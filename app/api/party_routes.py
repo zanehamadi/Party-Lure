@@ -100,3 +100,37 @@ def get_recieved_requests(user_id):
     dict_parties = [party.to_dict() for party in parties_with_requests]
 
     return {el["id"]:el for el in dict_parties if len(el['requests']) > 0}
+
+@party_routes.route('/<int:party_id>/leave', methods = ['DELETE'])
+def leave_party(party_id):
+    data = request.get_json()
+
+    user_id = data['userId']
+
+    user = User.query.get(int(user_id))
+
+    party = Party.query.get(int(party_id))
+
+    party.users.remove(user)
+
+    db.session.add(party)
+    db.session.commit()
+
+    return party.to_dict()
+
+@party_routes.route('/<int:party_id>/cancel', methods = ['DELETE'])
+def cancel_request(party_id):
+    data = request.get_json()
+
+    user_id = data['userId']
+
+    user = User.query.get(int(user_id))
+
+    party = Party.query.get(int(party_id))
+
+    party.requests.remove(user)
+
+    db.session.add(party)
+    db.session.commit()
+
+    return party.to_dict()

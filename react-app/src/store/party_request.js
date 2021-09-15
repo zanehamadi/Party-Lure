@@ -2,7 +2,7 @@ const GET_SENT = 'requests/GET_SENT'
 const GET_RECIEVED = 'requests/GET_RECIEVED'
 const SEND_REQUEST = 'requests/SEND_REQUEST'
 const REPLY = 'requests/REPLY'
-
+const CANCEL = 'requests/CANCEL'
 const getRecieved = (requests) => ({
     type: GET_RECIEVED,
     requests
@@ -23,6 +23,11 @@ const acceptRequest = (request) => ({
 })
 const denyRequest = (request) => ({
     type: REPLY,
+    request
+})
+
+const cancelRequest = (request) => ({
+    type: CANCEL,
     request
 })
 
@@ -90,6 +95,20 @@ export const sendPartyRequest = (userId, partyId) => async (dispatch) => {
 
 }
 
+export const cancelPartyRequest = (userId, partyId) => async (dispatch) => {
+    let res = await fetch (`/api/parties/${partyId}/cancel`,{
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({"userId":userId})
+    })
+    let data
+    if(res.ok){
+        data = await res.json()
+        dispatch(cancelRequest(data))
+    }
+
+}
+
 
 const initialState = {sent: {}, recieved:{}}
 const requestReducer = (state = initialState, action) => {
@@ -107,6 +126,13 @@ const requestReducer = (state = initialState, action) => {
                 return{...newState}
             }
             return newState
+        case CANCEL:
+            let cancelState = {...state}
+            if (state.sent[action.request.id]){
+                cancelState.sent = {...cancelState.sent, [action.request.id]:action.request}
+                return{...cancelState}
+            }
+            return cancelState
         default:
             return state
     }
