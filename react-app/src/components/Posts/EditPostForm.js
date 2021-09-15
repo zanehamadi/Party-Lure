@@ -8,7 +8,7 @@ const CreatePostForm = (post) => {
     const [description, setDescription] = useState('');
     const [level, setLevel] = useState(1);
     const [role, setRole] = useState({ 'Role1': null, 'Role2': null, 'Role3': null, 'Role4': null });
-    const [selectRole, setSelectRole] = useState('')
+    const [selectRole, setSelectRole] = useState('');
     const [activityType, setActivityType] = useState('');
     const [activity, setActivity] = useState('');
 
