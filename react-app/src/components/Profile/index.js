@@ -73,7 +73,7 @@ export default function Profile({users, posts, parties}){
                     <h3>{`Party Name: ${parties?.title}`}</h3>
                     <h4>Members:</h4>
                     {parties.users.map(user =>
-                        <div>{`${user.username}, ${user.job}`}</div>
+                        <div>{`${user.username}, ${user.job}, Level: ${user.level}`}</div>
                     )}
                 </div>
                 <div>
