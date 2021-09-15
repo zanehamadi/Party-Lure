@@ -12,54 +12,57 @@ const CreateCommentForm = ({post}) => {
     const history = useHistory();
     const [content, setContent] = useState("");
     const [validations, setValidations] = useState([])
+    const [showValidations, setShowValidations] = useState([])
     const updateComment = (e) => setContent(e.target.value);
 
 
+    console.log(content.length)
     useEffect(() => {
 
         let valid = []
+        setShowValidations([])
         
-        if(content.length > 200) valid.push('Comment too long(200 character limit.)')
-        if(content.length <= 0) valid.push('Please add a valid comment(Comment too short)')
+        if(+content.length >= 200) valid.push('Comment too long(200 character limit.)')
+        if(+content.length <= 0) valid.push('Please add a valid comment(Comment too short)')
         setValidations(valid)
-
 
     }, [content])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        setContent("")
-        const payload = {
-            content,
-            user_id:userId,
-            post_id:postId
-        };
-        let createdComment = await dispatch(createNewComment(payload))
-        if (createdComment) {
-            history.push(`/comments`);
+        if(!validations){
+            setContent("")
+            setValidations([])
+            const payload = {
+                content,
+                user_id:userId,
+                post_id:postId
+            };
+            let createdComment = await dispatch(createNewComment(payload))
+            if (createdComment) {
+                history.push(`/comments`);
+            }
         }
-
+        setShowValidations(validations)
     };
 
 
     return (
         <form  onSubmit={handleSubmit} hidden={false}>
-            {validations ? 
+            {showValidations ? 
                 <>
                     <ul>
-                        {validations.map(validation => <li>{validation}</li>)}
+                        {showValidations.map(validation => <li>{validation}</li>)}
                     </ul>
                 </> 
             : 
             <></>}
-            <input
-                type="text"
+            <textarea
                 placeholder="Type comment here"
                 value={content}
                 onChange={updateComment} />
-            <button className="edit-btn edit5" type="submit" disabled={validations.length > 0}>Create Comment</button>
+            <button className="edit-btn edit5" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
         {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
     </form>
     )
