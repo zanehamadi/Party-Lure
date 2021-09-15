@@ -35,7 +35,7 @@ export const authenticate = () => async (dispatch) => {
 }
 
 export const login = (credential, password) => async (dispatch) => {
-  const response = await fetch('/api/auth/login/', {
+  const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export const login = (credential, password) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-  const response = await fetch('/api/auth/logout/', {
+  const response = await fetch('/api/auth/logout', {
     headers: {
       'Content-Type': 'application/json',
     }
@@ -88,7 +88,7 @@ export const signUp = (username, email, password, jobId, level, image) => async 
 
 
 
-  const response = await fetch('/api/auth/signup/', {
+  const response = await fetch('/api/auth/signup', {
     method: 'POST',
     body: formData,
   });
@@ -108,7 +108,7 @@ export const signUp = (username, email, password, jobId, level, image) => async 
 }
 
 export const getOneUser = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}`)
+  const response = await fetch(`/api/users/${userId}/`)
   let data;
   if (response.ok) {
     data = await response.json()
