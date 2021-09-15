@@ -132,7 +132,7 @@ export default function Post({comments, parties,}) {
                     : <></>}
                     <button onClick={handleClickDelete}>Delete Post</button>
                     {showDeleteModal ?
-                        <Modal>
+                        <Modal onClose = {() => setShowDeleteModal(false)}>
                             <span>Are you sure you want to delete this post?</span>
                             <button onClick={deleteFunc}>
                                 Yes 🐡
