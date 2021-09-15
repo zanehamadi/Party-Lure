@@ -1,13 +1,15 @@
 import { useParams } from 'react-router';
 import CreateCommentForm from '../Comments/commentForm';
 import EditPostForm from '../Posts/EditPostForm';
-import { thunk_fetchPostComments } from '../../store/comments';
+import { goDeletePost } from '../../store/posts';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
+import { useHistory } from 'react-router';
 
 export default function Post({comments, parties,}) {
+    const history = useHistory()
     const aTypeSlice = useSelector(state => state.activityTypes)
     const activitySlice = useSelector(state => state.activities)
     const rolesSlice = useSelector(state => state.roles)
@@ -78,6 +80,12 @@ export default function Post({comments, parties,}) {
         setIsMember(true)
     }
 
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        await dispatch(goDeletePost(post?.id))
+        history.push(`/posts/${post?.post_id}`)
+    }
+
     return (
         <>
             <div>
@@ -87,7 +95,7 @@ export default function Post({comments, parties,}) {
                 {!isMember && <button onClick={requestToJoin}>Request to Join</button>}
                 {isMember && <button onClick = {cancelRequest}>Cancel Request</button>}
                 <div><EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/></div>
-                <button>Delete Post</button>
+                <button onClick={handleDelete}>Delete Post</button>
                 <div>
                     <CreateCommentForm post={post}/>
                 </div>
