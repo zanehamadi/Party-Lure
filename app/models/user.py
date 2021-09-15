@@ -9,10 +9,10 @@ class User(db.Model, UserMixin):
 
     # columns
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), nullable=False, unique=True)
-    email = db.Column(db.String(50), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(500), nullable=False)
-    profile_url = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(100), nullable=False, unique=True)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    hashed_password = db.Column(db.String, nullable=False)
+    profile_url = db.Column(db.String, nullable=False)
     job_id = db.Column(db.Integer, db.ForeignKey("jobs.id"))
     level = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)

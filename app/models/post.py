@@ -1,17 +1,19 @@
 from .db import db
 from sqlalchemy.dialects.postgresql import ARRAY
 
+
 class Post(db.Model):
     __tablename__ = 'posts'
 
     # columns
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
+    title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     recruit_level = db.Column(db.Integer, nullable=False)
     recruit_role = db.Column(ARRAY(db.Integer))
-    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False)
+    activity_id = db.Column(db.Integer, db.ForeignKey(
+        'activities.id'), nullable=False)
     open = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
