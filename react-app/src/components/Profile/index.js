@@ -6,6 +6,8 @@ import PartyCounter from "./PartyCounter";
 import ProfileRecievedRequests from "./ProfileReceivedRequests";
 import ProfileSentRequests from "./ProfileSentRequests";
 import RecievedRequest from "./RecievedRequest";
+import { Link } from "react-router-dom";
+
 
 export default function Profile({users, posts, parties}){
     const dispatch = useDispatch()
@@ -13,7 +15,7 @@ export default function Profile({users, posts, parties}){
     const user = users?.find(specUser => +specUser.id === +id)
     const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
-    console.log('UP',userParties)
+
     useEffect(() => {
         if(id){
         console.log('HERE', id)
@@ -32,10 +34,10 @@ export default function Profile({users, posts, parties}){
 
     return(
     <>
-        {console.log('PARTIES', userParties)}
         <h1>
             {`${user?.username}'s Profile`}
         </h1>
+        <img src={user.profile_url} width={300} height={300}/>
         <div>
             {`Job: ${user?.job}`}
         </div>
@@ -48,19 +50,20 @@ export default function Profile({users, posts, parties}){
 
         <h2>Posts</h2>
         {userPosts.map(post =>
-            <>
             <div>
-                {post.title}
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
             </div>
-            </>
         )}
-
 
         <h2>Parties</h2>
         {userParties.map(parties =>
             <>
                 <div>
-                    {parties?.title}
+                    <h3>{`Party Name: ${parties?.title}`}</h3>
+                    <h4>Members:</h4>
+                    {parties.users.map(user => 
+                        <div>{`${user.username}, ${user.job}`}</div>
+                    )}
                 </div>
                 <div>
                 <PartyCounter requests = {parties.requests} />
