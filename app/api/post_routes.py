@@ -33,7 +33,7 @@ def new_post():
         pass
     title = data['title']
     content = data['content']
-    user_id = data['user_id']
+    user_id = data['userId']
     recruit_level = data['recruitLevel']
     activity_id = data['activityId']
     recruit_role = data['recruitRole']
