@@ -69,11 +69,16 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        uploaded_file = request.files['image']
-        tmp_file_name = 'app/api/tmp/' + secure_filename(uploaded_file.filename)
-        uploaded_file.save(tmp_file_name)
-        profile_url = public_file_upload(tmp_file_name, 'partylureawsbucket' )
-        os.remove(tmp_file_name)
+        uploaded_file = None
+        profile_url = None
+        try:
+            uploaded_file =request.files['image']
+            tmp_file_name = 'app/api/tmp/' + secure_filename(uploaded_file.filename)
+            uploaded_file.save(tmp_file_name)
+            profile_url = public_file_upload(tmp_file_name, 'partylureawsbucket' )
+            os.remove(tmp_file_name)
+        except KeyError:
+            pass
         job_id = request.form['jobId']
 
         user = User(
@@ -81,7 +86,7 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             level = form.data['level'],
-            profile_url = profile_url if profile_url else 'https://partylureawsbucket.s3.amazonaws.com/default.jpg',
+            profile_url = profile_url if profile_url is not None else 'https://partylureawsbucket.s3.amazonaws.com/default.jpg',
             job_id = job_id,
             created_at=datetime.datetime.now(),
             updated_at = datetime.datetime.now()

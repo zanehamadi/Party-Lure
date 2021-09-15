@@ -10,7 +10,7 @@ export default function Post({ posts, comments, parties }) {
     const [isMember, setIsMember] = useState(false)
 
     const dispatch = useDispatch()
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
