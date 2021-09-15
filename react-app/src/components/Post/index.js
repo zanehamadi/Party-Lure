@@ -37,6 +37,10 @@ export default function Post({comments, parties,}) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
 
 
+    console.log(userComments[0])
+
+
+
 
     const deleteFunc = () => {
         dispatch(goDeletePost(id));
@@ -151,10 +155,6 @@ export default function Post({comments, parties,}) {
                 </div>
             </div>
             <div>
-                {userComments.map(comment=>
-                    <div key={comment?.id}><Link to={`/comments/${comment?.id}`}>{comment.content}</Link></div>
-                )}
-
             </div>
         </>
     )
