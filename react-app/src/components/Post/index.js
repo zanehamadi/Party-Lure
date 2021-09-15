@@ -8,22 +8,22 @@ import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../sto
 
 export default function Post({ posts, comments, parties }) {
     const [isMember, setIsMember] = useState(false)
+
     const dispatch = useDispatch()
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
-    console.log('party', party)
+    // console.log('party', party)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
-    
-    console.log("USER COMMENT LIST", userComments)
+
 
     useEffect(() => {
         if(userId){
-            console.log('userId from post, userId')
+            // console.log('userId from post, userId')
         dispatch(getSentRequests(userId))
         }
-    }, [userId])
+    }, [userId,isMember])
 
     let currentUserRequestsState = useSelector(state => state?.requests?.sent)
 
@@ -35,9 +35,9 @@ export default function Post({ posts, comments, parties }) {
 
     const doesUserHaveRequest = () => {
         if(currentUserRequests.length > 0){
-            console.log('this is req array', currentUserRequests)
+            // console.log('this is req array', currentUserRequests)
         for(let sentReq of currentUserRequests){
-            console.log('this is sentreq', sentReq)
+
             if(sentReq.id === party.id){
                 return true
             }
@@ -50,17 +50,19 @@ export default function Post({ posts, comments, parties }) {
             setIsMember(doesUserHaveRequest())
         }
 
-    },[currentUserRequests, party])
+    },[party])
 
     const cancelRequest = () => {
         if(userId){
         dispatch(cancelPartyRequest(userId,party.id))
-        }
+    }
+        setIsMember(false)
     }
 
 
     const requestToJoin = () =>{
         dispatch(sendPartyRequest(userId,party.id))
+        setIsMember(true)
     }
 
     return (
@@ -81,7 +83,7 @@ export default function Post({ posts, comments, parties }) {
                 {userComments.map(comment=>
                     <div key={comment?.id}><Link to={`/comments/${comment?.id}`}>{comment.content}</Link></div>
                 )}
-                
+
             </div>
         </>
     )
