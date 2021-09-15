@@ -76,3 +76,8 @@ def deny_request(party_id):
     db.session.commit()
 
     return party.to_dict()
+@party_routes.route('/user/<int:user_id>')
+def get_user_parties(user_id):
+    this_users_parties = Party.query.filter(Party.owner_id == int(user_id))
+
+    return {'user_parties': [el.to_dict() for el in this_users_parties]}
