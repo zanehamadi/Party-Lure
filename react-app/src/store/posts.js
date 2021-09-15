@@ -1,13 +1,21 @@
 const LOAD_POSTS = "posts/LOAD_POSTS"
 const UPDATE_POST = 'users/UPDATE_POST'
 const DELETE_POST = 'posts/DELTE_POST'
-
-
+const USER_POST = 'posts/USER_POST'
+const UPDATE_USER = 'post/UPDATE_USER'
 const loadPosts = (posts) => ({
     type: LOAD_POSTS,
     posts
 });
 
+const userPosts = (post) => ({
+    type: USER_POST,
+    post
+})
+const updateUser = (post) => ({
+    type: UPDATE_USER,
+    post
+})
 const updatePost = (post) => ({
     type: UPDATE_POST,
     post
@@ -25,7 +33,15 @@ export const getPosts = () => async (dispatch) => {
         dispatch((loadPosts(posts)))
     }
 };
+export const getUserPosts = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/posts/user/${userId}`)
 
+    if(res.ok) {
+        const posts = await res.json();
+        console.log('user posts', posts)
+        dispatch((userPosts(posts)))
+    }
+}
 export const createNewPost = (data) => async (dispatch) => {
     console.log("DATAAAAAAA", data)
     const res = await fetch('/api/posts/', {
@@ -33,11 +49,14 @@ export const createNewPost = (data) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    
+
 
     if (res.ok) {
+        console.log('updating posat')
         const updatedPost = await res.json();
-        dispatch(updatePost(updatedPost))
+        await dispatch(updatePost(updatedPost))
+        console.log('going to dispatch', updatePost)
+        dispatch(updateUser(updatedPost))
     }
 }
 
@@ -52,12 +71,12 @@ export const goDeletePost = (postId) => async (dispatch) => {
     }
 }
 
-const initialState = {}
+const initialState = {userPosts : {}}
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_POSTS: {
-            return { ...action.posts }
+            return { ...state, ...action.posts }
         }
         case DELETE_POST: {
             let newState = { ...state }
@@ -73,6 +92,17 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 [action.post.id]: action.post
             }
+        }
+        case USER_POST :{
+            console.log('ACTION', action)
+            let userState = {...state}
+            userState.userPosts = {...state.userPosts, ...action.post}
+            return {...userState}
+        }
+        case UPDATE_USER: {
+            let userUpdateState = {...state}
+            userUpdateState.userPosts = {...userUpdateState.userPosts, [action.post.id]: action.post}
+            return {...userUpdateState}
         }
         default:
             return state
