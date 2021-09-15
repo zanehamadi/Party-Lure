@@ -118,6 +118,9 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                     < div >
                         <label htmlFor='activities'>Activities: </label>
                         <select name='activities' type='text' placeholder='Select Activity' value={activity} onChange={updateActivity}>
+                            <option value='' disabled={true}>
+                                Select an activity
+                            </option>
                             {activities.map(activity => {
 
                                 if (activity.type === activityType) {

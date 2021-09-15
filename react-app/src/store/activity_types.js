@@ -6,7 +6,7 @@ const loadActivityTypes = (activityTypes) => ({
 });
 
 export const getActivityTypes = () => async (dispatch) => {
-    const response = await fetch('/api/activity')
+    const response = await fetch('/api/activity/')
 
     if (response.ok) {
         const activityTypes = await response.json()

@@ -6,7 +6,7 @@ const loadJobs = (jobs) => ({
 })
 
 export const getAllJobs = () => async (dispatch) => {
-    const response = await fetch('/api/jobs')
+    const response = await fetch('/api/jobs/')
     let data
 
     if (response.ok) {

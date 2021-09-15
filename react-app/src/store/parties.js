@@ -10,7 +10,7 @@ const loadParties = (parties) => ({
 
 
 export const getParties = () => async (dispatch) => {
-    const res = await fetch('/api/parties')
+    const res = await fetch('/api/parties/')
     if (res.ok) {
         const parties = await res.json();
         dispatch((loadParties(parties)))

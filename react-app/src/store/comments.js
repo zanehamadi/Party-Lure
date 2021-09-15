@@ -18,7 +18,7 @@ const deleteComment = (id) => ({
 })
 
 export const getComments = () => async (dispatch) => {
-    const res = await fetch('/api/comments');
+    const res = await fetch('/api/comments/');
     if (res.ok) {
         const comments = await res.json();
         dispatch((loadComments(comments)))
@@ -26,7 +26,7 @@ export const getComments = () => async (dispatch) => {
 };
 
 export const getComment = (commentId) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${commentId}`);
+    const res = await fetch(`/api/comments/${commentId}/`);
     if (res.ok) {
         const comment = await res.json();
         dispatch((loadComments(comment)))
@@ -34,19 +34,19 @@ export const getComment = (commentId) => async (dispatch) => {
 };
 
 export const thunk_fetchUserComments = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/users/${userId}/comments`)
+    const res = await fetch(`/api/users/${userId}/comments/`)
     const comments = await res.json();
     dispatch(loadComments(comments))
 }
 
 export const thunk_fetchPostComments = (postId) => async (dispatch) => {
-    const res = await fetch(`/api/posts/${postId}/comments`)
+    const res = await fetch(`/api/posts/${postId}/comments/`)
     const comments = await res.json();
     dispatch(loadComments(comments))
 }
 
 export const createNewComment = (data) => async (dispatch) => {
-    const res = await fetch('/api/comments', {
+    const res = await fetch('/api/comments/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -59,12 +59,12 @@ export const createNewComment = (data) => async (dispatch) => {
 }
 
 export const thunk_editComment = (payload) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${payload.id}`, {
+    const res = await fetch(`/api/comments/${payload.id}/`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
     });
-    
+
     const newComment = await res.json();
 
     if (res.ok) {
@@ -75,10 +75,10 @@ export const thunk_editComment = (payload) => async (dispatch) => {
 };
 
 export const thunk_deleteComment = (id) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${id}`, {
+    const res = await fetch(`/api/comments/${id}/`, {
         method: 'DELETE',
     })
-    if(res.ok) {
+    if (res.ok) {
         dispatch(deleteComment(id))
         return
     }
@@ -94,11 +94,11 @@ const commentsReducer = (state = initialState, action) => {
         case UPDATE_COMMENT: {
             if (!state[action.comment.id]) {
                 let copy = {
-                    ...state, 
+                    ...state,
                     [action.comment.id]: action.comment
                 }
                 return copy
-            } 
+            }
             return {
                 ...state,
                 [action.comment.id]: {
@@ -108,10 +108,10 @@ const commentsReducer = (state = initialState, action) => {
             }
         }
         case DELETE_COMMENT: {
-            let copy = {...state}
+            let copy = { ...state }
             delete copy[action.id]
             return copy
-        }            
+        }
         default:
             return state
     }

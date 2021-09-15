@@ -19,7 +19,7 @@ const deletePost = (postId) => ({
 })
 
 export const getPosts = () => async (dispatch) => {
-    const res = await fetch('/api/posts');
+    const res = await fetch('/api/posts/');
     if (res.ok) {
         const posts = await res.json();
         dispatch((loadPosts(posts)))
