@@ -6,10 +6,10 @@ class Role(db.Model):
 
     # columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(25), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
-    icon_url = db.Column(db.String(100), nullable=False)
+    icon_url = db.Column(db.String, nullable=False)
 
     # relationships
     jobs = db.relationship('Job', back_populates='role')
