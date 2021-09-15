@@ -9,6 +9,7 @@ import rolesReducer from './roles';
 import commentsReducer from './comments';
 import activitiesReducer from './activities';
 import activityTypesReducer from './activity_types.js';
+import requestReducer from './party_request';
 
 
 import jobs from './job'
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   roles: rolesReducer,
   comments: commentsReducer,
   activities: activitiesReducer,
-  activityTypes: activityTypesReducer
+  activityTypes: activityTypesReducer,
+  requests: requestReducer
 });
 
 

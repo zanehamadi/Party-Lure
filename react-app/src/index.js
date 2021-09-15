@@ -8,12 +8,15 @@ import configureStore from './store';
 import * as sessionActions from './store/session'
 import * as jobActions from './store/job'
 import * as postActions from './store/posts'
+import * as requestActions from './store/party_request'
 const store = configureStore();
 
 window.store = store
 window.sessionActions = sessionActions
 window.jobActions = jobActions
 window.postActions = postActions
+window.requestActions = requestActions
+
 
 ReactDOM.render(
   <React.StrictMode>
