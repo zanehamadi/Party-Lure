@@ -130,7 +130,7 @@ const requestReducer = (state = initialState, action) => {
             let cancelState = {...state}
             if (state.sent[action.request.id]){
                 cancelState.sent = {...cancelState.sent, [action.request.id]:action.request}
-                return{...cancelState}
+                delete cancelState.sent[action.request.id]
             }
             return cancelState
         default:
