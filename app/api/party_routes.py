@@ -18,7 +18,7 @@ def party(party_id):
     party = Party.query.get(party_id)
     return party.to_dict()
 
-@party_routes.route('/<int:party_id>/request', methods = ['POST'])
+@party_routes.route('/<int:party_id>/send', methods = ['POST'])
 def request_party(party_id):
     data = request.get_json()
 
@@ -50,6 +50,7 @@ def accept_request(party_id):
 
     party = Party.query.get(int(party_id))
     print('USERS BEFORE', party.to_dict()['users'])
+
     party.requests.remove(user)
 
     party.users.append(user)
@@ -58,7 +59,7 @@ def accept_request(party_id):
     print('USERS AFTER', party.to_dict()['users'])
     db.session.commit()
 
-    return party.to_dict()
+    return {party.id:party.to_dict()}
 
 @party_routes.route('/<int:party_id>/deny', methods = ['POST'])
 def deny_request(party_id):
@@ -75,16 +76,27 @@ def deny_request(party_id):
     db.session.add(party)
     db.session.commit()
 
-    return party.to_dict()
+    return {party.id:party.to_dict()}
 @party_routes.route('/user/<int:user_id>')
 def get_user_parties(user_id):
     this_users_parties = Party.query.filter(Party.owner_id == int(user_id))
 
-    return {'user_parties': [el.to_dict() for el in this_users_parties]}
-@party_routes.route('/user/<int:user_id>/requests')
-def get_user_requests(user_id):
+    return {el.id:el.to_dict() for el in this_users_parties}
+@party_routes.route('/user/<int:user_id>/sent')
+def get_sent_requests(user_id):
     user = User.query.get(int(user_id))
-    
+
     parties_user_wants = Party.query.filter(Party.requests.contains(user))
 
-    return {'user_party_reqs' : el.to_dict() for el in parties_user_wants}
+    return {el.id:el.to_dict() for el in parties_user_wants}
+
+@party_routes.route('/user/<int:user_id>/recieved')
+def get_recieved_requests(user_id):
+
+
+    parties_with_requests = Party.query.filter(Party.owner_id == user_id )
+
+
+    dict_parties = [party.to_dict() for party in parties_with_requests]
+
+    return {el["id"]:el for el in dict_parties if len(el['requests']) > 0}
