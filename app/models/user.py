@@ -3,28 +3,31 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .party import users_parties
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    #columns
-    id = db.Column(db.Integer, primary_key= True)
-    username = db.Column(db.String, nullable= False, unique= True)
-    email = db.Column(db.String, nullable= False, unique = True)
-    hashed_password = db.Column(db.String, nullable=False)
-    profile_url = db.Column(db.String, nullable=False)
+    # columns
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), nullable=False, unique=True)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(500), nullable=False)
+    profile_url = db.Column(db.String(50), nullable=False)
     job_id = db.Column(db.Integer, db.ForeignKey("jobs.id"))
-    level = db.Column(db.Integer, nullable= False)
-    created_at = db.Column(db.DateTime , nullable= False)
-    updated_at = db.Column(db.DateTime , nullable= False)
+    level = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    updated_at = db.Column(db.DateTime, nullable=False)
 
-    #relationships
-    job = db.relationship('Job', back_populates= 'users')
+    # relationships
+    job = db.relationship('Job', back_populates='users')
 
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
 
-    parties = db.relationship('Party', secondary='users_parties', back_populates= 'users')
-    party_requests = db.relationship('Party', secondary='parties_requests', back_populates='requests')
+    parties = db.relationship(
+        'Party', secondary='users_parties', back_populates='users')
+    party_requests = db.relationship(
+        'Party', secondary='parties_requests', back_populates='requests')
 
     @property
     def password(self):
@@ -34,12 +37,12 @@ class User(db.Model, UserMixin):
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 
-    #methods
+    # methods
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
     def get_posts(self):
-        post_dics = {post.id:post.to_dict() for post in self.posts}
+        post_dics = {post.id: post.to_dict() for post in self.posts}
 
         return post_dics
 
