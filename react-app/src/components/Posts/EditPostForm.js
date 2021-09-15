@@ -36,7 +36,7 @@ const EditPostForm = () => {
         e.preventDefault()
         const payload = {
             postId:post.id,
-            user_id: sessionUser.id,
+            userId: sessionUser.id,
             title: title,
             content: description,
             recruitLevel: +level,
