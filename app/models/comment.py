@@ -1,4 +1,5 @@
 from .db import db
+from datetime import date
 
 
 class Comment(db.Model):
@@ -17,10 +18,12 @@ class Comment(db.Model):
 
     def to_dict(self):
         return {
+            "username": self.user.username,
             "id": self.id,
             "post_id": self.post_id,
             "user_id": self.user_id,
             "content": self.content,
-            "created_at": self.created_at,
+            "created_at": f'{self.created_at.date()}',
             "updated_at": self.updated_at,
+            "profile_url" : self.user.profile_url
         }
