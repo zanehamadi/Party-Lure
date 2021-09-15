@@ -25,7 +25,7 @@ export const getPosts = () => async (dispatch) => {
         dispatch((loadPosts(posts)))
     }
 };
-
+export cos
 export const createNewPost = (data) => async (dispatch) => {
     console.log("DATAAAAAAA", data)
     const res = await fetch('/api/posts/', {
@@ -33,7 +33,7 @@ export const createNewPost = (data) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    
+
 
     if (res.ok) {
         const updatedPost = await res.json();
