@@ -19,12 +19,6 @@ const NavBar = ({ sessionUser, authenticated }) => {
   const activities = Object.values(activitySlice)
   const roles = Object.values(rolesSlice)
   const posts = Object.values(postsSlice)
-  const history = useHistory()
-
-
-  const redirect = () => {
-    history.push('/')
-  }
 
   return (
     <nav>
@@ -74,7 +68,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
               </NavLink>
             </li>
             <li>
-              <LogoutButton onClick={redirect}/>
+              <LogoutButton/>
             </li>
           </>
         }

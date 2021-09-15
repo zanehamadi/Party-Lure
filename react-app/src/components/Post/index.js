@@ -9,9 +9,6 @@ import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../sto
 import { Modal } from "../../context/Modal";
 
 
-
-
-
 export default function Post({comments, parties,}) {
     const history = useHistory()
     const aTypeSlice = useSelector(state => state.activityTypes)
@@ -35,8 +32,10 @@ export default function Post({comments, parties,}) {
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
     const session = useSelector(state => state?.session)
     const isUser = session?.user ? session?.user.id === post?.user_id : false
+
     const [showEditModal, setShowEditModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+
 
 
     const deleteFunc = () => {
