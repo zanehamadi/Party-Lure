@@ -7,10 +7,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
 import { Modal } from "../../context/Modal";
-import {goDeletePost} from "../../store/posts"
-
-
-import { useHistory } from 'react-router';
 
 export default function Post({comments, parties,}) {
     const history = useHistory()
@@ -36,7 +32,6 @@ export default function Post({comments, parties,}) {
     const session = useSelector(state => state?.session)
     const isUser = session?.user ? session?.user.id === post?.user_id : false
     const [showModal, setShowModal] = useState(false)
-    const history = useHistory()
 
     const deleteFunc = () => {
         dispatch(goDeletePost(id));
