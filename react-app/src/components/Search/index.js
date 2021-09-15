@@ -125,7 +125,7 @@ function Search({posts, activities, activityTypes}) {
             : <></>}
             {showResults ? 
                 <>
-                    {searchPosts.map(post => <div><Link to={`/posts/${post.id}`}>{post.title}</Link></div>)}
+                    {searchPosts.map(post => <div><Link to={`/posts/${post.id}`} onClick={resetFunc}>{post.title}</Link></div>)}
                 </> 
             
             :<></>}
