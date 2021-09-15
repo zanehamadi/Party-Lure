@@ -25,7 +25,7 @@ export default function Post({comments, parties,}) {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
-    
+
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
     // console.log('party', party)
@@ -123,7 +123,7 @@ export default function Post({comments, parties,}) {
                 <>
                     <button onClick={handleClickEdit}>Edit Post</button>
                     {showEditModal ?
-                    <Modal>
+                    <Modal onClose = {() => setShowEditModal(false)}>
                         <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/>
                         <button onClick={closeEditModal}>
                                 Cancel
@@ -131,8 +131,8 @@ export default function Post({comments, parties,}) {
                     </Modal>
                     : <></>}
                     <button onClick={handleClickDelete}>Delete Post</button>
-                    {showDeleteModal ? 
-                        <Modal>
+                    {showDeleteModal ?
+                        <Modal onClose = {() => setShowDeleteModal(false)}>
                             <span>Are you sure you want to delete this post?</span>
                             <button onClick={deleteFunc}>
                                 Yes 🐡
@@ -140,7 +140,7 @@ export default function Post({comments, parties,}) {
                             <button onClick={closeDeleteModal}>
                                 No
                             </button>
-                        </Modal> 
+                        </Modal>
                     : <></>}
                 </>
                 :
