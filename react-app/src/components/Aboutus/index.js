@@ -5,7 +5,7 @@ export default function AboutUs() {
         <>
             <div className='aboutus'>
                 <h3 className='aboutheader'>Group 42</h3>
-                <img className='foohfoimg' alt="404 pug" src={'https://lh3.googleusercontent.com/proxy/sVoa3VNt3UA61kOVUpGI3Bo7Z5dGcaCmyDczjG0Ad79Ug1QoC14xkLyVNmzULwA6Swp42P7GLGviUJX5lAyr1op_nqQ6WuSo2Xe4jNSWc_mmMiE_XKqbyaIovi5qq3IYZHh1'}></img>
+                <img className='foohfoimg' alt="404 pug" src={'https://c.tenor.com/LH7fjySc35UAAAAM/monkey-cool.gif'}></img>
                 <p>Sometimes you make a group and expect crunch times and crud done by Thursday or Friday. Sometimes you get us instead. That's Group 42, baby.</p>
                 <div>
                     <span>Cam Chandler</span><span>Kristian Martinez</span><span>Tanner Pedreti</span><span>Zane Hamadi</span>
