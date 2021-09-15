@@ -9,13 +9,13 @@ import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../sto
 export default function Post({ posts, comments, parties }) {
     const [isMember, setIsMember] = useState(false)
     const dispatch = useDispatch()
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
     console.log('party', party)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
-    
+
     console.log("USER COMMENT LIST", userComments)
 
     useEffect(() => {
@@ -81,7 +81,7 @@ export default function Post({ posts, comments, parties }) {
                 {userComments.map(comment=>
                     <div key={comment?.id}><Link to={`/comments/${comment?.id}`}>{comment.content}</Link></div>
                 )}
-                
+
             </div>
         </>
     )
