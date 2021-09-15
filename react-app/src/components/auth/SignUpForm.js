@@ -12,7 +12,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [image, setImage] = useState('')
   const [jobId, setJobId] = useState(0)
-  const [level, setLevel] = useState(0)
+  const [level, setLevel] = useState(1)
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
 
@@ -118,7 +118,7 @@ const SignUpForm = () => {
         <input
           type='number'
           name='level'
-          min='0'
+          min='1'
           max='50'
           value={level}
           onChange={updateLevel}
