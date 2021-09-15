@@ -8,15 +8,15 @@ import ProfileSentRequests from "./ProfileSentRequests";
 import RecievedRequest from "./RecievedRequest";
 import { Link } from "react-router-dom";
 import { getOneUser } from "../../store/session";
+import { getUserPosts } from "../../store/posts";
 
 
-export default function Profile({users, posts, parties}){
+export default function Profile({users,  parties}){
     const dispatch = useDispatch()
     const {id} = useParams()
     // const user = users?.find(specUser => +specUser.id === +id)
-    const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
+    // const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
-
 
     useEffect(() => {
         if(id){
@@ -30,18 +30,28 @@ export default function Profile({users, posts, parties}){
 
     useEffect(() => {
         if(id){
-
         dispatch(getOneUser(id))
+        dispatch(getUserPosts(id))
         }
     },[id])
 
+    let userPostsState = useSelector(state => state.posts?.userPosts)
     let user = useSelector(state => state.session.profile)
+    // let userPosts
 
+    // useEffect(() => {
+    //     if(userPostsState){
+    //         userPosts= Object.values(userPostsState)
+    //         console.log('user posts', userPosts)
+    //     }
+    // }, [])
     const sentRequestState = useSelector(state => state.requests.sent)
     const receivedRequestState = useSelector(state => state.requests.recieved)
 
     let sentRequests = Object.values(sentRequestState)
     let recievedRequests = Object.values(receivedRequestState)
+    console.log('Trying to make array from' ,userPostsState)
+    let userPosts = Object.values(userPostsState)
 
     return(
     <>
@@ -60,7 +70,7 @@ export default function Profile({users, posts, parties}){
         </div>
 
         <h2>Posts</h2>
-        {userPosts.map(post =>
+        {userPosts && userPosts.map(post =>
             <div>
             <Link to={`/posts/${post.id}`}>{post.title}</Link>
             </div>

@@ -24,9 +24,9 @@ def post(post_id):
 
 @post_routes.route('/user/<int:user_id>')
 def user_posts(user_id):
-    posts = Post.qeury.filter(Post.user_id == int(user_id))
+    posts = Post.query.filter(Post.user_id == int(user_id))
     return {post.id: post.to_dict() for post in posts}
-    
+
 @post_routes.route('/', methods=['POST'])
 def new_post():
     data = request.get_json()
