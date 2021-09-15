@@ -47,12 +47,12 @@ export default function Post({ posts, comments, parties }) {
         if(currentUserRequests[0] && party){
             setIsMember(doesUserHaveRequest())
         }
- 
+
     },[currentUserRequests, party])
 
     const cancelRequest = () => {
         if(userId){
-        dispatch(cancelPartyRequest)
+        dispatch(cancelPartyRequest(userId,party.id))
         }
     }
 
@@ -68,7 +68,7 @@ export default function Post({ posts, comments, parties }) {
             </div>
             <div>
                 {!isMember && <button onClick={requestToJoin}>Request to Join</button>}
-                {isMember && <button>Cancel Request</button>}
+                {isMember && <button onClick = {cancelRequest}>Cancel Request</button>}
                 <button>Edit Post</button>
                 <button>Delete Post</button>
                 <div>
