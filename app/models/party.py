@@ -29,7 +29,7 @@ class Party(db.Model):
             "requests": [user.to_dict() for user in self.requests],
             "title": self.title,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
         }
 
 

@@ -52,6 +52,7 @@ function App() {
   const activitiesSlice = useSelector(state => state.activities)
   const aTypesSlice = useSelector(state => state.activityTypes)
   const commentsSlice = useSelector(state => state.comments)
+  const rolesSlice = useSelector(state => state.roles)
 
   const posts = Object.values(postsSlice)
   const users = Object.values(usersSlice)
@@ -59,6 +60,8 @@ function App() {
   const activities = Object.values(activitiesSlice)
   const activityTypes = Object.values(aTypesSlice)
   const comments = Object.values(commentsSlice)
+  const roles = Object.values(rolesSlice)
+
 
 
   if (!loaded) {
@@ -80,7 +83,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/users/:id' exact={true}>
-          <Profile users={users} posts={posts} parties={parties} />
+          <Profile users={users} posts={posts} parties={parties} roles={roles} />
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />
