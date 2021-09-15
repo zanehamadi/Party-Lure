@@ -5,7 +5,7 @@ import CreateCommentForm from "./commentForm";
 export default function Comments({ comments }) {
     return (
         <>
-           
+
             <CreateCommentForm/>
             {/* <ul>
                 {comments.map (comment => 

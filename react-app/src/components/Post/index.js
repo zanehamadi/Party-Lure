@@ -8,11 +8,6 @@ export default function Post({ posts, comments }) {
     const { id } = useParams();
     const post = posts?.find(post => post.id === +id)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
-    console.log("USER COMMENT LIST", userComments)
-
-    // useEffect(() => {
-    //     userComments = comments?.filter((comment) => comment?.user_id === post?.id)
-    // }, [comments])
 
 
     return (
@@ -33,6 +28,7 @@ export default function Post({ posts, comments }) {
                 {userComments.map(comment=>
                     <div key={comment?.id}><Link to={`/comments/${comment?.id}`}>{comment.content}</Link></div>
                 )}
+                
             </div>
         </>
     )
