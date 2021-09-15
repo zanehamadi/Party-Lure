@@ -27,6 +27,7 @@ const denyRequest = (request) => ({
 })
 
 export const getRecievedRequests = (userId) => async (dispatch) => {
+    console.log('getting requests for', userId)
     let res = await fetch(`/api/parties/user/${userId}/recieved`)
     let data
     if(res.ok){
@@ -100,12 +101,12 @@ const requestReducer = (state = initialState, action) => {
         case SEND_REQUEST:
             return{...state, sent: {...state.sent, [action.request.id]:action.request}}
         case REPLY:
+            let newState = {...state}
             if (state.recieved[action.request.id]){
-                let newState = {...state}
-                newState.recieved[action.request.id] = {...action.request}
+                newState.recieved = {...newState.recieved, [action.request.id]:action.request}
                 return{...newState}
             }
-            return state
+            return newState
         default:
             return state
     }
