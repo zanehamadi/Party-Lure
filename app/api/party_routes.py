@@ -59,7 +59,7 @@ def accept_request(party_id):
     print('USERS AFTER', party.to_dict()['users'])
     db.session.commit()
 
-    return {party.id:party.to_dict()}
+    return party.to_dict()
 
 @party_routes.route('/<int:party_id>/deny', methods = ['POST'])
 def deny_request(party_id):
@@ -76,7 +76,7 @@ def deny_request(party_id):
     db.session.add(party)
     db.session.commit()
 
-    return {party.id:party.to_dict()}
+    return party.to_dict()
 @party_routes.route('/user/<int:user_id>')
 def get_user_parties(user_id):
     this_users_parties = Party.query.filter(Party.owner_id == int(user_id))

@@ -55,6 +55,8 @@ export const acceptPartyRequest = (userId, partyId) => async (dispatch) => {
 
     let data
     if(res.ok){
+        data = await res.json()
+        console.log(data)
         dispatch(acceptRequest(data))
     }
 }
@@ -66,6 +68,7 @@ export const denyPartyRequest = (userId, partyId) => async (dispatch) => {
     })
     let data
     if(res.ok){
+         data = await res.json()
         dispatch(denyRequest(data))
     }
 }
