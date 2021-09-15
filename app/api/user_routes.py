@@ -16,6 +16,7 @@ def users():
 # @login_required
 def user(id):
     user = User.query.get(id)
+    print("SENDING USER", user.to_dict())
     return user.to_dict()
 
 
