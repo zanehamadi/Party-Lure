@@ -108,14 +108,13 @@ export const signUp = (username, email, password, jobId, level, image) => async 
 }
 
 export const getOneUser = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}/`)
+    console.log('FETCHING USER DATA')
+  const response = await fetch(`/api/users/${userId}`)
   let data;
   if (response.ok) {
     data = await response.json()
+    console.log('GOT USER DATA', data)
     dispatch(getUser(data))
-  }
-  else if (data.errors) {
-    return
   }
 
   return
@@ -126,7 +125,7 @@ export default function reducer(state = initialState, action) {
     case SET_USER:
       return { user: action.payload, profile: state.profile }
     case REMOVE_USER:
-      return { user: null }
+      return { user: null, profile: state.profile }
     case GET_USER:
       return { user: state.user, profile: action.user }
     default:
