@@ -33,7 +33,7 @@ def new_post():
         pass
     title = data['title']
     content = data['content']
-    user_id = data['userId']
+    user_id = data['user_id']
     recruit_level = data['recruitLevel']
     activity_id = data['activityId']
     recruit_role = data['recruitRole']
@@ -47,6 +47,7 @@ def new_post():
         post.activity_id = activity_id if activity_id else post.activity_id
         post.recruit_role = recruit_role if recruit_role else post.recruit_role
         post.updated_at = datetime.datetime.now()
+        post.title = title if title else post.title
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
@@ -68,9 +69,9 @@ def new_post():
         party_title = f"{post_dict['user']}'s {post_dict['mission']} {post_dict['type']}"
 
         party = Party(
-            owner_id = user_id,
-            post_id = post.id,
-            title = party_title,
+            owner_id=user_id,
+            post_id=post.id,
+            title=party_title,
             created_at=datetime.datetime.now(),
             updated_at=datetime.datetime.now(),
         )
