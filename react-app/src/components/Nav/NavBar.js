@@ -6,6 +6,7 @@ import CreatePostFormModal from './CreatePostModal';
 import CreateSearchFormModal from '../Search/search-modal';
 import Search from '../Search/index'
 import DemoButton from '../auth/DemoButton';
+import { useHistory } from 'react-router';
 
 const NavBar = ({ sessionUser, authenticated }) => {
 
@@ -18,7 +19,12 @@ const NavBar = ({ sessionUser, authenticated }) => {
   const activities = Object.values(activitySlice)
   const roles = Object.values(rolesSlice)
   const posts = Object.values(postsSlice)
+  const history = useHistory()
 
+
+  const redirect = () => {
+    history.push('/')
+  }
 
   return (
     <nav>
@@ -63,7 +69,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
               </NavLink>
             </li>
             <li>
-              <LogoutButton />
+              <LogoutButton onClick={redirect}/>
             </li>
           </>
         }
