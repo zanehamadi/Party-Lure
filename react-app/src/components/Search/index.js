@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import {Link} from 'react-router-dom';
+import { Modal } from "../../context/Modal";
 
 function Search({posts, activities, activityTypes}) {
     const [title, setTitle] = useState('')
     const [level, setLevel] = useState('')
     const [role,setRole] = useState([])
     const [activity, setActivity] = useState('')
-    const [filter, setFilter] = useState(false)
     const [searchPosts, setSearchPosts] = useState([])
     const [activityType, setActivityType] = useState('')
     const [userClass, setUserClass] = useState('')
@@ -14,8 +14,19 @@ function Search({posts, activities, activityTypes}) {
     const [listActivities, setListActivities] = useState([])
     const [activityTypeId, setActivityTypeId] = useState('')
     const [showResults, setShowResults] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
-    console.log(activityTypes)
+    const handleClick = () => {
+        setShowModal(true)
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
+    }
+
+
+
+
     const resetFunc = () => {
         setSearchPosts([])
         setRole([])
@@ -75,11 +86,10 @@ function Search({posts, activities, activityTypes}) {
     return (
         <>
             <input placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
-            <button onClick={e => setFilter(true)}>Filters</button>
+            <button onClick={handleClick}>Filters</button>
             <button onClick={() => resetFunc()}>Reset</button>
-            {filter ? 
-                <>
-                    <button onClick={e => setFilter(false)}>Close</button>
+            {showModal ? 
+                <Modal onClose={() => setShowModal(false)}>
                     <form>
                         <label> Level
                             <span> <input type='range' min='1' max='50' value={level} onChange={e => setLevel(e.target.value)}></input> {level}</span>
@@ -110,7 +120,7 @@ function Search({posts, activities, activityTypes}) {
 
 
                     </form>
-                </> 
+                </Modal> 
             
             : <></>}
             {showResults ? 

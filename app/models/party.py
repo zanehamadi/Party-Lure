@@ -1,3 +1,4 @@
+from werkzeug.wrappers import request
 from .db import db
 
 
@@ -30,6 +31,8 @@ class Party(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+
+
 
 
 users_parties = db.Table(

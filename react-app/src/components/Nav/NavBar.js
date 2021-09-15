@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
-import Search from '../Search';
+import CreateSearchFormModal from '../Search/search-modal';
+import Search from '../Search/index'
 import DemoButton from '../auth/DemoButton';
 
 const NavBar = ({ sessionUser, authenticated }) => {
