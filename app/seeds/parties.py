@@ -18,15 +18,15 @@ def seed_parties():
         owner_id = post.user_id
         user_dict = gen_count_dict(User)
         del user_dict[str(owner_id)]
-
-        party_members = [User.query.get(owner_id)]
-        for i in range(4):
+        owner = User.query.get(owner_id)
+        party_members = [owner]
+        for i in range(3):
             party_members.append(User.query.get(assign_from_dict(user_dict,1)))
 
         new_party = Party(
             post_id = post.id,
             owner_id = owner_id,
-            title = fake.paragraph(nb_sentences=1),
+            title = f"""{owner.username}'s {post.to_dict()['mission']} {post.to_dict()["type"]}""",
             created_at=datetime.datetime.now(),
             updated_at = datetime.datetime.now()
 
