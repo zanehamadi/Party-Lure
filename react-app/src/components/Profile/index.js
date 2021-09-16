@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getRecievedRequests, getSentRequests } from "../../store/party_request";
@@ -12,23 +12,25 @@ import { getUserPosts } from "../../store/posts";
 
 
 export default function Profile({ users, parties, roles }) {
+
     const dispatch = useDispatch()
     const { id } = useParams()
+    const [owner, setOwner] = useState(false)
     // const user = users?.find(specUser => +specUser.id === +id)
     // const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
 
     console.log('THIS IS ROLES ------>', roles)
-
+    let viewId = useSelector(state => state.session.user.id)
     useEffect(() => {
-        if (id) {
-
+        if (id == viewId) {
             dispatch(getRecievedRequests(id))
             dispatch(getSentRequests(id))
+            setOwner(true)
             return
         }
         return
-    }, [dispatch, id])
+    }, [dispatch, id,viewId])
 
     useEffect(() => {
         if (id) {
@@ -53,7 +55,7 @@ export default function Profile({ users, parties, roles }) {
 
     let sentRequests = Object.values(sentRequestState)
     let recievedRequests = Object.values(receivedRequestState)
-    console.log('Trying to make array from', userPostsState)
+
     let userPosts = Object.values(userPostsState)
 
     return (
@@ -95,6 +97,8 @@ export default function Profile({ users, parties, roles }) {
                     </div>
                 </>
             )}
+            {owner &&
+            <div>
             <h2>Recieved Requests</h2>
             {recievedRequests && recievedRequests.map(req => {
                 return (
@@ -106,7 +110,9 @@ export default function Profile({ users, parties, roles }) {
                 return (
                     <ProfileSentRequests key={req.id} partyName={req.title} partyId={req.id} requests={req.requests} />
                 )
-            })}
+                })
+
+            } </div>}
         </>
     )
 }
