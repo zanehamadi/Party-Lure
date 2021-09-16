@@ -66,7 +66,7 @@ const CreateCommentForm = ({post}) => {
                     placeholder="Type comment here"
                     value={content}
                     onChange={updateComment} />
-                <button className="edit-btn edit5" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
+                <button className="edit-btn edit5 commentButton" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
             </div>
         {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
     </form>

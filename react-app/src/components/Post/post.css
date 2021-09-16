@@ -1,31 +1,74 @@
 .postPage{
-    display: grid;
+    /* display:grid;
     grid-template-areas: 
                         "title ."
                         "content ."
                         "requestButtons userButtons"
                         "commentContainer ."
-                        "commentForm .";
+                        "commentForm ."; */
+                        
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+
+}
+
+
+.postTitle{
+    /* grid-area: "title"; */
+    margin-top: 5%;
+    font-size: 1.5rem;
+
+}
+
+.postBody{
+    /* grid-area: "content"; */
+    margin-top: 5%;
+    font-size: 1.1rem;
+}
+
+.requestButtons{
+    /* grid-area:"requestButtons" */
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.commentButton{
+    width: 8rem;
+}
+
+#userButtons{
+
+    /* grid-area:"userButtons" */
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: flex-end;
+    
+    /* display: flex; */
+    /* flex-direction: row; */
+}
+
+.userButton:hover{
+}
+
+.commentContainer {
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: row;
+    align-items: center;
+    
+    /* grid-area:"commentContainer" */
+
 }
 
 .commentForm{
 
-}
-.commentContainer{
+    /* grid-area:"commentForm" */
 
 }
 
-.postTitle{
-}
-
-.postBody{
-    color: black;
-}
-
-.requestButtons{
-
-}
-
-.userButtons{
-    
+.commentPP{
+    border-radius: 80%;
 }

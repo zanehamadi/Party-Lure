@@ -162,7 +162,7 @@ export default function Post({comments, parties,}) {
                 {hasRequested && <button onClick = {cancelRequest} className="requestButtons">Cancel Request</button>}
                 {isUser ?
                 <>
-                    <button onClick={handleClickEdit} className="userButtons">Edit Post</button>
+                    
                     {showEditModal ?
                     <Modal onClose = {() => setShowEditModal(false)}>
                         <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/>
@@ -171,7 +171,11 @@ export default function Post({comments, parties,}) {
                             </button>
                     </Modal>
                     : <></>}
-                    <button onClick={handleClickDelete}>Delete Post</button>
+
+                    <div id="userButtons">
+                        <button onClick={handleClickEdit} className="userButton">Edit Post</button>
+                        <button onClick={handleClickDelete} className="userButton">Delete Post</button>
+                    </div>
                     {showDeleteModal ?
                         <Modal onClose = {() => setShowDeleteModal(false)}>
                             <span>Are you sure you want to delete this post?</span>
@@ -204,7 +208,7 @@ export default function Post({comments, parties,}) {
 
                 {userComments.map(comment=>
                     <div key={comment?.id} className="commentContainer postPage">
-                        <img src={comment.profile_url} width='50' height='50'/>
+                        <img src={comment.profile_url} width='50' height='50' className="commentPP"/>
                         <Link to={`/users/${comment?.user_id}`}>{comment.username}</Link>
                         <span>{comment?.created_at}</span>
                         <Link to={`/comments/${comment?.id}`}>{comment.content}</Link>
