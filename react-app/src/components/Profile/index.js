@@ -9,19 +9,12 @@ import RecievedRequest from "./RecievedRequest";
 import { Link } from "react-router-dom";
 import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
-
-import './Profile.css'
-import UserParties from "./ProfileParties";
-
-export default function Profile({ users, parties, roles }) {
-
 import { thunk_updateUser } from "../../store/users";
 import { Modal } from "../../context/Modal";
 import EditProfileForm from "./EditProfile";
 
 
 export default function Profile({ users, parties, roles, jobs }) {
-
 
     const dispatch = useDispatch()
     const { id } = useParams()
@@ -80,23 +73,19 @@ export default function Profile({ users, parties, roles, jobs }) {
     }
 
     return (
-        <div className = 'profile-page'>
-            <div className = 'profile-header'>
+        <>
             <h1>
-                {`${user?.username}`}
+                {`${user?.username}'s Profile`}
             </h1>
-            <img className='profile-pic' src={user?.profile_url} width={300} height={300} />
-            <div className = 'game-info'>
+            <img src={user?.profile_url} width={300} height={300} />
+            <>
                 <div>
-                    Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
+                    Job: <img src={user?.role_url} width={24} height={24} /> {`${user?.job}`}
                 </div>
                 <div>
-                    Job: {`${user?.job}`}
-                </div>
-                <div>
-
                     {`Level: ${user?.level}`}
-
+                </div>
+                <div>
                     Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
                 </div>
                     <button onClick={handleClickEdit}>Edit Profile</button>
@@ -113,19 +102,11 @@ export default function Profile({ users, parties, roles, jobs }) {
             {userPosts && userPosts.map(post =>
                 <div>
                     <Link to={`/posts/${post.id}`}>{post.title}</Link>
-
                 </div>
-            </div>
-            </div>
-            <div className = 'tab-bar'>
-                <span>Parties</span>
-                <span>Friends</span>
-            </div>
-            <div className = 'focus-content'>
-                <UserParties parties = {userParties} owner = {owner} username ={user?.username} />
-            </div>
-            {/* <h2>Parties</h2> */}
-            {/* {userParties.map(parties =>
+            )}
+
+            <h2>Parties</h2>
+            {userParties.map(parties =>
                 <>
                     <div>
                         <h3>{`Party Name: ${parties?.title}`}</h3>
@@ -138,7 +119,7 @@ export default function Profile({ users, parties, roles, jobs }) {
                         <PartyCounter requests={parties.requests} />
                     </div>
                 </>
-            )} */}
+            )}
             {owner &&
             <div>
             <h2>Recieved Requests</h2>
@@ -155,14 +136,6 @@ export default function Profile({ users, parties, roles, jobs }) {
                 })
 
             } </div>}
-            <h2>Posts</h2>
-            {userPosts && userPosts.map(post =>
-                <div>
-                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                </div>
-            )}
-
-        </div>
-
+        </>
     )
 }
