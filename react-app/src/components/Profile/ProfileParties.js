@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 import PartyCounter from "./PartyCounter"
 import PartyMembers from "./PartyMembers"
 import ProfileReceivedRequests from "./ProfileReceivedRequests"
+import ProfileSentRequests from "./ProfileSentRequests"
 
 const UserPartyStyle = styled.div`
     display: flex;
@@ -13,15 +15,20 @@ const UserPartyStyle = styled.div`
     }
 `
 const UserParties = ({ parties, owner, username }) => {
-    console.log('test')
     const [activePartyMembers, setActivePartyMembers] = useState()
     const [activePartyId, setActivePartyId] = useState()
     const [activePartyRequests, setActivePartyRequest] = useState()
+    const [activePartyName, setActivePartyName] = useState()
+
+    const userId = useSelector(state => state.session.user?.id)
+    const sentRequestsState = useSelector(state => state.requests.sent)
+    const sentRequests = Object.values(sentRequestsState)
 
     const setActiveParty = (party) => {
         setActivePartyMembers(party.users)
         setActivePartyId(party.id)
         setActivePartyRequest(party.requests)
+        setActivePartyName(party.title)
     }
 
     useEffect(() => {
@@ -29,6 +36,7 @@ const UserParties = ({ parties, owner, username }) => {
             setActivePartyMembers(parties[0]?.users)
             setActivePartyRequest(parties[0]?.requests)
             setActivePartyId(parties[0]?.id)
+            setActivePartyName(parties[0]?.title)
         }
     }, [parties])
 
@@ -51,8 +59,13 @@ const UserParties = ({ parties, owner, username }) => {
                 )}
             </div>
             <div className='right-side'>
-                {parties && activePartyMembers && <PartyMembers members={activePartyMembers} />}
-                {parties && activePartyRequests && activePartyId && <ProfileReceivedRequests requests={activePartyRequests} partyId={activePartyId} />
+                {parties && activePartyMembers &&
+                    <PartyMembers members={activePartyMembers} />
+                }
+                {parties && activePartyRequests && activePartyId &&
+                    < ProfileReceivedRequests requests={activePartyRequests} partyId={activePartyId} userId={userId} />
+                }
+                {userId && sentRequests && <ProfileSentRequests requests={sentRequests} userId={userId} />
 
                 }
             </div>
