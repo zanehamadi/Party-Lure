@@ -15,7 +15,6 @@ import PageNotFound from './components/404'
 import AboutUs from './components/Aboutus'
 import Comments from './components/Comments'
 import Comment from './components/Comment'
-import Banner from './components/Banner/Banner'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
@@ -54,6 +53,7 @@ function App() {
   const aTypesSlice = useSelector(state => state.activityTypes)
   const commentsSlice = useSelector(state => state.comments)
   const rolesSlice = useSelector(state => state.roles)
+  const jobsSlice = useSelector(state => state.jobs)
 
   const posts = Object.values(postsSlice)
   const users = Object.values(usersSlice)
@@ -62,7 +62,7 @@ function App() {
   const activityTypes = Object.values(aTypesSlice)
   const comments = Object.values(commentsSlice)
   const roles = Object.values(rolesSlice)
-
+  const jobs = Object.values(jobsSlice)
 
 
   if (!loaded) {
@@ -72,7 +72,6 @@ function App() {
   return (
 
     <BrowserRouter>
-    <Banner />
       <NavBar sessionUser={sessionUser} authenticated={authenticated} />
       <Switch>
         <Route path='/login' exact={true}>
@@ -85,7 +84,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/users/:id' exact={true}>
-          <Profile users={users} posts={posts} parties={parties} roles={roles} />
+          <Profile users={users} posts={posts} parties={parties} roles={roles} jobs={jobs} />
         </Route>
         <Route path='/posts' exact={true}>
           <Posts posts={posts} />

@@ -12,6 +12,7 @@ const UserPartyStyle = styled.div`
     }
 `
 const UserParties = ({parties, owner, username }) => {
+    console.log('test')
     const [activePartyMembers, setActivePartyMembers] = useState()
 
     useEffect(() => {

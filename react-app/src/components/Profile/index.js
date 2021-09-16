@@ -9,13 +9,17 @@ import RecievedRequest from "./RecievedRequest";
 import { Link } from "react-router-dom";
 import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
-import './Profile.css'
-import UserParties from "./ProfileParties";
+import { thunk_updateUser } from "../../store/users";
+import { Modal } from "../../context/Modal";
+import EditProfileForm from "./EditProfile";
 
-export default function Profile({ users, parties, roles }) {
+
+export default function Profile({ users, parties, roles, jobs }) {
+
     const dispatch = useDispatch()
     const { id } = useParams()
     const [owner, setOwner] = useState(false)
+    
     // const user = users?.find(specUser => +specUser.id === +id)
     // const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
@@ -59,34 +63,50 @@ export default function Profile({ users, parties, roles }) {
 
     let userPosts = Object.values(userPostsState)
 
+    const [showEditModal, setShowEditModal] = useState(false)
+
+    const handleClickEdit = () => {
+        setShowEditModal(true)
+    }
+    const closeEditModal = () => {
+        setShowEditModal(false)
+    }
+
     return (
-        <div className = 'profile-page'>
-            <div className = 'profile-header'>
+        <>
             <h1>
-                {`${user?.username}`}
+                {`${user?.username}'s Profile`}
             </h1>
-            <img className='profile-pic' src={user?.profile_url} width={300} height={300} />
-            <div className = 'game-info'>
+            <img src={user?.profile_url} width={300} height={300} />
+            <>
                 <div>
-                    Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
-                </div>
-                <div>
-                    Job: {`${user?.job}`}
+                    Job: <img src={user?.role_url} width={24} height={24} /> {`${user?.job}`}
                 </div>
                 <div>
                     {`Level: ${user?.level}`}
                 </div>
-            </div>
-            </div>
-            <div className = 'tab-bar'>
-                <span>Parties</span>
-                <span>Friends</span>
-            </div>
-            <div className = 'focus-content'>
-                <UserParties parties = {userParties} owner = {owner} username ={user?.username} />
-            </div>
-            {/* <h2>Parties</h2> */}
-            {/* {userParties.map(parties =>
+                <div>
+                    Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
+                </div>
+                    <button onClick={handleClickEdit}>Edit Profile</button>
+                    {showEditModal ?
+                    <Modal onClose = {() => setShowEditModal(false)}>
+                        <EditProfileForm jobs={jobs}/>
+                        <button onClick={closeEditModal}>
+                                Cancel
+                            </button>
+                    </Modal>
+                    : <></>}
+            </>
+            <h2>Posts</h2>
+            {userPosts && userPosts.map(post =>
+                <div>
+                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                </div>
+            )}
+
+            <h2>Parties</h2>
+            {userParties.map(parties =>
                 <>
                     <div>
                         <h3>{`Party Name: ${parties?.title}`}</h3>
@@ -99,7 +119,7 @@ export default function Profile({ users, parties, roles }) {
                         <PartyCounter requests={parties.requests} />
                     </div>
                 </>
-            )} */}
+            )}
             {owner &&
             <div>
             <h2>Recieved Requests</h2>
@@ -116,14 +136,6 @@ export default function Profile({ users, parties, roles }) {
                 })
 
             } </div>}
-            <h2>Posts</h2>
-            {userPosts && userPosts.map(post =>
-                <div>
-                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                </div>
-            )}
-
-        </div>
-
+        </>
     )
 }
