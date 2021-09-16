@@ -52,6 +52,7 @@ function Search({posts, activities, activityTypes}) {
     useEffect(() => {
         if( (title || userClass) || (role || activity) ){
             let postsArr = posts
+            postsArr.pop()
             if(title){
                 setShowResults(true)
                 postsArr = postsArr.filter(post => ((post?.title).toUpperCase()).includes((title.toUpperCase())))
@@ -88,7 +89,7 @@ function Search({posts, activities, activityTypes}) {
             <input placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
             <button onClick={handleClick}>Filters</button>
             <button onClick={() => resetFunc()}>Reset</button>
-            {showModal ? 
+            {showModal ?
                 <Modal onClose={() => setShowModal(false)}>
                     <form>
                         <label> Level
@@ -98,16 +99,16 @@ function Search({posts, activities, activityTypes}) {
                             <option>All Activity Types</option>
                             {activityTypes.map(atype => <option>{atype.name}</option>)}
                         </select>
-                        {showActivities ? 
+                        {showActivities ?
                             <>
                                 <select value={activity} onChange={e => setActivity(e.target.value)}>
-                                    
+
                                     <option>All Activities</option>
-                                    {listActivities.map(eActivity => 
+                                    {listActivities.map(eActivity =>
                                         <option>{eActivity.name}</option>
                                     )}
                                 </select>
-                            </> 
+                            </>
                         : <></>}
                         <select onChange={e => setUserClass(e.target.value)}>
                             <option>All Roles</option>
@@ -120,14 +121,14 @@ function Search({posts, activities, activityTypes}) {
 
 
                     </form>
-                </Modal> 
-            
+                </Modal>
+
             : <></>}
-            {showResults ? 
+            {showResults ?
                 <>
                     {searchPosts.map(post => <div><Link to={`/posts/${post.id}`} onClick={resetFunc}>{post.title}</Link></div>)}
-                </> 
-            
+                </>
+
             :<></>}
         </>
     )
