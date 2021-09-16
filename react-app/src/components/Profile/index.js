@@ -14,11 +14,17 @@ export default function Profile({ users, parties, roles, jobs }) {
 
     const dispatch = useDispatch()
     const { id } = useParams()
-    const [owner, setOwner] = useState(false)
-    const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
 
-    console.log('THIS IS ROLES ------>', roles)
-    let viewId = useSelector(state => state.session?.user?.id)
+    const [owner, setOwner] = useState(false)
+    const [focus, setFocus] = useState('')
+    const [showEditModal, setShowEditModal] = useState(false)
+
+    const user = useSelector(state => state.session.profile)
+    const viewId = useSelector(state => state.session?.user?.id)
+    const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
+    const userPostsState = useSelector(state => state.posts?.userPosts)
+    const userPosts = Object.values(userPostsState)
+
     useEffect(() => {
         if (id == viewId) {
             dispatch(getReceivedRequests(id))
@@ -37,12 +43,9 @@ export default function Profile({ users, parties, roles, jobs }) {
         }
     }, [id])
 
-    let userPostsState = useSelector(state => state.posts?.userPosts)
-    let user = useSelector(state => state.session.profile)
-
-    let userPosts = Object.values(userPostsState)
-
-    const [showEditModal, setShowEditModal] = useState(false)
+    const handleFocus = (focus) => {
+        setFocus(focus)
+    }
 
     const handleClickEdit = () => {
         setShowEditModal(true)
@@ -82,18 +85,27 @@ export default function Profile({ users, parties, roles, jobs }) {
                 </>
             </div>
             <div className='tab-bar'>
-                <span>Parties</span>
-                <span>Friends</span>
+                <div onClick={() => handleFocus('Parties')}>Parties</div>
+                <div onClick={() => handleFocus('Friends')}>Friends</div>
             </div>
             <div className='focus-content'>
-                <UserParties parties={userParties} owner={owner} username={user?.username} />
+                {focus === 'Parties' &&
+                    < UserParties parties={userParties} owner={owner} username={user?.username} />
+                }
+                {focus === 'Friends' &&
+                    <div>
+                        <img src='https://memegenerator.net/img/instances/50150131/heres-where-id-put-my-friends-if-i-had-any.jpg'></img>
+                    </div>
+                }
             </div>
             <h2>Posts</h2>
-            {userPosts && userPosts.map(post =>
-                <div>
-                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                </div>
-            )}
-        </div>
+            {
+                userPosts && userPosts.map(post =>
+                    <div>
+                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                    </div>
+                )
+            }
+        </div >
     )
 }
