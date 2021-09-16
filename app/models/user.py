@@ -29,6 +29,13 @@ class User(db.Model, UserMixin):
     party_requests = db.relationship(
         'Party', secondary='parties_requests', back_populates='requests')
 
+    friends = db.relationship(
+        'User', secondary='users_friends', back_populates='friends')
+    
+    requests = db.relationship(
+        'User', secondary='friend_requests', back_populates='requests')
+
+    
     @property
     def password(self):
         return self.hashed_password
@@ -36,6 +43,28 @@ class User(db.Model, UserMixin):
     @password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
+
+
+    friend_requests = db.Table(
+        "friend_requests",
+        db.Column(
+            'user1_id', db.Integer, db.ForeignKey("users.id")
+        ),
+        db.Column(
+            'user2_id', db.Integer, db.ForeignKey('users.id')
+        )
+    )
+
+    users_friends = db.Table(
+        "users_friends",
+        db.Column(
+            'sender_id', db.Integer, db.ForeignKey("users.id")
+        ),
+        db.Column(
+            'receiver_id', db.Integer, db.ForeignKey("users.id")
+        )
+    )
+
 
     # methods
     def check_password(self, password):
@@ -56,5 +85,7 @@ class User(db.Model, UserMixin):
             'job': self.job.name,
             'role': self.job.role.name,
             'profile_url': self.profile_url,
-            'role_url': self.job.icon_url
+            'role_url': self.job.icon_url,
+            'friends': [friend.to_dict() for friend in self.friends],
+            'requests': [request.to_dict() for request in self.requests]
         }

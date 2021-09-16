@@ -60,3 +60,23 @@ def edit_user(user_id):
     db.session.commit()
 
     return user.to_dict()
+
+@user_routes.route('/<int:user_id>/accept', methods = ['POST'])
+def accept_request(user_id):
+    data = request.get_json()
+
+    sender_id = data['senderId']
+
+    receiver = User.query.get(int(user_id))
+
+    friend = User.query.get(int(sender_id))
+
+    receiver.requests.append(friend)
+
+    db.session.add(receiver)
+    
+    db.session.commit()
+
+    return receiver.to_dict()
+    
+
