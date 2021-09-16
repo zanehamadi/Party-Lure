@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { getAllJobs } from '../../store/job';
 import { signUp } from '../../store/session';
+import "./Signup.css"
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -64,96 +65,107 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='profile-pic'>Profile Picture</label>
-        <input
-          type='file'
-          name='profile-pic'
-          id='profile-pic'
-          // value = {image}
-          onChange={updateProfilePic}
-        />
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Job</label>
-        <select
-          name='jobId'
-          id='jobs'
-          onChange={updateJob}
-        >
-          <option
-            value=''
-            disabled
-            selected
+    <div className="form-container">
+      <form className="form" onSubmit={onSignUp}>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className="div-container">
+          <label className="form-label" htmlFor='profile-pic'>Profile Picture:</label>
+          <input
+            type='file'
+            name='profile-pic'
+            id='profile-pic'
+            // value = {image}
+            onChange={updateProfilePic}
+            className="form-input"
+          />
+        </div>
+        <div className="div-container">
+          <label className="form-label">User Name:</label>
+          <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            className="form-input"
+          ></input>
+        </div>
+        <div className="div-container" id="job-div">
+          <label className="form-label">Job:</label>
+          <select
+            name='jobId'
+            id='jobs'
+            onChange={updateJob}
+            className="form-input"
+            
           >
-            What's your job?
-          </option>
-          {jobs && jobs.map(job => {
-            return (
-              <option key={job.id} value={job.id}>
-                {job.name}
-              </option>
-            )
-          })}
-        </select>
+            <option
+              value=''
+              disabled
+              selected
+              
+            >
+              What's your job?
+            </option>
+            {jobs && jobs.map(job => {
+              return (
+                <option key={job.id} value={job.id}>
+                  {job.name}
+                </option>
+              )
+            })}
+          </select>
 
-      </div>
-      <div>
-        <label>Level</label>
-        <input
-          type='number'
-          name='level'
-          min='1'
-          max='50'
-          value={level}
-          onChange={updateLevel}
-        />
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+        </div>
+        <div className="div-container">
+          <label className="form-label">Level:</label>
+          <input
+            type='number'
+            name='level'
+            min='1'
+            max='50'
+            value={level}
+            onChange={updateLevel}
+            className="form-input"
+          />
+        </div>
+        <div className="div-container">
+          <label className="form-label">Email:</label>
+          <input
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            className="form-input"
+          ></input>
+        </div>
+        <div className="div-container">
+          <label className="form-label">Password:</label>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            className="form-input"
+          ></input>
+        </div>
+        <div className="div-container">
+          <label className="form-label">Confirm Password:</label>
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            className="form-input"
+          ></input>
+        </div >
+        <button className="signupButton" type='submit'>Sign Up</button>
+      </form>
+    </div>
   );
 };
 
