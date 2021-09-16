@@ -21,7 +21,8 @@ export default function Post({comments, parties,}) {
     const roles = Object.values(rolesSlice)
     const posts = Object.values(postsSlice)
 
-    const [isMember, setIsMember] = useState(false)
+    const [hasRequested, setHasRequested] = useState(false)
+    const[isMember, setIsMember] = useState(false)
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
@@ -35,7 +36,7 @@ export default function Post({comments, parties,}) {
 
     const [showEditModal, setShowEditModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
-
+    const [isPartyFull, setIsPartyFull] = useState(false)
 
 
 
@@ -65,16 +66,42 @@ export default function Post({comments, parties,}) {
             // console.log('userId from post, userId')
         dispatch(getSentRequests(userId))
         }
-    }, [userId,isMember])
+    }, [userId,hasRequested])
 
     let currentUserRequestsState = useSelector(state => state?.requests?.sent)
 
     let currentUserRequests = Object.values(currentUserRequestsState)
+
     // useEffect(() => {
     //     userComments = comments?.filter((comment) => comment?.user_id === post?.id)
     // }, [comments])
 
+    const checkMember = () => {
+        let currentParty = party.users
+        for(let member of currentParty){
+            if(member.id === userId){
+               return true
+            }
+        }
+        return false
+    }
+    const checkParty = () => {
+        let currentParty = party.users
+        console.log('checking party length', currentParty.length)
+        if(currentParty.length >= 4){
+            console.log('PARTY IS FULL')
+            return true
+        }
+        console.log('party not full')
+        return false
 
+    }
+    useEffect(() => {
+        if(party){
+            setIsMember(checkMember())
+            setIsPartyFull(checkParty())
+        }
+    },[party])
     const doesUserHaveRequest = () => {
         if(currentUserRequests.length > 0){
             // console.log('this is req array', currentUserRequests)
@@ -89,22 +116,25 @@ export default function Post({comments, parties,}) {
 
     useEffect(() => {
         if(currentUserRequests[0] && party){
-            setIsMember(doesUserHaveRequest())
+            setHasRequested(doesUserHaveRequest())
         }
 
     },[party])
+
+
+
 
     const cancelRequest = () => {
         if(userId){
         dispatch(cancelPartyRequest(userId,party.id))
     }
-        setIsMember(false)
+        setHasRequested(false)
     }
 
 
     const requestToJoin = () =>{
         dispatch(sendPartyRequest(userId,party.id))
-        setIsMember(true)
+        setHasRequested(true)
     }
 
     const handleDelete = async (e) => {
@@ -119,8 +149,8 @@ export default function Post({comments, parties,}) {
                 {post?.content}
             </div>
             <div>
-                {!isMember && <button onClick={requestToJoin}>Request to Join</button>}
-                {isMember && <button onClick = {cancelRequest}>Cancel Request</button>}
+                {!isPartyFull && !isUser && !hasRequested && <button onClick={requestToJoin}>Request to Join</button>}
+                {hasRequested && <button onClick = {cancelRequest}>Cancel Request</button>}
                 {isUser ?
                 <>
                     <button onClick={handleClickEdit}>Edit Post</button>
@@ -153,7 +183,7 @@ export default function Post({comments, parties,}) {
                 </div>
             </div>
             <div>
-                
+
                 {userComments.map(comment=>
                     <div key={comment?.id}>
                         <img src={comment.profile_url} width='50' height='50'/>

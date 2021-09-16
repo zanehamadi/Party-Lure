@@ -28,6 +28,11 @@ def request_party(party_id):
 
     party = Party.query.get(int(party_id))
 
+    party_dict = party.to_dict()
+
+    if len(party_dict.users) >= 4:
+        return {"errors": ['Party is full']}
+
     print('REQUESTS BEFORE', party.to_dict()['requests'])
 
     party.requests.append(user)
@@ -49,7 +54,11 @@ def accept_request(party_id):
     user = User.query.get(int(user_id))
 
     party = Party.query.get(int(party_id))
-    print('USERS BEFORE', party.to_dict()['users'])
+
+    party_dict = party.to_dict()
+    if len(party_dict.users) >= 4:
+        return {"errors": ['Party is full']}
+
 
     party.requests.remove(user)
 
