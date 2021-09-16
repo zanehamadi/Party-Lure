@@ -61,8 +61,8 @@ def edit_user(user_id):
 
     return user.to_dict()
 
-@user_routes.route('/<int:user_id>/accept', methods = ['POST'])
-def accept_request(user_id):
+@user_routes.route('/<int:user_id>/send', methods = ['POST'])
+def send_request(user_id):
     data = request.get_json()
 
     sender_id = data['senderId']
@@ -78,5 +78,5 @@ def accept_request(user_id):
     db.session.commit()
 
     return receiver.to_dict()
-    
+
 

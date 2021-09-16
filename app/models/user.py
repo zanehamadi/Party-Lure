@@ -30,10 +30,10 @@ class User(db.Model, UserMixin):
         'Party', secondary='parties_requests', back_populates='requests')
 
     friends = db.relationship(
-        'User', secondary='users_friends', back_populates='friends')
+        'User', secondary='users_friends', back_populates='friends', foreign_keys="[User.id]")
     
     requests = db.relationship(
-        'User', secondary='friend_requests', back_populates='requests')
+        'User', secondary='friend_requests', back_populates='requests', foreign_keys="[User.id]")
 
     
     @property
@@ -48,6 +48,9 @@ class User(db.Model, UserMixin):
     friend_requests = db.Table(
         "friend_requests",
         db.Column(
+            'id', db.Integer, primary_key=True
+        ),
+        db.Column(
             'user1_id', db.Integer, db.ForeignKey("users.id")
         ),
         db.Column(
@@ -57,6 +60,9 @@ class User(db.Model, UserMixin):
 
     users_friends = db.Table(
         "users_friends",
+        db.Column(
+            'id', db.Integer, primary_key=True
+        ),
         db.Column(
             'sender_id', db.Integer, db.ForeignKey("users.id")
         ),
