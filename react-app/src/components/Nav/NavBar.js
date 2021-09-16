@@ -7,7 +7,7 @@ import Search from '../Search/index'
 import AboutUs from '../Aboutus'
 import DemoButton from '../auth/DemoButton';
 import { useHistory } from 'react-router';
-
+import './NavBar.css'
 const NavBar = ({ sessionUser, authenticated }) => {
 
   const aTypeSlice = useSelector(state => state.activityTypes)
@@ -21,6 +21,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
   const posts = Object.values(postsSlice)
 
   return (
+      <div className ='nav-container'>
     <nav>
       <ul>
         <li>
@@ -74,6 +75,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
         }
       </ul>
     </nav>
+    </div>
   );
 }
 
