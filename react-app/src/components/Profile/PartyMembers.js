@@ -1,6 +1,6 @@
 
 const PartyMembers = ({members}) => {
-
+    console.log('test')
     return(
         <>
         <h4>Members:</h4>
