@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0b17ee30fedb
+Revision ID: 26ead6276846
 Revises: 
-Create Date: 2021-09-16 12:23:12.225137
+Create Date: 2021-09-16 15:15:22.003043
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '0b17ee30fedb'
+revision = '26ead6276846'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -82,6 +82,18 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('users_friends',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('friend_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['friend_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id', 'friend_id')
+    )
+    op.create_table('users_requests',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('request_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['request_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id', 'request_id')
+    )
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=True),
@@ -129,6 +141,8 @@ def downgrade():
     op.drop_table('parties_requests')
     op.drop_table('parties')
     op.drop_table('comments')
+    op.drop_table('users_requests')
+    op.drop_table('users_friends')
     op.drop_table('posts')
     op.drop_table('users')
     op.drop_table('jobs')

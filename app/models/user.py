@@ -1,3 +1,5 @@
+from app.api.user_routes import send_request
+from sqlalchemy.orm import backref, relation, relationship
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -29,13 +31,23 @@ class User(db.Model, UserMixin):
     party_requests = db.relationship(
         'Party', secondary='parties_requests', back_populates='requests')
 
-    friends = db.relationship(
-        'User', secondary='users_friends', back_populates='friends', foreign_keys="[User.id]")
-    
-    requests = db.relationship(
-        'User', secondary='friend_requests', back_populates='requests', foreign_keys="[User.id]")
+    # friends = db.relationship(
+    #     'User',
+    #         secondary='users_friends',
+    #         backref = 'my_friends',
+    #         primaryjoin="User.id==users_friends.c.user2_id",
+    #         secondaryjoin = "User.id==users_friends.c.user1_id"
+    #     )
 
-    
+    # requests = db.relationship(
+    #     'User',
+    #     secondary='friend_requests',
+    #     backref = 'my_requests',
+    #     primaryjoin = "User.id==friend_requests.c.sender_id",
+    #     secondaryjoin = "User.id==friend_requests.c.receiver_id"
+    #     )
+
+
     @property
     def password(self):
         return self.hashed_password
@@ -45,31 +57,25 @@ class User(db.Model, UserMixin):
         self.hashed_password = generate_password_hash(password)
 
 
-    friend_requests = db.Table(
-        "friend_requests",
-        db.Column(
-            'id', db.Integer, primary_key=True
-        ),
-        db.Column(
-            'user1_id', db.Integer, db.ForeignKey("users.id")
-        ),
-        db.Column(
-            'user2_id', db.Integer, db.ForeignKey('users.id')
-        )
-    )
+    # friend_requests = db.Table(
+    #     "friend_requests",
+    #     db.Column(
+    #         'user1_id', db.Integer, db.ForeignKey("users.id"), primary_key = True
+    #     ),
+    #     db.Column(
+    #         'user2_id', db.Integer, db.ForeignKey("users.id"), primary_key = True
+    #     )
+    # )
 
-    users_friends = db.Table(
-        "users_friends",
-        db.Column(
-            'id', db.Integer, primary_key=True
-        ),
-        db.Column(
-            'sender_id', db.Integer, db.ForeignKey("users.id")
-        ),
-        db.Column(
-            'receiver_id', db.Integer, db.ForeignKey("users.id")
-        )
-    )
+    # users_friends = db.Table(
+    #     "users_friends",
+    #     db.Column(
+    #         'sender_id', db.Integer, db.ForeignKey("users.id"), primary_key = True
+    #     ),
+    #     db.Column(
+    #         'receiver_id', db.Integer, db.ForeignKey("users.id"), primary_key = True
+    #     )
+    # )
 
 
     # methods
@@ -95,3 +101,22 @@ class User(db.Model, UserMixin):
             'friends': [friend.to_dict() for friend in self.friends],
             'requests': [request.to_dict() for request in self.requests]
         }
+
+class Requests(db.Model):
+    __tablename__ ='users_requests'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    sender_id = db.Column("sender_id" ,db.Integer, db.ForeignKey("users.id") ,primary_key = True)
+    recieved_requests = relationship('User', backref = "recieved_requests", primaryjoin=(User.id == sender_id))
+
+    reciever_id = db.Column("sender_id" ,db.Integer, db.ForeignKey("users.id") ,primary_key = True)
+    sent_requests = relationship('User', backref = "sent_requests", primaryjoin=(User.id == reciever_id))
+
+class Friends(db.Model):
+    __tablename__ = 'users_friends'
+
+    id = db.Column(db.Integer, primary_key = True)
+
+    user_one_id = db.Column("friend_id" ,db.Integer, db.ForeignKey("users.id"), primary_key = True)
+    friends = relationship('User', backref = "friends", primaryjoin=(User.id == user_one_id))

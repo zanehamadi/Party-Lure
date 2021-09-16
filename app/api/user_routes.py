@@ -74,9 +74,7 @@ def send_request(user_id):
     receiver.requests.append(friend)
 
     db.session.add(receiver)
-    
+
     db.session.commit()
 
     return receiver.to_dict()
-
-
