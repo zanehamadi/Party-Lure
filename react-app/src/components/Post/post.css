@@ -20,6 +20,9 @@
     /* grid-area: "title"; */
     margin-top: 5%;
     font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
 }
 
@@ -27,6 +30,7 @@
     /* grid-area: "content"; */
     margin-top: 5%;
     font-size: 1.1rem;
+    margin-bottom: 5rem;
 }
 
 .requestButtons{
@@ -56,6 +60,7 @@
 .commentContainer {
     display: flex;
     margin-top: 2rem;
+    margin-bottom: 2rem;
     flex-direction: row;
     align-items: center;
     
@@ -63,12 +68,45 @@
 
 }
 
+#picNamePost{
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    
+}
+
+
 .commentForm{
 
     /* grid-area:"commentForm" */
+    
 
+}
+
+#datePrev{
+    font-size: .8rem;
+}
+
+#usernamePrev{
+    background-color: transparent;
+    background: transparent;
+    border:transparent;
+    /* transition: background-color 2s ease-in-out; */
+    transition: background-color 0.2s linear;
+
+}
+
+#usernamePrev:hover{
+    cursor: pointer;
+    background-color: rgb(175, 231, 225);
+    border-color: turquoise;
+    opacity: 1;
+    /* transition: 10s; */
 }
 
 .commentPP{
     border-radius: 80%;
+    border-color: black;
+    width: 5rem;
+    height: 5rem;
 }

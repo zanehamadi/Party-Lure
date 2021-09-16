@@ -208,10 +208,14 @@ export default function Post({comments, parties,}) {
 
                 {userComments.map(comment=>
                     <div key={comment?.id} className="commentContainer postPage">
-                        <img src={comment.profile_url} width='50' height='50' className="commentPP"/>
-                        <Link to={`/users/${comment?.user_id}`}>{comment.username}</Link>
-                        <span>{comment?.created_at}</span>
+                        <div id="picNamePost">
+                            <img src={comment.profile_url} className="commentPP"/>
+                            <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
+                            <span id="datePrev">{comment?.created_at}</span>
+                        </div>
+
                         <Link to={`/comments/${comment?.id}`}>{comment.content}</Link>
+
                     </div>
                 )}
 
