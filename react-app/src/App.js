@@ -15,7 +15,6 @@ import PageNotFound from './components/404'
 import AboutUs from './components/Aboutus'
 import Comments from './components/Comments'
 import Comment from './components/Comment'
-import Banner from './components/Banner/Banner'
 import { getPosts } from './store/posts'
 import { getUsers } from './store/users'
 import { getParties } from './store/parties'
@@ -73,7 +72,6 @@ function App() {
   return (
 
     <BrowserRouter>
-    <Banner />
       <NavBar sessionUser={sessionUser} authenticated={authenticated} />
       <Switch>
         <Route path='/login' exact={true}>
