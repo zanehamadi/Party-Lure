@@ -1,4 +1,5 @@
 import React from 'react';
+import styled  from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
@@ -6,6 +7,7 @@ import CreatePostFormModal from './CreatePostModal';
 import Search from '../Search/index'
 import AboutUs from '../Aboutus'
 import DemoButton from '../auth/DemoButton';
+import './NavBar.css';
 import { useHistory } from 'react-router';
 
 const NavBar = ({ sessionUser, authenticated }) => {
@@ -21,6 +23,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
   const posts = Object.values(postsSlice)
 
   return (
+    <div className= 'nav-container'>
     <nav>
       <ul>
         <li>
@@ -74,6 +77,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
         }
       </ul>
     </nav>
+    </div>
   );
 }
 

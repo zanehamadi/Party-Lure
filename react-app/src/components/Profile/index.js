@@ -9,10 +9,10 @@ import RecievedRequest from "./RecievedRequest";
 import { Link } from "react-router-dom";
 import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
-
+import './Profile.css'
+import UserParties from "./ProfileParties";
 
 export default function Profile({ users, parties, roles }) {
-
     const dispatch = useDispatch()
     const { id } = useParams()
     const [owner, setOwner] = useState(false)
@@ -60,31 +60,33 @@ export default function Profile({ users, parties, roles }) {
     let userPosts = Object.values(userPostsState)
 
     return (
-        <>
+        <div className = 'profile-page'>
+            <div className = 'profile-header'>
             <h1>
-                {`${user?.username}'s Profile`}
+                {`${user?.username}`}
             </h1>
-            <img src={user?.profile_url} width={300} height={300} />
-            <>
+            <img className='profile-pic' src={user?.profile_url} width={300} height={300} />
+            <div className = 'game-info'>
                 <div>
-                    Job: <img src={user?.role_url} width={24} height={24} /> {`${user?.job}`}
+                    Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
+                </div>
+                <div>
+                    Job: {`${user?.job}`}
                 </div>
                 <div>
                     {`Level: ${user?.level}`}
                 </div>
-                <div>
-                    Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
-                </div>
-            </>
-            <h2>Posts</h2>
-            {userPosts && userPosts.map(post =>
-                <div>
-                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                </div>
-            )}
-
-            <h2>Parties</h2>
-            {userParties.map(parties =>
+            </div>
+            </div>
+            <div className = 'tab-bar'>
+                <span>Parties</span>
+                <span>Friends</span>
+            </div>
+            <div className = 'focus-content'>
+                <UserParties parties = {userParties} owner = {owner} username ={user?.username} />
+            </div>
+            {/* <h2>Parties</h2> */}
+            {/* {userParties.map(parties =>
                 <>
                     <div>
                         <h3>{`Party Name: ${parties?.title}`}</h3>
@@ -97,7 +99,7 @@ export default function Profile({ users, parties, roles }) {
                         <PartyCounter requests={parties.requests} />
                     </div>
                 </>
-            )}
+            )} */}
             {owner &&
             <div>
             <h2>Recieved Requests</h2>
@@ -114,6 +116,14 @@ export default function Profile({ users, parties, roles }) {
                 })
 
             } </div>}
-        </>
+            <h2>Posts</h2>
+            {userPosts && userPosts.map(post =>
+                <div>
+                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                </div>
+            )}
+
+        </div>
+
     )
 }
