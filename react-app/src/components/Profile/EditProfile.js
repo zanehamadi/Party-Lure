@@ -3,9 +3,9 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_updateUser } from '../../store/session';
 
-const EditProfileForm = ({jobs}) => {
+const EditProfileForm = ({ jobs, closeEditModal }) => {
 
-    const user = useSelector(state=>state.session.user)
+    const user = useSelector(state => state.session.user)
     const userId = user?.id
 
     const dispatch = useDispatch();
@@ -20,8 +20,8 @@ const EditProfileForm = ({jobs}) => {
     const updateJob = (e) => setJob(e.target.value);
 
     const updateImage = (e) => {
-    let file = e.target.files[0]
-    setImage(file)
+        let file = e.target.files[0]
+        setImage(file)
     }
 
 
@@ -34,6 +34,7 @@ const EditProfileForm = ({jobs}) => {
             image: image
         };
         await dispatch(thunk_updateUser(payload));
+        closeEditModal()
         history.push(`/users/${payload?.userId}`)
     };
 
@@ -47,11 +48,11 @@ const EditProfileForm = ({jobs}) => {
                     <div>
                         <label htmlFor='profile-pic'>Profile Picture</label>
                         <input
-                        type='file'
-                        name='profile-pic'
-                        id='profile-pic'
-                        // value = {image}
-                        onChange={updateImage}
+                            type='file'
+                            name='profile-pic'
+                            id='profile-pic'
+                            // value = {image}
+                            onChange={updateImage}
                         />
                     </div>
                     <div>
@@ -61,24 +62,24 @@ const EditProfileForm = ({jobs}) => {
                     <div>
                         <label>Job</label>
                         <select
-                        name='jobId'
-                        id='jobs'
-                        onChange={updateJob}
+                            name='jobId'
+                            id='jobs'
+                            onChange={updateJob}
                         >
-                        <option
-                            value={job}
-                            disabled
-                            selected
-                        >
-                            What's your job?
-                        </option>
-                        {jobs && jobs.map(job => {
-                            return (
-                            <option key={job.id} value={job.id}>
-                                {job.name}
+                            <option
+                                value={job}
+                                disabled
+                                selected
+                            >
+                                What's your job?
                             </option>
-                            )
-                        })}
+                            {jobs && jobs.map(job => {
+                                return (
+                                    <option key={job.id} value={job.id}>
+                                        {job.name}
+                                    </option>
+                                )
+                            })}
                         </select>
                     </div>
                     <button type="submit">Submit Edit</button>

@@ -1,21 +1,34 @@
-
 import { useSelector } from "react-redux"
-import RecievedRequest from "./RecievedRequest"
 import SentRequest from "./SentRequest"
 
-const ProfileSentRequests = ({requests, partyId ,partyName}) =>{
+const ProfileSentRequests = ({ requests, userId }) => {
 
     useSelector(state => state.requests)
 
-    return(
+
+    const checkRequests = (requestsArray) => {
+        for (let requests of requestsArray) {
+            console.log("SHOW ME OR DIE ---->", +userId)
+            if (requests.id === +userId) {
+                return true
+            }
+        }
+        return false
+    }
+
+    return (
         <ul>
-        {requests && requests.map( req => {
-            return (
-                <li>
-                <SentRequest partyName={partyName} partyId = {partyId} userId = {req.id}  />
-                </li>
-            )
-        })}
+            {requests && requests.map(req => {
+
+                if (req.requests && checkRequests(req.requests)) {
+                    return (
+                        <li>
+                            <SentRequest partyName={req.title} partyId={req.id} userId={userId} />
+                        </li>
+                    )
+                }
+            })}
+
         </ul>
     )
 }

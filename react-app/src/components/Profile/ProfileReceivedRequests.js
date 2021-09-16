@@ -1,22 +1,20 @@
-import { useSelector } from "react-redux"
-import RecievedRequest from "./RecievedRequest"
+import ReceivedRequest from "./ReceivedRequest"
 
-const ProfileRecievedRequests = ({requests, partyId}) =>{
+const ProfileReceivedRequests = ({ requests, partyId }) => {
 
-    useSelector(state => state.requests)
 
-    return(
+    return (
         <ul>
-        {requests && requests.map( req => {
+            {requests && requests.map(req => {
 
-            return (
-                <li>
-                <RecievedRequest key={req.id} username={req.username} partyId = {partyId} userId = {req.id}  />
-                </li>
-            )
-        })}
+                return (
+                    <li>
+                        <ReceivedRequest key={req.id} username={req.username} partyId={partyId} userId={req.id} />
+                    </li>
+                )
+            })}
         </ul>
     )
 }
 
-export default ProfileRecievedRequests
+export default ProfileReceivedRequests
