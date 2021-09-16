@@ -43,7 +43,6 @@ export const getUserPosts = (userId) => async (dispatch) => {
     }
 }
 export const createNewPost = (data) => async (dispatch) => {
-    console.log("DATAAAAAAA", data)
     const res = await fetch('/api/posts/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

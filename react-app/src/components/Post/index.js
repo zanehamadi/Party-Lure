@@ -32,6 +32,7 @@ export default function Post({comments, parties,}) {
     // console.log('party', party)
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
     const session = useSelector(state => state?.session)
+    const isLogged = session?.user ? true : false
     const isUser = session?.user ? session?.user.id === post?.user_id : false
 
     const [showEditModal, setShowEditModal] = useState(false)
@@ -149,7 +150,7 @@ export default function Post({comments, parties,}) {
                 {post?.content}
             </div>
             <div>
-                {!isPartyFull && !isUser && !hasRequested && <button onClick={requestToJoin}>Request to Join</button>}
+                {!isPartyFull && !isUser && !hasRequested && isLogged && <button onClick={requestToJoin}>Request to Join</button>}
                 {hasRequested && <button onClick = {cancelRequest}>Cancel Request</button>}
                 {isUser ?
                 <>
@@ -178,9 +179,15 @@ export default function Post({comments, parties,}) {
                 :
                 <></>
                 }
-                <div>
-                    <CreateCommentForm post={post}/>
-                </div>
+                {isLogged ? 
+                
+                    <>
+                        <div>
+                            <CreateCommentForm post={post}/>
+                        </div>
+                    </> 
+                : 
+                <></>}
             </div>
             <div>
 
