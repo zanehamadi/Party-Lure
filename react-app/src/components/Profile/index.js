@@ -36,6 +36,7 @@ export default function Profile({ users, parties, roles }) {
         if (id) {
             dispatch(getOneUser(id))
             dispatch(getUserPosts(id))
+            return
         }
     }, [id])
 

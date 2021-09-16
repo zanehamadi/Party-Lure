@@ -96,7 +96,7 @@ const postReducer = (state = initialState, action) => {
         case USER_POST :{
             console.log('ACTION', action)
             let userState = {...state}
-            userState.userPosts = {...state.userPosts, ...action.post}
+            userState.userPosts = {...action.post}
             return {...userState}
         }
         case UPDATE_USER: {
