@@ -9,13 +9,17 @@ import RecievedRequest from "./RecievedRequest";
 import { Link } from "react-router-dom";
 import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
+import { thunk_updateUser } from "../../store/users";
+import { Modal } from "../../context/Modal";
+import EditProfileForm from "./EditProfile";
 
 
-export default function Profile({ users, parties, roles }) {
+export default function Profile({ users, parties, roles, jobs }) {
 
     const dispatch = useDispatch()
     const { id } = useParams()
     const [owner, setOwner] = useState(false)
+    
     // const user = users?.find(specUser => +specUser.id === +id)
     // const userPosts = posts?.filter(revPosts => +revPosts.user_id === +id)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
@@ -59,6 +63,15 @@ export default function Profile({ users, parties, roles }) {
 
     let userPosts = Object.values(userPostsState)
 
+    const [showEditModal, setShowEditModal] = useState(false)
+
+    const handleClickEdit = () => {
+        setShowEditModal(true)
+    }
+    const closeEditModal = () => {
+        setShowEditModal(false)
+    }
+
     return (
         <>
             <h1>
@@ -75,6 +88,15 @@ export default function Profile({ users, parties, roles }) {
                 <div>
                     Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
                 </div>
+                    <button onClick={handleClickEdit}>Edit Profile</button>
+                    {showEditModal ?
+                    <Modal onClose = {() => setShowEditModal(false)}>
+                        <EditProfileForm jobs={jobs}/>
+                        <button onClick={closeEditModal}>
+                                Cancel
+                            </button>
+                    </Modal>
+                    : <></>}
             </>
             <h2>Posts</h2>
             {userPosts && userPosts.map(post =>

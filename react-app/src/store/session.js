@@ -2,6 +2,12 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const GET_USER = 'session/GET_USER'
+const UPDATE_USER = "users/UPDATE_USER"
+
+const updateUser= (user) => ({
+    type: UPDATE_USER,
+    user
+})
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -120,6 +126,29 @@ export const getOneUser = (userId) => async (dispatch) => {
   return
 }
 
+export const thunk_updateUser = (user) => async (dispatch) => {
+    console.log('THUNK USER', user)
+
+    const form = new FormData()
+
+    form.append('level', user.level)
+    form.append('jobId', user.jobId)
+    form.append('image', user.image)
+
+    const res = await fetch(`/api/users/${user.userId}/edit`, {
+        method: 'POST',
+        // headers: { 'Content-Type': 'application/json' },
+        body: form
+    });
+
+
+    if (res.ok) {
+        const updatedUser= await res.json();
+        await dispatch(updateUser(updatedUser))
+        return
+    }
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
@@ -128,6 +157,14 @@ export default function reducer(state = initialState, action) {
       return { user: null, profile: state.profile }
     case GET_USER:
       return { user: state.user, profile: action.user }
+    case UPDATE_USER:
+      let copy = {...state}
+      copy.user = action.user
+      copy.profile = action.user
+      return {
+        ...copy
+      }
+
     default:
       return state;
   }
