@@ -16,7 +16,7 @@ export default function Profile({ users, parties, roles, jobs }) {
     const { id } = useParams()
 
     const [owner, setOwner] = useState(false)
-    const [focus, setFocus] = useState('')
+    const [focus, setFocus] = useState('Parties')
     const [showEditModal, setShowEditModal] = useState(false)
 
     const user = useSelector(state => state.session.profile)
