@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
 import { Modal } from "../../context/Modal";
+import './post.css'
 
 
 export default function Post({comments, parties,}) {
@@ -145,16 +146,23 @@ export default function Post({comments, parties,}) {
     }
 
     return (
-        <>
-            <div>
+        <div className="postPage">
+            <h1 className="postTitle postPage">
+                {post?.title}
+            </h1>
+            <div className="postBody postPage">
                 {post?.content}
             </div>
+
+
+
+
             <div>
-                {!isPartyFull && !isUser && !hasRequested && isLogged && <button onClick={requestToJoin}>Request to Join</button>}
-                {hasRequested && <button onClick = {cancelRequest}>Cancel Request</button>}
+                {!isPartyFull && !isUser && !hasRequested && isLogged && <button onClick={requestToJoin} className="requestButtons">Request to Join</button>}
+                {hasRequested && <button onClick = {cancelRequest} className="requestButtons">Cancel Request</button>}
                 {isUser ?
                 <>
-                    <button onClick={handleClickEdit}>Edit Post</button>
+                    
                     {showEditModal ?
                     <Modal onClose = {() => setShowEditModal(false)}>
                         <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/>
@@ -163,7 +171,11 @@ export default function Post({comments, parties,}) {
                             </button>
                     </Modal>
                     : <></>}
-                    <button onClick={handleClickDelete}>Delete Post</button>
+
+                    <div id="userButtons">
+                        <button onClick={handleClickEdit} className="userButton">Edit Post</button>
+                        <button onClick={handleClickDelete} className="userButton">Delete Post</button>
+                    </div>
                     {showDeleteModal ?
                         <Modal onClose = {() => setShowDeleteModal(false)}>
                             <span>Are you sure you want to delete this post?</span>
@@ -189,18 +201,25 @@ export default function Post({comments, parties,}) {
                 : 
                 <></>}
             </div>
+
+
+            
             <div>
 
                 {userComments.map(comment=>
-                    <div key={comment?.id}>
-                        <img src={comment.profile_url} width='50' height='50'/>
-                        <Link to={`/users/${comment?.user_id}`}>{comment.username}</Link>
-                        <span>{comment?.created_at}</span>
+                    <div key={comment?.id} className="commentContainer postPage">
+                        <div id="picNamePost">
+                            <img src={comment.profile_url} className="commentPP"/>
+                            <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
+                            <span id="datePrev">{comment?.created_at}</span>
+                        </div>
+
                         <Link to={`/comments/${comment?.id}`}>{comment.content}</Link>
+
                     </div>
                 )}
 
             </div>
-        </>
+        </div>
     )
 }

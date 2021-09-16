@@ -1,0 +1,112 @@
+.postPage{
+    /* display:grid;
+    grid-template-areas: 
+                        "title ."
+                        "content ."
+                        "requestButtons userButtons"
+                        "commentContainer ."
+                        "commentForm ."; */
+                        
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+
+}
+
+
+.postTitle{
+    /* grid-area: "title"; */
+    margin-top: 5%;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.postBody{
+    /* grid-area: "content"; */
+    margin-top: 5%;
+    font-size: 1.1rem;
+    margin-bottom: 5rem;
+}
+
+.requestButtons{
+    /* grid-area:"requestButtons" */
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.commentButton{
+    width: 8rem;
+}
+
+#userButtons{
+
+    /* grid-area:"userButtons" */
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: flex-end;
+    
+    /* display: flex; */
+    /* flex-direction: row; */
+}
+
+.userButton:hover{
+}
+
+.commentContainer {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    flex-direction: row;
+    align-items: center;
+    
+    /* grid-area:"commentContainer" */
+
+}
+
+#picNamePost{
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    
+}
+
+
+.commentForm{
+
+    /* grid-area:"commentForm" */
+    
+
+}
+
+#datePrev{
+    font-size: .8rem;
+}
+
+#usernamePrev{
+    background-color: transparent;
+    background: transparent;
+    border:transparent;
+    /* transition: background-color 2s ease-in-out; */
+    transition: background-color 0.2s linear;
+
+}
+
+#usernamePrev:hover{
+    cursor: pointer;
+    background-color: rgb(175, 231, 225);
+    border-color: turquoise;
+    opacity: 1;
+    /* transition: 10s; */
+}
+
+.commentPP{
+    border-radius: 80%;
+    border-color: black;
+    width: 5rem;
+    height: 5rem;
+}
