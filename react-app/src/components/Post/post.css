@@ -1,0 +1,31 @@
+.postPage{
+    display: grid;
+    grid-template-areas: 
+                        "title ."
+                        "content ."
+                        "requestButtons userButtons"
+                        "commentContainer ."
+                        "commentForm .";
+}
+
+.commentForm{
+
+}
+.commentContainer{
+
+}
+
+.postTitle{
+}
+
+.postBody{
+    color: black;
+}
+
+.requestButtons{
+
+}
+
+.userButtons{
+    
+}
