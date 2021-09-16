@@ -30,7 +30,7 @@ def request_party(party_id):
 
     party_dict = party.to_dict()
 
-    if len(party_dict.users) >= 4:
+    if len(party_dict["users"]) >= 4:
         return {"errors": ['Party is full']}
 
     print('REQUESTS BEFORE', party.to_dict()['requests'])
@@ -99,8 +99,8 @@ def get_sent_requests(user_id):
 
     return {el.id:el.to_dict() for el in parties_user_wants}
 
-@party_routes.route('/user/<int:user_id>/recieved')
-def get_recieved_requests(user_id):
+@party_routes.route('/user/<int:user_id>/received')
+def get_received_requests(user_id):
 
 
     parties_with_requests = Party.query.filter(Party.owner_id == user_id )
