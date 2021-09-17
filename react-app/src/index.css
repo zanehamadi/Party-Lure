@@ -12,6 +12,12 @@ body, header, nav {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
+a {
+color:orange
+}
+
+
+
 #root{
  display:grid;
  grid-template-rows: 50px auto;
