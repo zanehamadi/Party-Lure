@@ -11,7 +11,7 @@ import { Modal } from "../../context/Modal";
 import './post.css'
 
 
-export default function Post({ comments, parties, }) {
+export default function Post({ comments, parties }) {
     const history = useHistory()
     const aTypeSlice = useSelector(state => state.activityTypes)
     const activitySlice = useSelector(state => state.activities)
@@ -221,8 +221,7 @@ export default function Post({ comments, parties, }) {
                             <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
                             <span id="datePrev">{comment?.created_at}</span>
                         </div>
-
-                        <Link to={`/comments/${comment?.id}`}>{comment.content}</Link>
+                        <span>{comment.content}</span>
                         {session && ownsComment(comment) &&
                             <EditCommentFormModal comment={comment} />
                         }

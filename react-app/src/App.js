@@ -103,9 +103,6 @@ function App() {
         <Route path='/comments' exact={true} >
           <Comments comments={comments} />
         </Route>
-        <Route path='/comments/:id' exact={true} >
-          <Comment comments={comments} />
-        </Route>
         <Route path='/about-us' exact={true}>
           <AboutUs />
         </Route>
