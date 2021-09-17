@@ -63,7 +63,9 @@ const CreateCommentForm = ({post}) => {
                 <textarea
                     placeholder="Type comment here"
                     value={content}
-                    onChange={updateComment} />
+                    onChange={updateComment}
+                    className="commentTextArea"
+                />
                 <ButtonStyle>
                 <button className="edit-btn edit5 commentButton styled-button" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
                 </ButtonStyle>

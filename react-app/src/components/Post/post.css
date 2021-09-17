@@ -186,3 +186,9 @@
     margin-bottom: 100px;
     font-size: 1rem;
 }
+
+.commentTextArea{
+    resize: none;
+    width: 69rem;
+    height: 5rem;
+}
