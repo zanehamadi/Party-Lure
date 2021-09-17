@@ -1,57 +1,56 @@
 .not-found-page {
-    position: relative;
-    max-width: 60%;
-    height:80vh;
-    margin: auto;
-    padding: 30px;
-
+  position: relative;
+  max-width: 60%;
+  height: 80vh;
+  margin: auto;
+  padding: 30px;
 }
 
 .pnf-container {
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-    background-color: rgba(123, 194, 177, .2);
-    border-radius: 3em;
-    height: 800px;
-    transform: translate(0%, 10%);
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  background-color: rgba(123, 194, 177, 0.2);
+  border-radius: 3em;
+  height: 800px;
+  /* transform: translate(0%, 10%); */
 }
 
 .pnf-alert {
-    text-align: center;
-    font-size: 50px;
-    padding-top: 10%;
-    padding-bottom: 8%;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 10%;
+  padding-bottom: 8%;
 }
 
 .pnf-text {
-    text-align: center;
-    padding-bottom: 30px;
+  text-align: center;
+  padding-bottom: 30px;
 }
 
 .pnf-error-text {
-    text-align: left;
-    padding-bottom: 2%;
+  text-align: left;
+  padding-bottom: 2%;
 }
 
 .pnf-error-text-2 {
-    text-align: left;
-    padding-bottom: 8%;
-    padding-left: 60px;
-    color: grey;
+  text-align: left;
+  padding-bottom: 8%;
+  padding-left: 60px;
+  color: grey;
 }
 
 .pnf-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 15%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15%;
 }
 
-.pnf-redirect{
-    text-align:center;
+.pnf-redirect {
+  text-align: center;
 }
 
-.pnf-redirect-link{
-    color: orange;
+.pnf-redirect-link {
+  color: orange;
 }
