@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_editComment, thunk_deleteComment } from '../../store/comments';
+import "./editComment.css"
 
 
 const EditCommentForm = ({ comment, post, closeModal }) => {
@@ -34,20 +35,22 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
     }
 
     return (
-        <section className="editContainer">
+        <section className="create-post-form">
             <div>
-                <form onSubmit={handleSubmit}>
+                <form className='form-group' onSubmit={handleSubmit}>
+                    <label htmlFor='edit'>Edit: </label>
                     <input
                         type="text"
                         placeholder="your edit. . ."
                         value={content}
-                        onChange={updateContent} />
-                    <button type="submit">Submit Edit</button>
+                        onChange={updateContent}
+                        className='form-control' />
+                    <button className="edit-comment-btn submit" type="submit">Submit Edit</button>
                 </form>
             </div>
-            <div>
+            <div className='form-group'>
                 <form onSubmit={handleDelete}>
-                    <button className="del-btn" type="submit">Delete Comment</button>
+                    <button className="edit-comment-btn del-btn" id="del-comment"type="submit">Delete Comment</button>
                 </form>
             </div>
         </section>

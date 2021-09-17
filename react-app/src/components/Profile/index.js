@@ -83,7 +83,7 @@ export default function Profile({ users, parties, roles, jobs }) {
                         showEditModal ?
                             <Modal onClose={() => setShowEditModal(false)}>
                                 <EditProfileForm jobs={jobs} closeEditModal={closeEditModal} />
-                                <button onClick={closeEditModal}>
+                                <button id="cancel-edit-profile" onClick={closeEditModal}>
                                     Cancel
                                 </button>
                             </Modal>

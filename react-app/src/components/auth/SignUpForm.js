@@ -65,41 +65,40 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="form-container">
-      <form className="form" onSubmit={onSignUp}>
+    <div className= "form-container">
+      <form className="create-post-form" onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div className="div-container">
-          <label className="form-label" htmlFor='profile-pic'>Profile Picture:</label>
+        <div className="form-group">
+          <label htmlFor='profile-pic'>Profile Picture:</label>
           <input
             type='file'
             name='profile-pic'
             id='profile-pic'
             // value = {image}
             onChange={updateProfilePic}
-            className="form-input"
+            className="form-control"
           />
         </div>
-        <div className="div-container">
+        <div className="form-group">
           <label className="form-label">User Name:</label>
           <input
             type='text'
             name='username'
             onChange={updateUsername}
             value={username}
-            className="form-input"
+            className="form-control"
           ></input>
         </div>
-        <div className="div-container" id="job-div">
+        <div className="form-group" id="job-div">
           <label className="form-label">Job:</label>
           <select
             name='jobId'
             id='jobs'
             onChange={updateJob}
-            className="form-input"
             
           >
             <option
@@ -120,7 +119,7 @@ const SignUpForm = () => {
           </select>
 
         </div>
-        <div className="div-container">
+        <div className="form-group">
           <label className="form-label">Level:</label>
           <input
             type='number'
@@ -129,30 +128,30 @@ const SignUpForm = () => {
             max='50'
             value={level}
             onChange={updateLevel}
-            className="form-input"
+            
           />
         </div>
-        <div className="div-container">
+        <div className="form-group">
           <label className="form-label">Email:</label>
           <input
             type='text'
             name='email'
             onChange={updateEmail}
             value={email}
-            className="form-input"
+            className="form-control"
           ></input>
         </div>
-        <div className="div-container">
+        <div className="form-group">
           <label className="form-label">Password:</label>
           <input
             type='password'
             name='password'
             onChange={updatePassword}
             value={password}
-            className="form-input"
+            className="form-control"
           ></input>
         </div>
-        <div className="div-container">
+        <div className="form-group">
           <label className="form-label">Confirm Password:</label>
           <input
             type='password'
@@ -160,7 +159,7 @@ const SignUpForm = () => {
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
-            className="form-input"
+            className="form-control"
           ></input>
         </div >
         <button className="signupButton" type='submit'>Sign Up</button>

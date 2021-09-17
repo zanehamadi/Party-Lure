@@ -29,7 +29,7 @@ const ModalStyle = styled.div`
 
   #modal-content {
     position: absolute;
-    background-color:white;
+    background-color:#454a52;
   }
 `
 
