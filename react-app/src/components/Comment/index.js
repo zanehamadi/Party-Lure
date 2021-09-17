@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 export default function Comment({comment}) {
 
-    console.log('prepping', comment)
     const user = useSelector(state => state.session.user)
     const userId = user?.id
 
