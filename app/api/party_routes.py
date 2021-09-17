@@ -56,7 +56,7 @@ def accept_request(party_id):
     party = Party.query.get(int(party_id))
 
     party_dict = party.to_dict()
-    if len(party_dict.users) >= 4:
+    if len(party_dict['users']) >= 4:
         return {"errors": ['Party is full']}
 
 
