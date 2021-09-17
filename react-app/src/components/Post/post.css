@@ -135,6 +135,7 @@
     font-size: 1rem;
 }
 
-.editCommentButton{
-    
+.editCommentBut{
+    align-self: flex-end;
+    justify-self: flex-end;
 }
