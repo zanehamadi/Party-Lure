@@ -7,6 +7,7 @@ import Search from '../Search/index'
 import AboutUs from '../Aboutus'
 import DemoButton from '../auth/DemoButton';
 import { useHistory } from 'react-router';
+import ButtonStyle from '../Button/ButtonStyle'
 import './NavBar.css'
 const NavBar = ({ sessionUser, authenticated }) => {
 
@@ -25,24 +26,36 @@ const NavBar = ({ sessionUser, authenticated }) => {
     <nav>
       <ul>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
+          <ButtonStyle>
+            <button className="styled-button">
+              <NavLink to='/' exact={true} activeClassName='active'>
+                Home
+              </NavLink>
+            </button>
+          </ButtonStyle>
         </li>
         {!authenticated ?
           <>
             <li>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
+              <ButtonStyle>
+                <button className="styled-button">
+                  <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                    Sign Up
+                  </NavLink>
+                </button>
+              </ButtonStyle>
             </li>
             <li>
-              <NavLink to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
+              <ButtonStyle>
+                <button className="styled-button">
+                  <NavLink to='/login' exact={true} activeClassName='active'>
+                    Login
+                  </NavLink>
+                </button>
+              </ButtonStyle>
             </li>
             <li>
-              <DemoButton />
+                <DemoButton/>
             </li>
           </>
           :
@@ -61,9 +74,13 @@ const NavBar = ({ sessionUser, authenticated }) => {
           </>
         }
         <li>
-          <NavLink to='/posts' exact={true} activeClassName='active'>
-            Posts
-          </NavLink>
+          <ButtonStyle>
+            <button className="styled-button">
+              <NavLink to='/posts' exact={true} activeClassName='active'>
+                Posts
+              </NavLink>
+            </button>
+          </ButtonStyle>
         </li>
         <li>
           <NavLink to='/about-us' exact={true} activeClassName='active'>

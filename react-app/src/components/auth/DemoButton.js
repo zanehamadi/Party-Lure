@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import ButtonStyle from '../Button/ButtonStyle';
 
 const DemoButton = () => {
     const dispatch = useDispatch();
@@ -10,7 +11,9 @@ const DemoButton = () => {
     let demoLogin = () => { return dispatch(sessionActions.login(credential, password)) }
 
     return (
-        <button onClick={demoLogin}>Demo</button >
+        <ButtonStyle>
+            <button onClick={demoLogin} className="styled-button">Demo</button >
+        </ButtonStyle>
     )
 }
 
