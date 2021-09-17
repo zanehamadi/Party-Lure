@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const PartyMembers = ({members}) => {
@@ -30,7 +31,9 @@ const PartyMembers = ({members}) => {
             </div>
             <div className = 'left'>
             <div className = 'username'>
-                {`${user.username}`}
+                <Link to = {`users/${user.id}`}>
+                    {user.username}
+                </Link>
 
             </div>
             <div className = 'job'>

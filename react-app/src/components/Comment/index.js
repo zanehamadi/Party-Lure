@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export default function Comment({comment}) {
 
-    console.log('prepping', comment)
+
     const user = useSelector(state => state.session.user)
     const userId = user?.id
 
@@ -17,14 +17,6 @@ export default function Comment({comment}) {
             return true
         }
     }
-
-    // useEffect(() => {
-    //     dispatch(getComment(id));
-    // }, [id, dispatch]);
-    // const handleClick = () => {
-    //     hideEdit = !hideEdit
-    //     hideDelete = !hideDelete
-    // }
 
     return (
         <>

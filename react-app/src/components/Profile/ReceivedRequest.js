@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { acceptPartyRequest, denyPartyRequest } from "../../store/party_request"
@@ -7,6 +7,8 @@ import ButtonStyle from "../Button/ButtonStyle"
 
 const ReceivedRequest = ({ partyId, userId, username }) => {
     const dispatch = useDispatch()
+
+    useSelector(state => state.requests.received)
 
     const acceptRequest = () => {
         dispatch(acceptPartyRequest(userId, partyId))
