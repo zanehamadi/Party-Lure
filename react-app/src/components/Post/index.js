@@ -30,7 +30,7 @@ export default function Post({ comments, parties }) {
     const { id } = useParams();
 
     const post = posts?.find(post => post.id === +id)
-    const party = parties.find(party => party.post_id === +id)
+    const party = parties?.find(party => party.post_id === +id)
 
     let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
 
@@ -86,7 +86,7 @@ export default function Post({ comments, parties }) {
     // }, [comments])
 
     const checkMember = () => {
-        let currentParty = party.users
+        let currentParty = party?.users
         for (let member of currentParty) {
             if (member.id === userId) {
                 return true
@@ -95,7 +95,7 @@ export default function Post({ comments, parties }) {
         return false
     }
     const checkParty = () => {
-        let currentParty = party.users
+        let currentParty = party?.users
 
         if (currentParty.length >= 4) {
 
@@ -164,7 +164,7 @@ export default function Post({ comments, parties }) {
             </div>
 
             <div className="partyContainer">
-                {party.users.map(user => 
+                {party?.users?.map(user => 
                     <div className="pMemberContainer">
                         <div> <img src={user.profile_url} width="100" height="100"/> </div>
                         <div>{`User: ${user.username} `}</div>
@@ -229,7 +229,7 @@ export default function Post({ comments, parties }) {
 
             <div>
 
-                {postsComments.map(comment =>
+                {postsComments?.map(comment =>
                     <div key={comment?.id} className="commentContainer postPage">
                         <div id="picNamePost">
                             <img src={comment.profile_url} className="commentPP" />
