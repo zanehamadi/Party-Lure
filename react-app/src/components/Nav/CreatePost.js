@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/posts';
+import './CreatePostForm.css'
 
 const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal }) => {
     const [errors, setErrors] = useState([]);
@@ -85,21 +86,22 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
     };
 
     return (
-        <form onSubmit={createPost}>
+        <form className = 'create-post-form'onSubmit={createPost}>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>
-            <div>
+            <div className = 'form-group'>
                 <label htmlFor='title'>Title: </label>
-                <input name='title' type='text' placeholder='Set Title Name' value={title} onChange={updateTitle} />
+                <input className = 'form-control' name='title' type='text' placeholder='Set Title Name' value={title} onChange={updateTitle} />
             </div>
 
-            <div>
+            <div className = 'form-group'>
                 <label htmlFor='description'>Description: </label>
-                <textarea name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
-                <div>
+                <textarea className = 'text-control'name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
+                </div>
+                <div className = 'form-group'>
                     <label htmlFor='activityType'>Activity Type: </label>
                     <select name='activityType' type='text' placeholder='Select Activity Type' value={activityType} onChange={updateActivityType}>
                         <option value='' disabled={true}>
@@ -115,7 +117,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                     </select>
                 </div>
                 {activityType &&
-                    < div >
+                    < div className = 'form-group' >
                         <label htmlFor='activities'>Activities: </label>
                         <select name='activities' type='text' placeholder='Select Activity' value={activity} onChange={updateActivity}>
                             <option value='' disabled={true}>
@@ -136,35 +138,32 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                         </select>
                     </div>
                 }
-                <div>
+                <div className = 'form-group'>
                     <label htmlFor='level'>Level: </label>
                     <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
                 </div>
 
-                <div>
+                <div className = 'form-group'>
                     <label htmlFor='title'>Role: </label>
-                    <div>
-                        <span onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>Role1</span> <span onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>Role2</span> <span onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>Role3</span> <span onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role4'>Role4</span>
+                    <div className = 'role-picker'>
+                        <div onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>Role1</div> <img src <div onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>Role2</div> <div onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>Role3</div>
                     </div>
                     {selectRole &&
-                        <>
+                        <ul className = 'role-selection'>
                             {
                                 roles.map(role => {
                                     return (
                                         <>
-                                            <ul>
-                                                <input type='radio' value={role.id} key={role.id} name='roles' data-name={role.name} onClick={changeActive} />
+                                                <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
                                                 <label htmlFor={role.name}>{role.name}</label>
-                                            </ul>
                                         </>
                                     )
                                 })
                             }
-                        </>
+                        </ul>
                     }
                 </div>
                 <button type='submit'>Create</button>
-            </div>
         </form >
     );
 };

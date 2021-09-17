@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import {Link} from 'react-router-dom';
 import { Modal } from "../../context/Modal";
+import "./Search.css"
 
 function Search({posts, activities, activityTypes}) {
     const [title, setTitle] = useState('')
@@ -125,9 +126,10 @@ function Search({posts, activities, activityTypes}) {
 
             : <></>}
             {showResults ?
-                <>
+                <div className = "search-results">
+                    <h2>results for: {title}</h2>
                     {searchPosts.map(post => <div><Link to={`/posts/${post.id}`} onClick={resetFunc}>{post.title}</Link></div>)}
-                </>
+                </div>
 
             :<></>}
         </>

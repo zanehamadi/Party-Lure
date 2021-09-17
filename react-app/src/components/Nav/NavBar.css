@@ -5,10 +5,15 @@
     align-self: flex-end;
     justify-content: space-around;
     position: fixed;
-    margin: 10%;
-    top: 20%;
-    border: solid 1px black;
-    width: 250px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    max-width: 200px;
+    top: 0;
+    border-left: 1px solid white;
+    height: 100vh;
+    right: 0;
+    background-color: #1a1c1f;
+    grid-area: nav;
 }
 
 li{

@@ -29,19 +29,6 @@ const NavBar = ({ sessionUser, authenticated }) => {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink to='/posts' exact={true} activeClassName='active'>
-            Posts
-          </NavLink>
-        </li>
-        <li>
-          <Search posts={posts} activities={activities} activityTypes={activityTypes} />
-        </li>
-        <li>
-          <NavLink to='/about-us' exact={true} activeClassName='active'>
-            About Us
-          </NavLink>
-        </li>
         {!authenticated ?
           <>
             <li>
@@ -73,6 +60,19 @@ const NavBar = ({ sessionUser, authenticated }) => {
             </li>
           </>
         }
+        <li>
+          <NavLink to='/posts' exact={true} activeClassName='active'>
+            Posts
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/about-us' exact={true} activeClassName='active'>
+            About Us
+          </NavLink>
+        </li>
+        <li>
+          <Search posts={posts} activities={activities} activityTypes={activityTypes} />
+        </li>
       </ul>
     </nav>
     </div>

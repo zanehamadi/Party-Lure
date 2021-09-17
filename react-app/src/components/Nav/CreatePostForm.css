@@ -1,0 +1,63 @@
+.create-post-form{
+background-color: #454a52; ;
+width:500px;
+height: auto;
+padding:7%;
+box-sizing: border-box;
+border-radius: 3px;
+display: flex;
+flex-direction: column;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 2% 5%;
+    padding: 2%
+}
+.form-control {
+    margin: 0px 0px 0px ;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgb(106, 98, 98);
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+}
+
+.text-control {
+    margin: 0px 0px 0px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgb(106, 98, 98);
+    font-size: 16px;
+    color: white;
+    box-sizing: border-box;
+    outline: none;
+    padding: 5%;
+    padding-left: 0%;
+    resize: none;
+}
+select{
+    height: 40px;
+    background: transparent;
+    outline: none;
+    color: white;
+    background-color: #454a52;
+    border: none;
+    border-bottom: 1px solid rgb(106, 98, 98);
+}
+option{
+    height: 40px;
+    font-size: 16px;
+    padding: 2%;
+    background-color: #3c3f44;
+}
+
+ul.role-selection{
+    display: flex;
+    flex-direction: row;
+    color:white;
+    width: auto;
+}
