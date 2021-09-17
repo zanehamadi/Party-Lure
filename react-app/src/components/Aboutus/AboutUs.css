@@ -1,22 +1,79 @@
-.routeDiv {
+.about-us-page {
     position: relative;
     max-width: 60%;
-    height:100vh;
+    height:80vh;
     margin: auto;
     padding: 30px;
-
 }
 
-.routeContainer {
-    transform: translate(0%, 78%);
+.body-text {
+    text-align: center;
 }
 
-.foohfo {
+.aboutus {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-content: space-between;
+    background-color: teal;
+    border-radius: 3em;
+    height: 800px;
+    transform: translate(0%, 10%);
 }
 
-.top404message {
+.cam-card {
+    align-content: center;
+    background-color: #454a52;
+    border: 3px solid darkgray;
+    border-radius: 5%;
+    padding: 15px
+}
+
+.k-card {
+    align-content: center;
+    background-color: #454a52;
+    border: 3px solid darkgray;
+    border-radius: 5%;
+    padding: 15px
+}
+
+.tan-card {
+    align-content: center;
+    background-color: #454a52;
+    border: 3px solid darkgray;
+    border-radius: 5%;
+    padding: 15px
+}
+
+.v-card {
+    align-content: center;
+    background-color: #454a52;
+    border: 3px solid darkgray;
+    border-radius: 5%;
+    padding: 15px
+}
+
+.team-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 40px;
+}
+
+.team-name {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.body-text {
+    display: flex;
+    flex: 0 100px;
+    justify-self: center;
+}
+
+.team-body {
+    height: max-content;
     text-align: center;
 }
 
@@ -24,8 +81,20 @@
     text-align:center;
 }
 
-.foohfoimg {
+.about-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    text-align: center;
+    height: 7vh
+  }
+
+  .readme-link {
+      color:orange
+  }
