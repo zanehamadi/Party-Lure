@@ -20,7 +20,7 @@ export default function Profile({ users, parties, roles, jobs }) {
     const [focus, setFocus] = useState('Parties')
     const [showEditModal, setShowEditModal] = useState(false)
 
-
+    useSelector(state => state.requests)
     const user = useSelector(state => state.session.profile)
     const viewId = useSelector(state => state.session?.user?.id)
     console.log('THIS IS THE USER ----->', user)
@@ -30,7 +30,7 @@ export default function Profile({ users, parties, roles, jobs }) {
     const userPosts = Object.values(userPostsState)
 
     useEffect(() => {
-        
+
         if (id == viewId) {
             dispatch(getReceivedRequests(id))
             dispatch(getSentRequests(id))
