@@ -156,11 +156,12 @@
 
 
 .userPFP{
-    width:100px; 
+    width:100px;
     height:100px;
     border: solid 2px rgb(61, 61, 61);
     transition: box-shadow 0.3s linear;
     transition: border 0.3s linear;
+    /* border-radius: 50%; */
 }
 
 .userPFP:hover{
