@@ -155,7 +155,6 @@ export default function Post({ comments, parties }) {
 
     return (
         <div className="postPage">
-            {console.log('PARTY', party)}
             <h1 className="postTitle postPage">
                 {post?.title}
             </h1>

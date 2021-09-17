@@ -126,3 +126,9 @@
 #commentContent{
     font-size: .7em;
 }
+
+.partyContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
