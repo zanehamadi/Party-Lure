@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getActivePosts } from "../../store/posts";
 import { useState } from "react";
+import "./Home.css"
 
 
 function Home({ sessionUser, authenticated }) {
@@ -25,16 +26,26 @@ function Home({ sessionUser, authenticated }) {
         fetchData()
     }, [dispatch])
 
+
     return (
-        <>
-            <div className = 'posts-container'>
-                {activePosts?.posts && activePosts?.posts.map(post =>{
-                    if(Object.keys(post).length > 0){
-                    return(
-                    <PostDetails post = {post} />)}
+        authenticated ?
+            <>
+                
+                <div className = 'home-container'>
+                    <h1 id="welcome-text">Welcome back, <span id="username">{sessionUser?.username}</span>. This is what has been happening since your last visit. . .</h1>
+                    <div className = 'posts-container'>{activePosts?.posts && activePosts?.posts.map(post => {
+                        if (Object.keys(post).length > 0) {
+                            return(
+                            <PostDetails post = {post} />
+                        )}
+                        return []
                     })}
-            </div>
-        </>
+                    </div>
+                </div>
+
+            </>
+            :
+            <Splash />
     )
 }
 
