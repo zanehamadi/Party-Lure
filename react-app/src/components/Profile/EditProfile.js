@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_updateUser } from '../../store/session';
+import styled from 'styled-components';
 
 const EditProfileForm = ({ jobs, closeEditModal }) => {
 
@@ -38,7 +39,19 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
         history.push(`/users/${payload?.userId}`)
     };
 
-
+    const SubmitStyle = styled.div`
+    .styled-button{ width: 430px;
+    top: -20px;
+    left: 35px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: rgb(191, 191, 191);
+    padding: .3em .7em;
+    outline: none;
+    border: none;
+    background-color: #7bc2b196;}
+    `
     return (
         <section className="editContainer">
             <div>
@@ -82,7 +95,11 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
                             })}
                         </select>
                     </div>
-                    <button type="submit">Submit Edit</button>
+                    <SubmitStyle>
+                    <button className = 'styled-button' type="submit">
+                        Submit Edit
+                    </button>
+                    </SubmitStyle>
                 </form>
             </div>
         </section>

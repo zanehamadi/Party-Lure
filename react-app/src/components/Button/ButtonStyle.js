@@ -7,7 +7,7 @@ const ButtonStyle = styled.div`
     border-radius: 5px;
     font-weight: bold;
     color: rgb(191, 191, 191);
-    padding: 10%;
+    padding: .3em .7em;
     outline: none;
     border: none;
     background-color: #7bc2b196;

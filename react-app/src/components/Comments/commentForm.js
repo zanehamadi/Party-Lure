@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory} from 'react-router-dom';
 
 import { createNewComment } from '../../store/comments';
+import ButtonStyle from '../Button/ButtonStyle';
 
 const CreateCommentForm = ({post}) => {
     const postId = post?.id
@@ -63,7 +64,9 @@ const CreateCommentForm = ({post}) => {
                     placeholder="Type comment here"
                     value={content}
                     onChange={updateComment} />
-                <button className="edit-btn edit5 commentButton" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
+                <ButtonStyle>
+                <button className="edit-btn edit5 commentButton styled-button" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
+                </ButtonStyle>
             </div>
         {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
     </form>
