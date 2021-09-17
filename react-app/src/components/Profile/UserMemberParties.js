@@ -21,8 +21,6 @@ const UserMemberParties = () =>{
         dispatch(goLeaveParty(userId,partyId))
     }
     useEffect(() => {
-        console.log('i will try')
-        console.log('partiesState',partiesState)
         if(partiesState){
             setParties(Object.values(partiesState))
         }
