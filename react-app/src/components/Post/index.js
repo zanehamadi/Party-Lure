@@ -225,6 +225,7 @@ export default function Post({ comments, parties }) {
                         {session && ownsComment(comment) &&
                             <EditCommentFormModal comment={comment} />
                         }
+
                     </div>
                 )}
 

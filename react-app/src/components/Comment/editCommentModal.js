@@ -16,7 +16,7 @@ export default function EditCommentFormModal({ comment, post, hideEdit, hideDele
     console.log('FINDING THE COMMENT IN THE MODAL', comment)
     return (
         <>
-            <button onClick={handleClick}>Edit Comment</button>
+            <button onClick={handleClick} id="editCommentBut">Edit Comment</button>
             {showModal && <Modal onClose={() => setShowModal(false)}>
                 <EditCommentForm closeModal={closeModal} comment={comment} post={post} hideEdit={hideEdit} hideDelete={hideDelete} />
             </Modal>}
