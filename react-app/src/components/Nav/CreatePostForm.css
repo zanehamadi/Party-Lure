@@ -65,7 +65,17 @@ ul.role-selection{
     display: flex;
 }
 .form-role-icon{
+    background-color: white;
     height: 24px;
     width:24px;
     margin: 10px;
+    border-radius: 5px;
+    padding: -2%;
+    box-sizing: border-box;
+}
+
+.form-role-icon img{
+    height:24px;
+    width:24px;
+    border: 1px solid #454a52;
 }
