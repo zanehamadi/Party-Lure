@@ -42,12 +42,40 @@
     width: 8rem;
 }
 
+.comment-container {
+    overflow-y: auto;
+    height: 50%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:  transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5em;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    cursor: pointer;
+  }
+
 #userButtons{
 
     /* grid-area:"userButtons" */
     display: flex;
     margin-left: 10%;
     margin-right: 10%;
+
     justify-content: flex-end;
 
     /* display: flex; */
@@ -133,6 +161,7 @@
     flex-direction: row;
     justify-content: space-around;
     font-size: 1rem;
+    padding-bottom: 50px;
 }
 
 .editCommentBut{

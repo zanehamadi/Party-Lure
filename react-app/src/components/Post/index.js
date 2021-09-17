@@ -162,21 +162,21 @@ export default function Post({ comments, parties }) {
             <div className="partyContainer">
                 {party?.users?.map(user =>
                     <div className="pMemberContainer">
-                        <div> <img src={user.profile_url} width="100" height="100"/> </div>
+                        <div> <img src={user.profile_url} width="100" height="100" /> </div>
                         <div>{`User: ${user.username} `}</div>
                         <div>{`Level: ${user.level} `}</div>
                         <div>{`Role: ${user.role}`}</div>
-                        <div><img src={user.role_url}/> </div>
+                        <div><img src={user.role_url} /> </div>
                         <div>{`Job: ${user.job}`}</div>
                     </div>
-                    )}
+                )}
 
             </div>
 
 
 
 
-            <div>
+            <div >
                 {!isPartyFull && !isUser && !hasRequested && isLogged && party && <button onClick={requestToJoin} className="requestButtons">Request to Join</button>}
                 {hasRequested && <button onClick={cancelRequest} className="requestButtons">Cancel Request</button>}
                 {isUser ?
@@ -221,7 +221,7 @@ export default function Post({ comments, parties }) {
                     <></>}
             </div>
 
-            <div>
+            <div className='comment-container'>
                 {postsComments.map(comment =>
                     <div>
                         <Comment comment={comment} />
