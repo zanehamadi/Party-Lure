@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./splash.css"
+import DemoButton from "../auth/DemoButton";
 
 function Splash() {
     return (
@@ -10,6 +11,8 @@ function Splash() {
             <div className="splashLinkDiv">
                 <Link to="/sign-up" className="splashLinks">Sign up</Link> 
                 <Link to="login" className="splashLinks">Log in</Link>
+                <Link to="/posts" className="splashLinks">View Posts</Link>
+                
             </div>
         </div>
     )
