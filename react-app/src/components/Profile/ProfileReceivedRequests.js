@@ -1,3 +1,4 @@
+
 import ReceivedRequest from "./ReceivedRequest"
 
 const ProfileReceivedRequests = ({ requests, partyId }) => {
