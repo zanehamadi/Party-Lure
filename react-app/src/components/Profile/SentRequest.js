@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { cancelPartyRequest } from "../../store/party_request"
+import ButtonStyle from "../Button/ButtonStyle"
 
 
 const SentRequest = ({partyId, userId , partyName}) => {
@@ -13,8 +14,9 @@ const SentRequest = ({partyId, userId , partyName}) => {
    return(
        <>
        <span>Request to join {partyName}</span>
-       <button onClick= {cancelRequest}>cancel</button>
-
+       <ButtonStyle>
+       <button className = 'styled-button' onClick= {cancelRequest}>cancel</button>
+       </ButtonStyle>
        </>
    )
 

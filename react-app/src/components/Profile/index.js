@@ -9,6 +9,7 @@ import { Modal } from "../../context/Modal";
 import EditProfileForm from "./EditProfile";
 import UserParties from "./UserParties";
 import './Profile.css'
+import ButtonStyle from "../Button/ButtonStyle";
 
 export default function Profile({ users, parties, roles, jobs }) {
 
@@ -77,7 +78,11 @@ export default function Profile({ users, parties, roles, jobs }) {
                 </div>
                 <>
                     {user && user.id === viewId &&
-                        <button onClick={handleClickEdit}>Edit Profile</button>
+                        <ButtonStyle>
+                        <button className = 'styled-button' onClick={handleClickEdit}>
+                            Edit
+                            </button>
+                            </ButtonStyle>
                     }
                     {
                         showEditModal ?

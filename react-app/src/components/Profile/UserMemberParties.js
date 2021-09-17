@@ -1,6 +1,7 @@
 import { useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getMemberParties, goLeaveParty } from "../../store/user-parties"
+import ButtonStyle from "../Button/ButtonStyle"
 
 
 const UserMemberParties = () =>{
@@ -36,11 +37,15 @@ const UserMemberParties = () =>{
                 <h3>
                     {party.title}
                 </h3>
-                <button onClick = {() => {
+                <ButtonStyle>
+                <button
+                    className = 'styled-button'
+                    onClick = {() => {
                     handleLeave(party.id)
                 }}>
-                    Leave Party
+                    Leave
                 </button>
+                </ButtonStyle>
             </div>)
         })}
         </>

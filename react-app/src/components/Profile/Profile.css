@@ -33,4 +33,12 @@
   position: relative;
   top: -20px;
   left: 35px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: rgb(191, 191, 191);
+  padding: .3em .7em;
+  outline: none;
+  border: none;
+  background-color: #7bc2b196;
 }

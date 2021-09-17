@@ -1,6 +1,8 @@
+import styled from "styled-components";
 import { useEffect, useState } from "react"
 import {Link} from 'react-router-dom';
 import { Modal } from "../../context/Modal";
+import ButtonStyle from "../Button/ButtonStyle";
 import "./Search.css"
 
 function Search({posts, activities, activityTypes}) {
@@ -83,13 +85,40 @@ function Search({posts, activities, activityTypes}) {
 
 
     }, [level, title, role, activity, activityType, userClass])
+    const SearchButtonsStyle = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
 
+        input{
+            margin: 20px;
+            height: 20px;
+        }
+        .button-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+        }
+    `
 
     return (
         <>
+            <SearchButtonsStyle>
             <input placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
-            <button onClick={handleClick}>Filters</button>
-            <button onClick={() => resetFunc()}>Reset</button>
+            <div className = 'button-container'>
+            <ButtonStyle>
+                <button className = 'styled-button' onClick={handleClick}>
+                    Filters
+                </button>
+            </ButtonStyle>
+            <ButtonStyle>
+                    <button  className = 'styled-button' onClick={() => resetFunc()}>
+                         Reset
+                    </button>
+            </ButtonStyle>
+            </div>
+            </SearchButtonsStyle>
             {showModal ?
                 <Modal onClose={() => setShowModal(false)}>
                     <form>
