@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import ReceivedRequest from "./ReceivedRequest"
 
 const ProfileReceivedRequests = ({ requests, partyId }) => {
-    useSelector(state => state.requests)
+    useSelector(state => state.requests.recieved)
 
     return (
         <ul>

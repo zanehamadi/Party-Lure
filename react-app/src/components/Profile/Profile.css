@@ -20,7 +20,7 @@
   object-fit: cover;
   border-radius: 50%;
   background-color: white;
-  border: 2px solid black;
+  border: 3px solid #443f3f5e;
 }
 .tab-bar {
   display: flex;
