@@ -28,7 +28,7 @@ const partyReducer = (state = initialState, action) => {
             return { ...action.parties }
         }
         default:
-            console.log('DEFAULT')
+
             return state
     }
 }

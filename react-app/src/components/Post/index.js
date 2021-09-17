@@ -10,7 +10,7 @@ import { Modal } from "../../context/Modal";
 import './post.css'
 
 
-export default function Post({comments, parties,}) {
+export default function Post({ comments, parties, }) {
     const history = useHistory()
     const aTypeSlice = useSelector(state => state.activityTypes)
     const activitySlice = useSelector(state => state.activities)
@@ -23,14 +23,14 @@ export default function Post({comments, parties,}) {
     const posts = Object.values(postsSlice)
 
     const [hasRequested, setHasRequested] = useState(false)
-    const[isMember, setIsMember] = useState(false)
+    const [isMember, setIsMember] = useState(false)
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user?.id)
     const { id } = useParams();
 
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
-    // console.log('party', party)
+
     let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
     const session = useSelector(state => state?.session)
     const isLogged = session?.user ? true : false
@@ -64,11 +64,11 @@ export default function Post({comments, parties,}) {
 
 
     useEffect(() => {
-        if(userId){
-            // console.log('userId from post, userId')
-        dispatch(getSentRequests(userId))
+        if (userId) {
+
+            dispatch(getSentRequests(userId))
         }
-    }, [userId,hasRequested])
+    }, [userId, hasRequested])
 
     let currentUserRequestsState = useSelector(state => state?.requests?.sent)
 
@@ -80,62 +80,63 @@ export default function Post({comments, parties,}) {
 
     const checkMember = () => {
         let currentParty = party.users
-        for(let member of currentParty){
-            if(member.id === userId){
-               return true
+        for (let member of currentParty) {
+            if (member.id === userId) {
+                return true
             }
         }
         return false
     }
     const checkParty = () => {
         let currentParty = party.users
-        console.log('checking party length', currentParty.length)
-        if(currentParty.length >= 4){
-            console.log('PARTY IS FULL')
+
+        if (currentParty.length >= 4) {
+
             return true
         }
-        console.log('party not full')
+
         return false
 
     }
     useEffect(() => {
-        if(party){
+        if (party) {
             setIsMember(checkMember())
             setIsPartyFull(checkParty())
         }
-    },[party])
+    }, [party])
     const doesUserHaveRequest = () => {
-        if(currentUserRequests.length > 0){
-            // console.log('this is req array', currentUserRequests)
-        for(let sentReq of currentUserRequests){
+        if (currentUserRequests.length > 0) {
 
-            if(sentReq.id === party.id){
-                return true
+            for (let sentReq of currentUserRequests) {
+
+                if (sentReq.id === party.id) {
+                    return true
+                }
             }
-        }}
+        }
         return false
     }
 
     useEffect(() => {
-        if(currentUserRequests[0] && party){
+        if (currentUserRequests[0] && party) {
             setHasRequested(doesUserHaveRequest())
         }
 
-    },[party])
+    }, [party])
 
 
 
 
     const cancelRequest = () => {
-        if(userId){
-        dispatch(cancelPartyRequest(userId,party.id))
-    }
+        if (userId) {
+            dispatch(cancelPartyRequest(userId, party.id))
+        }
         setHasRequested(false)
     }
 
 
-    const requestToJoin = () =>{
-        dispatch(sendPartyRequest(userId,party.id))
+    const requestToJoin = () => {
+        dispatch(sendPartyRequest(userId, party.id))
         setHasRequested(true)
     }
 
@@ -158,58 +159,58 @@ export default function Post({comments, parties,}) {
 
 
             <div>
-                {!isPartyFull && !isUser && !hasRequested && isLogged && <button onClick={requestToJoin} className="requestButtons">Request to Join</button>}
-                {hasRequested && <button onClick = {cancelRequest} className="requestButtons">Cancel Request</button>}
+                {!isPartyFull && !isUser && !hasRequested && isLogged && party && <button onClick={requestToJoin} className="requestButtons">Request to Join</button>}
+                {hasRequested && <button onClick={cancelRequest} className="requestButtons">Cancel Request</button>}
                 {isUser ?
-                <>
-                    
-                    {showEditModal ?
-                    <Modal onClose = {() => setShowEditModal(false)}>
-                        <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities}/>
-                        <button onClick={closeEditModal}>
-                                Cancel
-                            </button>
-                    </Modal>
-                    : <></>}
+                    <>
 
-                    <div id="userButtons">
-                        <button onClick={handleClickEdit} className="userButton">Edit Post</button>
-                        <button onClick={handleClickDelete} className="userButton">Delete Post</button>
-                    </div>
-                    {showDeleteModal ?
-                        <Modal onClose = {() => setShowDeleteModal(false)}>
-                            <span>Are you sure you want to delete this post?</span>
-                            <button onClick={deleteFunc}>
-                                Yes 🐡
-                            </button>
-                            <button onClick={closeDeleteModal}>
-                                No
-                            </button>
-                        </Modal>
-                    : <></>}
-                </>
-                :
-                <></>
+                        {showEditModal ?
+                            <Modal onClose={() => setShowEditModal(false)}>
+                                <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities} />
+                                <button onClick={closeEditModal}>
+                                    Cancel
+                                </button>
+                            </Modal>
+                            : <></>}
+
+                        <div id="userButtons">
+                            <button onClick={handleClickEdit} className="userButton">Edit Post</button>
+                            <button onClick={handleClickDelete} className="userButton">Delete Post</button>
+                        </div>
+                        {showDeleteModal ?
+                            <Modal onClose={() => setShowDeleteModal(false)}>
+                                <span>Are you sure you want to delete this post?</span>
+                                <button onClick={deleteFunc}>
+                                    Yes 🐡
+                                </button>
+                                <button onClick={closeDeleteModal}>
+                                    No
+                                </button>
+                            </Modal>
+                            : <></>}
+                    </>
+                    :
+                    <></>
                 }
-                {isLogged ? 
-                
+                {isLogged ?
+
                     <>
                         <div>
-                            <CreateCommentForm post={post}/>
+                            <CreateCommentForm post={post} />
                         </div>
-                    </> 
-                : 
-                <></>}
+                    </>
+                    :
+                    <></>}
             </div>
 
 
-            
+
             <div>
 
-                {userComments.map(comment=>
+                {userComments.map(comment =>
                     <div key={comment?.id} className="commentContainer postPage">
                         <div id="picNamePost">
-                            <img src={comment.profile_url} className="commentPP"/>
+                            <img src={comment.profile_url} className="commentPP" />
                             <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
                             <span id="datePrev">{comment?.created_at}</span>
                         </div>

@@ -26,7 +26,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
         if (!activityType && !activity) {
             errors.push('Post must include an activity')
         }
-        // console.log('THIS IS ERRORS ------->', errors)
+
         return errors
     }
 

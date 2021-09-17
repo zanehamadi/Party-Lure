@@ -16,7 +16,7 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
     const [image, setImage] = useState('')
 
     const updateLevel = (e) => setLevel(+e.target.value);
-    console.log('JOB', user.job_id)
+
     const updateJob = (e) => setJob(e.target.value);
 
     const updateImage = (e) => {
@@ -42,8 +42,7 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
     return (
         <section className="editContainer">
             <div>
-                {console.log(level)}
-                {console.log(+level)}
+
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor='profile-pic'>Profile Picture</label>

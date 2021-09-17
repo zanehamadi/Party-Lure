@@ -114,12 +114,11 @@ export const signUp = (username, email, password, jobId, level, image) => async 
 }
 
 export const getOneUser = (userId) => async (dispatch) => {
-    console.log('FETCHING USER DATA')
-  const response = await fetch(`/api/users/${userId}`)
+
   let data;
   if (response.ok) {
     data = await response.json()
-    console.log('GOT USER DATA', data)
+
     dispatch(getUser(data))
   }
 
@@ -127,7 +126,7 @@ export const getOneUser = (userId) => async (dispatch) => {
 }
 
 export const thunk_updateUser = (user) => async (dispatch) => {
-    console.log('THUNK USER', user)
+
 
     const form = new FormData()
 

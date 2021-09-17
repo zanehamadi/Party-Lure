@@ -10,7 +10,7 @@ export const getRoles = () => async (dispatch) => {
 
     if (response.ok) {
         const roles = await response.json()
-        console.log('roles', roles)
+
         dispatch(loadRoles(roles))
         return
     }

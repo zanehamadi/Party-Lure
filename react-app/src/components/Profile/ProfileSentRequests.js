@@ -8,7 +8,7 @@ const ProfileSentRequests = ({ requests, userId }) => {
 
     const checkRequests = (requestsArray) => {
         for (let requests of requestsArray) {
-            console.log("SHOW ME OR DIE ---->", +userId)
+
             if (requests.id === +userId) {
                 return true
             }
