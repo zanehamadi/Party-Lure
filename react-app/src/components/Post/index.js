@@ -162,11 +162,17 @@ export default function Post({ comments, parties }) {
                 <div className="partyContainer">
                     {party?.users?.map(user =>
                         <div className="pMemberContainer">
-                            <div> <img src={user.profile_url} className="userPFP"/> </div>
+                            <div> 
+                                <Link to={`/users/${user.id}`}>
+                                    <img src={user.profile_url} className="userPFP"/> 
+                                </Link>
+                            </div>
                             <div>{`User: ${user.username} `}</div>
                             <div>{`Level: ${user.level} `}</div>
-                            <div>{`Role: ${user.role}`}
-                            <img src={user.role_url} id="rolePartyImg"/> </div>
+                            <div>
+                                    {`Role: ${user.role}`}
+                                    <img src={user.role_url} id="rolePartyImg"/>
+                            </div>
                             <div>{`Job: ${user.job}`}</div>
                         </div>
                     )}

@@ -125,7 +125,7 @@
 
 #commentContent{
 
-    font-size: .7em;
+    font-size: 1em;
 }
 
 .partyContainer{
@@ -133,6 +133,7 @@
     flex-direction: row;
     justify-content: space-around;
     font-size: 1rem;
+    width: 80rem;
 }
 
 .editCommentBut{
@@ -157,18 +158,24 @@
     width:100px; 
     height:100px;
     border: solid 2px rgb(61, 61, 61);
-    box-shadow: 10px 10px 10px rgb(36, 36, 36);
+    transition: box-shadow 0.3s linear;
+    transition: border 0.3s linear;
 }
 
-.partyContainer{
-    width: 80rem;
+.userPFP:hover{
+    box-shadow: 10px 10px 10px rgb(36, 36, 36);
+    border: solid 2px yellow
 }
+
 
 .postTitleAndContent{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 10rem;
+    border: solid 2px gray;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 #rolePartyImg{
@@ -177,4 +184,5 @@
 
 #curPartyTag{
     margin-bottom: 100px;
+    font-size: 1rem;
 }
