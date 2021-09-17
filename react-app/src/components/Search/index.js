@@ -104,7 +104,6 @@ function Search({posts, activities, activityTypes}) {
 
     return (
         <>
-            <SearchButtonsStyle>
             <input placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
             <div className = 'button-container'>
             <ButtonStyle>
@@ -118,7 +117,6 @@ function Search({posts, activities, activityTypes}) {
                     </button>
             </ButtonStyle>
             </div>
-            </SearchButtonsStyle>
             {showModal ?
                 <Modal onClose={() => setShowModal(false)}>
                     <form>
