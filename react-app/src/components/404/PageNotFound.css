@@ -1,31 +1,57 @@
-.routeDiv {
+.not-found-page {
     position: relative;
     max-width: 60%;
-    height:100vh;
+    height:80vh;
     margin: auto;
     padding: 30px;
 
 }
 
-.routeContainer {
-    transform: translate(0%, 78%);
-}
-
-.foohfo {
+.pnf-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-content: space-between;
+    background-color: rgba(123, 194, 177, .2);
+    border-radius: 3em;
+    height: 800px;
+    transform: translate(0%, 10%);
 }
 
-.top404message {
+.pnf-alert {
     text-align: center;
+    font-size: 50px;
+    padding-top: 10%;
+    padding-bottom: 8%;
 }
 
-.bottom404message {
-    text-align:center;
+.pnf-text {
+    text-align: center;
+    padding-bottom: 30px;
 }
 
-.foohfoimg {
+.pnf-error-text {
+    text-align: left;
+    padding-bottom: 2%;
+}
+
+.pnf-error-text-2 {
+    text-align: left;
+    padding-bottom: 8%;
+    padding-left: 60px;
+    color: grey;
+}
+
+.pnf-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 15%;
+}
+
+.pnf-redirect{
+    text-align:center;
+}
+
+.pnf-redirect-link{
+    color: orange;
 }

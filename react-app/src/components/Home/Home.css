@@ -1,0 +1,15 @@
+#welcome-text {
+  font-size: 30px;
+  padding: 25px;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#username {
+  color: #7bc2b196;
+  font-size: 30px;
+}

@@ -33,6 +33,7 @@ class Post(db.Model):
             "type": self.activity.type.name,
             "mission": self.activity.name,
             "recruit_level": self.recruit_level,
-            "recruit_role": self.recruit_role
+            "recruit_role": self.recruit_role,
+            "comments": [comment.to_dict() for comment in self.comments]
 
         }

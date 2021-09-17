@@ -3,6 +3,7 @@ const UPDATE_POST = 'users/UPDATE_POST'
 const DELETE_POST = 'posts/DELTE_POST'
 const USER_POST = 'posts/USER_POST'
 const UPDATE_USER = 'post/UPDATE_USER'
+
 const loadPosts = (posts) => ({
     type: LOAD_POSTS,
     posts
@@ -69,6 +70,15 @@ export const goDeletePost = (postId) => async (dispatch) => {
         dispatch(deletePost(postId))
     }
 }
+
+export const getActivePosts = () => async (dispatch) => {
+    const res = await fetch('/api/posts/home');
+    if (res.ok) {
+        const posts = await res.json();
+        dispatch((loadPosts(posts)))
+        return posts
+    }
+};
 
 const initialState = {userPosts : {}}
 

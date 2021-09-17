@@ -21,60 +21,61 @@ const NavBar = ({ sessionUser, authenticated }) => {
   const posts = Object.values(postsSlice)
 
   return (
-      <div className ='nav-container'>
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        {!authenticated ?
-          <>
-            <li>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <DemoButton />
-            </li>
-          </>
-          :
-          <>
-            <li>
-              <CreatePostFormModal activityTypes={activityTypes} activities={activities} roles={roles} posts={posts} />
-            </li>
-            <li>
-              <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
-                👤
-              </NavLink>
-            </li>
-            <li>
-              <LogoutButton/>
-            </li>
-          </>
-        }
-        <li>
-          <NavLink to='/posts' exact={true} activeClassName='active'>
-            Posts
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/about-us' exact={true} activeClassName='active'>
-            About Us
-          </NavLink>
-        </li>
-        <li>
-          <Search posts={posts} activities={activities} activityTypes={activityTypes} />
-        </li>
-      </ul>
-    </nav>
+    <div className='nav-container'>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to='/' exact={true} activeClassName='active'>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/posts' exact={true} activeClassName='active'>
+              Browse Posts
+            </NavLink>
+
+          </li>
+          {!authenticated ?
+            <>
+              <li>
+                <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                  Sign Up
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to='/login' exact={true} activeClassName='active'>
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <DemoButton />
+              </li>
+            </>
+            :
+            <>
+              <li>
+                <CreatePostFormModal activityTypes={activityTypes} activities={activities} roles={roles} posts={posts} />
+              </li>
+              <li>
+                <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
+                  👤
+                </NavLink>
+              </li>
+              <li>
+                <LogoutButton />
+              </li>
+            </>
+          }
+          <li>
+            <Search posts={posts} activities={activities} activityTypes={activityTypes} />
+          </li>
+          <li>
+            <NavLink to='/about-us' exact={true} activeClassName='active'>
+              About Us
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }

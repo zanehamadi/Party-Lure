@@ -25,13 +25,13 @@ background-color: #1a1c1f;
 
 `
 const Banner = () => {
-    return(
+    return (
         <BannerStyle>
-            <div className = 'site-name'>Party Lure</div>
-            <div className = 'logo'>
+            <div className='site-name'>Party Lure 🎣</div>
+            <div className='logo'>
                 LOGO
             </div>
-            <div className = 'profile-pic'>
+            <div className='profile-pic'>
                 PIC
             </div>
         </BannerStyle>
