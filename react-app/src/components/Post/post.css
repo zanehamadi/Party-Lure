@@ -1,17 +1,17 @@
 .postPage{
     /* display:grid;
-    grid-template-areas: 
+    grid-template-areas:
                         "title ."
                         "content ."
                         "requestButtons userButtons"
                         "commentContainer ."
                         "commentForm ."; */
-                        
+
     display: flex;
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
-    
+
 
 }
 
@@ -49,7 +49,7 @@
     margin-left: 10%;
     margin-right: 10%;
     justify-content: flex-end;
-    
+
     /* display: flex; */
     /* flex-direction: row; */
 }
@@ -81,14 +81,14 @@
     align-items: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    
+
 }
 
 
 .commentForm{
 
     /* grid-area:"commentForm" */
-    
+
 
 }
 
@@ -132,5 +132,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
     font-size: 1rem;
+}
+
+.editCommentButton{
+    
+}
