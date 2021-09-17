@@ -8,11 +8,13 @@ font-size: 30px;
 top:0;
 width:100%;
 justify-content: space-between;
-min-height:60px;
+min-height:50px;
 align-items: center;
 box-sizing: border-box;
 padding: .3rem;
 box-shadow: 0px 0px 2px 0px;
+grid-area: banner;
+background-color: #1a1c1f;
 
 .site-name{
     margin-left: 2%;

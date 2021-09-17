@@ -5,6 +5,7 @@
     border: solid 1px black;
     max-width:1000px;
     padding:2%;
+    grid-area: main;
 }
 .profile-header{
     display: flex;
