@@ -166,25 +166,8 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                         </img>
                     </div>
 
-
                     </div>
-                    {selectRole &&
-                        <ul className = 'role-selection'>
-                            {
-                                roles.map(role => {
-                                    console.log('roles', role)
-                                    return (
-                                        <>
-                                                <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
-                                                <label htmlFor={role.name}>{role.name}</label>
-                                        </>
-                                    )
-                                })
-                            }
-                        </ul>
-                    }
 
-                </div>
                 {selectRole &&
                     <ul className='role-selection'>
                         {
@@ -196,21 +179,6 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                                             {role.name}
                                             <img src={role.icon_url}></img>
                                         </label>
-                                        {/* <label>
-                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
-                                            {role.name}
-                                            <img src='https://partylureawsbucket.s3.amazonaws.com/Healer.png'></img>
-                                        </label>
-                                        <label>
-                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
-                                            {role.name}
-                                            <img src='https://partylureawsbucket.s3.amazonaws.com/Tank.png'></img>
-                                        </label>
-                                        <label>
-                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
-                                            {role.name}
-                                            <img src='https://partylureawsbucket.s3.amazonaws.com/Tank.png'></img>
-                                        </label> */}
                                     </>
                                 )
                             })
