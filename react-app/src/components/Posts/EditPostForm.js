@@ -14,8 +14,8 @@ const EditPostForm = () => {
     const activities = Object.values(activitySlice)
     const roles = Object.values(rolesSlice)
     const posts = Object.values(postsSlice)
-    
-    console.log("ACTIVITY TYPES", activityTypes)
+
+
     const { id } = useParams();
     const post = posts?.find(post => post.id === +id)
 

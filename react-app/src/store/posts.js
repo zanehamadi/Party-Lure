@@ -38,7 +38,7 @@ export const getUserPosts = (userId) => async (dispatch) => {
 
     if(res.ok) {
         const posts = await res.json();
-        console.log('user posts', posts)
+
         dispatch((userPosts(posts)))
     }
 }
@@ -51,10 +51,10 @@ export const createNewPost = (data) => async (dispatch) => {
 
 
     if (res.ok) {
-        console.log('updating posat')
+
         const updatedPost = await res.json();
         await dispatch(updatePost(updatedPost))
-        console.log('going to dispatch', updatePost)
+
         dispatch(updateUser(updatedPost))
     }
 }
@@ -93,7 +93,7 @@ const postReducer = (state = initialState, action) => {
             }
         }
         case USER_POST :{
-            console.log('ACTION', action)
+
             let userState = {...state}
             userState.userPosts = {...action.post}
             return {...userState}

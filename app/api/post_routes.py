@@ -90,7 +90,7 @@ def new_post():
         db.session.add(party)
         db.session.commit()
 
-        print('NEW PARTY', party.to_dict())
+
         return post.to_dict()
 
 

@@ -32,7 +32,7 @@ const cancelRequest = (request) => ({
 })
 
 export const getReceivedRequests = (userId) => async (dispatch) => {
-    console.log('getting requests for', userId)
+
     let res = await fetch(`/api/parties/user/${userId}/received`)
     let data
     if (res.ok) {
@@ -62,7 +62,7 @@ export const acceptPartyRequest = (userId, partyId) => async (dispatch) => {
     let data
     if (res.ok) {
         data = await res.json()
-        console.log(data)
+
         dispatch(acceptRequest(data))
     }
 }

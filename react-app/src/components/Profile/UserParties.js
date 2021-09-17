@@ -19,6 +19,7 @@ const UserParties = ({ parties, owner, username }) => {
     const [activePartyId, setActivePartyId] = useState()
     const [activePartyRequests, setActivePartyRequest] = useState()
     const [activePartyName, setActivePartyName] = useState()
+    const [colorBlue, setColorBlue] = useState(true)
 
     const userId = useSelector(state => state.session.user?.id)
     const sentRequestsState = useSelector(state => state.requests.sent)
@@ -40,6 +41,9 @@ const UserParties = ({ parties, owner, username }) => {
         }
     }, [parties])
 
+    const handleRequestColor = () => {
+        setColorBlue(false)
+    }
 
     return (
         <UserPartyStyle>
@@ -48,12 +52,13 @@ const UserParties = ({ parties, owner, username }) => {
                 {parties.map(party =>
                     <div className='content' onClick={() => {
                         setActiveParty(party)
+                        handleRequestColor()
                     }} >
                         <div>
                             <h3>{party?.title}</h3>
                         </div>
                         <div>
-                            <PartyCounter requests={party.requests} />
+                            <PartyCounter colorBlue={colorBlue} requests={party.requests} />
                         </div>
                     </div>
                 )}

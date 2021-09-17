@@ -7,7 +7,7 @@ import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";
 import EditProfileForm from "./EditProfile";
-import UserParties from "./ProfileParties";
+import UserParties from "./UserParties";
 import './Profile.css'
 
 export default function Profile({ users, parties, roles, jobs }) {
@@ -19,8 +19,11 @@ export default function Profile({ users, parties, roles, jobs }) {
     const [focus, setFocus] = useState('Parties')
     const [showEditModal, setShowEditModal] = useState(false)
 
+
     const user = useSelector(state => state.session.profile)
     const viewId = useSelector(state => state.session?.user?.id)
+    console.log('THIS IS THE USER ----->', user)
+    console.log('THIS IS THE VIEW ID ----->', viewId)
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
     const userPostsState = useSelector(state => state.posts?.userPosts)
     const userPosts = Object.values(userPostsState)
@@ -73,15 +76,18 @@ export default function Profile({ users, parties, roles, jobs }) {
                     </div>
                 </div>
                 <>
-                    <button onClick={handleClickEdit}>Edit Profile</button>
-                    {showEditModal ?
-                        <Modal onClose={() => setShowEditModal(false)}>
-                            <EditProfileForm jobs={jobs} closeEditModal={closeEditModal} />
-                            <button onClick={closeEditModal}>
-                                Cancel
-                            </button>
-                        </Modal>
-                        : <></>}
+                    {user && user.id === viewId &&
+                        <button onClick={handleClickEdit}>Edit Profile</button>
+                    }
+                    {
+                        showEditModal ?
+                            <Modal onClose={() => setShowEditModal(false)}>
+                                <EditProfileForm jobs={jobs} closeEditModal={closeEditModal} />
+                                <button onClick={closeEditModal}>
+                                    Cancel
+                                </button>
+                            </Modal>
+                            : <></>}
                 </>
             </div>
             <div className='tab-bar'>

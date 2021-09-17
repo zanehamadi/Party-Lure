@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import EditCommentForm from './editComment';
+import EditCommentForm from './editCommentForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComment } from '../../store/comments';
 
@@ -9,7 +9,7 @@ export default function Comment({ comments, post }) {
     const dispatch = useDispatch();
     const comment = comments?.find(comment => comment.id === +id)
 
-    const user = useSelector(state=>state.session.user)
+    const user = useSelector(state => state.session.user)
     const userId = user?.id
 
     let hideEdit = true
@@ -26,16 +26,14 @@ export default function Comment({ comments, post }) {
     //     hideEdit = !hideEdit
     //     hideDelete = !hideDelete
     // }
-    
+
     return (
         <>
             <div>
                 {comment?.content}
             </div>
-            {/* <button>Edit Post</button>
-            <button>Delete Post</button> */}
             <div hidden={hideEdit}>
-                <EditCommentForm comment={comment} post={post} hideEdit={hideEdit} hideDelete={hideDelete}/>
+                <EditCommentForm comment={comment} post={post} hideEdit={hideEdit} hideDelete={hideDelete} />
             </div>
         </>
     )

@@ -1,13 +1,26 @@
 
+import styled from "styled-components"
 
-const PartyCounter = ({requests}) => {
+/*
+If the array of requests is greater than 0 then turn the color red
+else turn the color blue
 
-    console.log('look at requests',requests)
+If the array of requests is greater than 0 and hasn't activated an on click then the color is red
+number > 0 && onClick={handleRequestColor} ? 'red' : 'blue'
+else the color is blue?
+*/
+const PartyCounter = ({ requests, colorBlue }) => {
+
+    const PaintCounter = styled.div`
+    color: ${props => props.number > 0 && colorBlue ? 'red' : 'blue'}
+`
+
     let num_reqs = requests.length
-    return(
-        <div>
+
+    return (
+        <PaintCounter colorBlue={colorBlue} number={num_reqs}>
             {num_reqs}
-        </div>
+        </PaintCounter>
     )
 }
 

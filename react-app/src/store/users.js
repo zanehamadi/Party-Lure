@@ -23,7 +23,6 @@ export const getUsers = () => async (dispatch) => {
 };
 
 export const thunk_updateUser = (user) => async (dispatch) => {
-    console.log('THUNK USER', user)
 
     const form = new FormData()
 

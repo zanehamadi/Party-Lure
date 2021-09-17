@@ -33,15 +33,12 @@ def request_party(party_id):
     if len(party_dict["users"]) >= 4:
         return {"errors": ['Party is full']}
 
-    print('REQUESTS BEFORE', party.to_dict()['requests'])
 
     party.requests.append(user)
 
     db.session.add(party)
 
     db.session.commit()
-
-    print('REQUESTS After', party.to_dict()['requests'])
 
     return party.to_dict()
 
@@ -65,7 +62,7 @@ def accept_request(party_id):
     party.users.append(user)
 
     db.session.add(party)
-    print('USERS AFTER', party.to_dict()['users'])
+
     db.session.commit()
 
     return party.to_dict()
@@ -79,7 +76,7 @@ def deny_request(party_id):
     user = User.query.get(int(user_id))
 
     party = Party.query.get(int(party_id))
-    print('USERS BEFORE', party.to_dict()['users'])
+
     party.requests.remove(user)
 
     db.session.add(party)
