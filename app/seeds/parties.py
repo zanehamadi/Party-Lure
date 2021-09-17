@@ -1,4 +1,5 @@
 
+from random import randrange
 from app.models.party import Party
 import datetime
 from operator import pos
@@ -20,7 +21,7 @@ def seed_parties():
         del user_dict[str(owner_id)]
         owner = User.query.get(owner_id)
         party_members = [owner]
-        for i in range(3):
+        for i in range(randrange(3)):
             party_members.append(User.query.get(assign_from_dict(user_dict,1)))
 
         new_party = Party(
