@@ -13,10 +13,10 @@ export default function EditCommentFormModal({ comment, post, hideEdit, hideDele
     const closeModal = () => {
         setShowModal(false)
     }
-    console.log('FINDING THE COMMENT IN THE MODAL', comment)
+
     return (
         <>
-            <button onClick={handleClick} id="editCommentBut">Edit Comment</button>
+            <button onClick={handleClick} className="editCommentBut">Edit</button>
             {showModal && <Modal onClose={() => setShowModal(false)}>
                 <EditCommentForm closeModal={closeModal} comment={comment} post={post} hideEdit={hideEdit} hideDelete={hideDelete} />
             </Modal>}

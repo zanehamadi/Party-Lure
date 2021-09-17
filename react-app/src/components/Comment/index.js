@@ -3,22 +3,21 @@ import { useEffect } from 'react';
 import EditCommentForm from './editCommentForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComment } from '../../store/comments';
+import EditCommentFormModal from './editCommentModal';
+import { Link } from 'react-router-dom';
 
-export default function Comment({ comments, post }) {
-    const { id } = useParams();
-    const dispatch = useDispatch();
-    const comment = comments?.find(comment => comment.id === +id)
+export default function Comment({comment}) {
 
+    console.log('prepping', comment)
     const user = useSelector(state => state.session.user)
     const userId = user?.id
 
-    let hideEdit = true
-    let hideDelete = true
-
-    if (comment?.user_id === userId) {
-        hideEdit = false
-        hideDelete = false
+    const ownsComment = (comment) => {
+        if (comment?.user_id === userId) {
+            return true
+        }
     }
+
     // useEffect(() => {
     //     dispatch(getComment(id));
     // }, [id, dispatch]);
@@ -29,12 +28,17 @@ export default function Comment({ comments, post }) {
 
     return (
         <>
-            <div>
-                {comment?.content}
-            </div>
-            <div hidden={hideEdit}>
-                <EditCommentForm comment={comment} post={post} hideEdit={hideEdit} hideDelete={hideDelete} />
-            </div>
+        <div key={comment?.id} className="commentContainer postPage">
+        <div id="picNamePost">
+            <img src={comment.profile_url} className="commentPP" />
+            <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
+            <span id="datePrev">{comment?.created_at}</span>
+        {user && ownsComment(comment) &&
+            <EditCommentFormModal comment={comment} />
+        }
+        </div>
+        <span id="commentContent">{comment.content}</span>
+        </div>
         </>
     )
 }
