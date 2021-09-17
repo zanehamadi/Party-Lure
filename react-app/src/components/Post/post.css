@@ -63,7 +63,10 @@
     margin-bottom: 2rem;
     flex-direction: row;
     align-items: center;
-    
+    /* background-color: #454a52; */
+    border: solid 2px #25282c;
+    color: white;
+    padding-right: 1rem;
     /* grid-area:"commentContainer" */
 
 }
@@ -72,6 +75,12 @@
     display: flex;
     flex-direction: column;
     margin-right: 2rem;
+    background-color: #1e2024;
+    border: solid 2px #25282c;
+    width: 10rem;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     
 }
 
@@ -84,7 +93,7 @@
 }
 
 #datePrev{
-    font-size: .8rem;
+    font-size: .4rem;
 }
 
 #usernamePrev{
@@ -93,20 +102,27 @@
     border:transparent;
     /* transition: background-color 2s ease-in-out; */
     transition: background-color 0.2s linear;
+    color: white;
+    font-size: .8rem;
+
+
 
 }
 
 #usernamePrev:hover{
     cursor: pointer;
-    background-color: rgb(175, 231, 225);
-    border-color: turquoise;
+    background-color: #b3bece;
     opacity: 1;
     /* transition: 10s; */
 }
 
 .commentPP{
-    border-radius: 80%;
-    border-color: black;
+    border-radius: 5%;
+    border: solid 2px #25282c;
     width: 5rem;
     height: 5rem;
+}
+
+#commentContent{
+    font-size: .7em;
 }
