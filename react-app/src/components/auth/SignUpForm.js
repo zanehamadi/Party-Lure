@@ -28,11 +28,13 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, jobId, level, image));
+      const data = await dispatch(signUp(username, email, password, jobId, level, image))
       if (data) {
-        setErrors(data)
+          return setErrors(data)
       }
     }
+    console.log("REACHED THE ERROR")
+    return setErrors(['Confirm Password field must be the same as the Password field']);
   };
   const updateProfilePic = (e) => {
     let file = e.target.files[0]

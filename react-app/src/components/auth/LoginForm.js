@@ -66,7 +66,7 @@ const LoginForm = () => {
               className="form-input"
             />
           </div>
-          <button className="signupButton" type='submit'>Login</button>
+          <button className="signupButton" id="login-btn" type='submit'>Login</button>
         </form>
       </div>
     </LoginStyle>
