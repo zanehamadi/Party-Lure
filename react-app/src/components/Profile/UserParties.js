@@ -10,6 +10,7 @@ import UserMemberParties from "./UserMemberParties"
 const UserPartyStyle = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
     .content{
         display:flex;
         gap: 10px;
@@ -20,18 +21,20 @@ const UserPartyStyle = styled.div`
         min-height: 300px;
         padding:2%;
         border-radius: 10px;
-        min-width: 200px;
+        min-width: 300px;
     }
     .right-side{
         background-color: #24282d;
         margin: 2%;
-      
         padding:2%;
         border-radius: 10px;
-        min-width: 200px;
+        min-width: 300px;
     }
     .left-side h2{
         font-size: 20px;
+    }
+    .your-parties{
+        min-height: 150px;
     }
 `
 
@@ -82,6 +85,7 @@ const UserParties = ({ parties, owner, username }) => {
     return (
         <UserPartyStyle>
             <div className='left-side'>
+                <div className ='your-parties'>
                { parties && <h2>{!owner ? (username + `'s`) : 'Your'} Parties</h2> }
                 {parties.map(party =>
                 <PartyStyle>
@@ -98,6 +102,7 @@ const UserParties = ({ parties, owner, username }) => {
                     </div>
                     </PartyStyle>
                 )}
+                </div>
                 <div>
                     <UserMemberParties owner = {owner} />
                 </div>
@@ -106,10 +111,10 @@ const UserParties = ({ parties, owner, username }) => {
                 {parties && activePartyMembers &&
                     <PartyMembers members={activePartyMembers} />
                 }
-                {parties && activePartyRequests && activePartyId &&
+                {owner && parties && activePartyRequests && activePartyId &&
                     < ProfileReceivedRequests requests={activePartyRequests} partyId={activePartyId} userId={userId} />
                 }
-                {userId && sentRequests && <ProfileSentRequests requests={sentRequests} userId={userId} />
+                {owner && userId && sentRequests && <ProfileSentRequests requests={sentRequests} userId={userId} />
 
                 }
             </div>

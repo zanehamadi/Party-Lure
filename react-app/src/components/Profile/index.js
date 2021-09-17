@@ -112,7 +112,7 @@ export default function Profile({ users, parties, roles, jobs }) {
             <h2>Posts</h2>
             {
                 userPosts && userPosts.map(post =>
-                    <div>
+                    <div key = {post.id}>
                         <Link to={`/posts/${post.id}`}>{post.title}</Link>
                     </div>
                 )
