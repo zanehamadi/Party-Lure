@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router';
 import CreateCommentForm from '../Comments/commentForm';
 import EditPostForm from '../Posts/EditPostForm';
+import Comment from '../Comment';
 import { goDeletePost } from '../../store/posts';
 import EditCommentFormModal from '../Comment/editCommentModal';
 import { Link } from 'react-router-dom';
@@ -43,11 +44,6 @@ export default function Post({ comments, parties }) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [isPartyFull, setIsPartyFull] = useState(false)
 
-    const ownsComment = (comment) => {
-        if (comment?.user_id === sessionUser?.id) {
-            return true
-        }
-    }
 
 
     const deleteFunc = () => {
@@ -210,22 +206,10 @@ export default function Post({ comments, parties }) {
                     <></>}
             </div>
 
-
-
             <div>
-
                 {postsComments.map(comment =>
-                    <div key={comment?.id} className="commentContainer postPage">
-                        <div id="picNamePost">
-                            <img src={comment.profile_url} className="commentPP" />
-                            <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
-                            <span id="datePrev">{comment?.created_at}</span>
-                        </div>
-                        <span id="commentContent">{comment.content}</span>
-                        {session && ownsComment(comment) &&
-                            <EditCommentFormModal comment={comment} />
-                        }
-
+                    <div>
+                        <Comment comment={comment} />
                     </div>
                 )}
 
