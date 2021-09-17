@@ -1,0 +1,21 @@
+.edit-group {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px;
+}
+
+.edit-comment-btn {
+  border-radius: 4px;
+  /* color: white; */
+}
+
+#del-comment {
+  width: 370px;
+  /* background-color: #b92b27; */
+}
+
+.submit {
+  /* background-color: #4caf50; */
+  position: relative;
+  top: 20px;
+}

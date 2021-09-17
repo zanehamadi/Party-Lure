@@ -43,8 +43,8 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
         <section className="editContainer">
             <div>
 
-                <form onSubmit={handleSubmit}>
-                    <div>
+                <form className='create-post-form' onSubmit={handleSubmit}>
+                    <div className='form-group'>
                         <label htmlFor='profile-pic'>Profile Picture</label>
                         <input
                             type='file'
@@ -52,13 +52,14 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
                             id='profile-pic'
                             // value = {image}
                             onChange={updateImage}
+                            className='form-control'
                         />
                     </div>
-                    <div>
+                    <div className='form-group'>
                         <label htmlFor='level'>Level: </label>
-                        <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
+                        <input name='level' className='form-control' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
                     </div>
-                    <div>
+                    <div className='form-group'>
                         <label>Job</label>
                         <select
                             name='jobId'
