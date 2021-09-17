@@ -20,7 +20,7 @@ const LogoutButton = () => {
   <ButtonStyle>
       <button className = 'styled-button' onClick={onLogout}>
           Logout
-          </button>
+      </button>
   </ButtonStyle>);
 };
 
