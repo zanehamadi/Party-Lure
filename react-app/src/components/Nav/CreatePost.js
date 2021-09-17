@@ -70,7 +70,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
 
     const changeActive = (e) => {
         let active = document.querySelector('.activeRole')
-        active.innerHTML = e.target.dataset.name
+        active.style.backgroundImage = `url('${e.target.dataset.url})`
         let roleCopy = { ...role }
         roleCopy[active.id] = e.target.value
         setRole({ ...roleCopy })
@@ -146,7 +146,18 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                 <div className = 'form-group'>
                     <label htmlFor='title'>Role: </label>
                     <div className = 'role-picker'>
-                        <div onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>Role1</div> <img src <div onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>Role2</div> <div onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>Role3</div>
+                    <div className = 'form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
+                        <img>
+                        </img>
+                    </div>
+                    <div className = 'form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
+                         <img>
+                        </img>
+                    </div>
+                    <div className = 'form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
+                         <img>
+                        </img>
+                    </div>
                     </div>
                     {selectRole &&
                         <ul className = 'role-selection'>
