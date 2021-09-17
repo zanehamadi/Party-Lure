@@ -16,7 +16,7 @@ export default function EditCommentFormModal({ comment, post, hideEdit, hideDele
 
     return (
         <>
-            <button onClick={handleClick} className="editCommentBut">Edit Comment</button>
+            <button onClick={handleClick} className="editCommentBut">Edit</button>
             {showModal && <Modal onClose={() => setShowModal(false)}>
                 <EditCommentForm closeModal={closeModal} comment={comment} post={post} hideEdit={hideEdit} hideDelete={hideDelete} />
             </Modal>}

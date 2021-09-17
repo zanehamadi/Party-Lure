@@ -33,11 +33,11 @@ export default function Comment({comment}) {
             <img src={comment.profile_url} className="commentPP" />
             <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
             <span id="datePrev">{comment?.created_at}</span>
-        </div>
-        <span id="commentContent">{comment.content}</span>
         {user && ownsComment(comment) &&
             <EditCommentFormModal comment={comment} />
         }
+        </div>
+        <span id="commentContent">{comment.content}</span>
         </div>
         </>
     )
