@@ -62,7 +62,6 @@ export const acceptPartyRequest = (userId, partyId) => async (dispatch) => {
     let data
     if (res.ok) {
         data = await res.json()
-        console.log(data)
         dispatch(acceptRequest(data))
     }
 }

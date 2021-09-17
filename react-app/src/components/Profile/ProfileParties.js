@@ -5,6 +5,7 @@ import PartyCounter from "./PartyCounter"
 import PartyMembers from "./PartyMembers"
 import ProfileReceivedRequests from "./ProfileReceivedRequests"
 import ProfileSentRequests from "./ProfileSentRequests"
+import UserMemberParties from "./UserMemberParties"
 
 const UserPartyStyle = styled.div`
     display: flex;
@@ -57,6 +58,9 @@ const UserParties = ({ parties, owner, username }) => {
                         </div>
                     </div>
                 )}
+                <div>
+                    <UserMemberParties />
+                </div>
             </div>
             <div className='right-side'>
                 {parties && activePartyMembers &&
