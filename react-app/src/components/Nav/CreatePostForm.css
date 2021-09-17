@@ -61,3 +61,11 @@ ul.role-selection{
     color:white;
     width: auto;
 }
+.role-picker{
+    display: flex;
+}
+.form-role-icon{
+    height: 24px;
+    width:24px;
+    margin: 10px;
+}
