@@ -151,25 +151,26 @@ export default function Post({ comments, parties }) {
 
     return (
         <div className="postPage">
-            {console.log(party)}
-            <h1 className="postTitle postPage">
-                {post?.title}
-            </h1>
-            <div className="postBody postPage">
-                {post?.content}
-            </div>
-
-            <div className="partyContainer">
-                {party?.users?.map(user =>
-                    <div className="pMemberContainer">
-                        <div> <img src={user.profile_url} width="100" height="100"/> </div>
-                        <div>{`User: ${user.username} `}</div>
-                        <div>{`Level: ${user.level} `}</div>
-                        <div>{`Role: ${user.role}`}</div>
-                        <div><img src={user.role_url}/> </div>
-                        <div>{`Job: ${user.job}`}</div>
-                    </div>
+            <div className="postTitleAndContent">
+                <h1 className="postTitle postPage">
+                    {post?.title}
+                </h1>
+                <div className="postBody postPage">
+                    {post?.content}
+                </div>
+                <h3 id="curPartyTag">Current Party:</h3>
+                <div className="partyContainer">
+                    {party?.users?.map(user =>
+                        <div className="pMemberContainer">
+                            <div> <img src={user.profile_url} className="userPFP"/> </div>
+                            <div>{`User: ${user.username} `}</div>
+                            <div>{`Level: ${user.level} `}</div>
+                            <div>{`Role: ${user.role}`}
+                            <img src={user.role_url} id="rolePartyImg"/> </div>
+                            <div>{`Job: ${user.job}`}</div>
+                        </div>
                     )}
+                </div>
 
             </div>
 

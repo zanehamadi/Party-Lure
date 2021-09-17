@@ -151,3 +151,30 @@
     background-color: #689e9296 ;
     transform: scale(1.01);
 }
+
+
+.userPFP{
+    width:100px; 
+    height:100px;
+    border: solid 2px rgb(61, 61, 61);
+    box-shadow: 10px 10px 10px rgb(36, 36, 36);
+}
+
+.partyContainer{
+    width: 80rem;
+}
+
+.postTitleAndContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10rem;
+}
+
+#rolePartyImg{
+    width: 20px;
+}
+
+#curPartyTag{
+    margin-bottom: 100px;
+}
