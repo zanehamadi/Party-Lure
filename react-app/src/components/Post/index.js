@@ -12,7 +12,7 @@ import { Modal } from "../../context/Modal";
 import './post.css'
 
 
-export default function Post({ comments, parties }) {
+export default function Post({ comments, parties, users }) {
     const history = useHistory()
     const aTypeSlice = useSelector(state => state.activityTypes)
     const activitySlice = useSelector(state => state.activities)
@@ -32,6 +32,7 @@ export default function Post({ comments, parties }) {
 
     const post = posts?.find(post => post.id === +id)
     const party = parties?.find(party => party.post_id === +id)
+    const poster = users?.find(user => user?.id === post?.user_id )
 
     let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
 
@@ -155,6 +156,11 @@ export default function Post({ comments, parties }) {
                 <h1 className="postTitle postPage">
                     {post?.title}
                 </h1>
+                <h3 id="posterName"> {'posted by '}
+                    <Link to={`/users/${poster?.id}`} id="posterLink">
+                    {poster?.username}
+                    </Link>
+                </h3>
                 <div className="postBody postPage">
                     {post?.content}
                 </div>
