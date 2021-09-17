@@ -92,7 +92,7 @@ function App() {
           <Posts posts={posts} />
         </Route>
         <Route path='/posts/:id' exact={true}>
-          <Post posts={posts} comments={comments} parties={parties} />
+          <Post posts={posts} comments={comments} parties={parties} users={users}/>
         </Route>
         <Route path='/' exact={true} >
           <Home sessionUser={sessionUser} authenticated={authenticated} />
