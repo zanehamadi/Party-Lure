@@ -31,7 +31,7 @@ const PartyMembers = ({members}) => {
             </div>
             <div className = 'left'>
             <div className = 'username'>
-                <Link to = {`users/${user.id}`}>
+                <Link to = {`${user.id}`}>
                     {user.username}
                 </Link>
 

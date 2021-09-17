@@ -56,6 +56,7 @@ function Search({posts, activities, activityTypes}) {
         if( (title || userClass) || (role || activity) ){
             let postsArr = posts
             postsArr.pop()
+            postsArr.pop()
             if(title){
                 setShowResults(true)
                 postsArr = postsArr.filter(post => ((post?.title).toUpperCase()).includes((title.toUpperCase())))

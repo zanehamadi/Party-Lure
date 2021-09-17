@@ -39,7 +39,7 @@ const ReceivedRequest = ({ partyId, userId, username }) => {
     `
     return (
         <RequestStyle>
-            <span>Request from <Link to = {`/users/userID`}>{username}</Link></span>
+            <span>Request from <Link to = {`/users/${userId}`}>{username}</Link></span>
             <div className = 'request-buttons'>
             <ButtonStyle>
             <button className = 'styled-button' onClick={acceptRequest}>
