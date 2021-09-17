@@ -221,7 +221,7 @@ export default function Post({ comments, parties }) {
                             <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
                             <span id="datePrev">{comment?.created_at}</span>
                         </div>
-                        <span>{comment.content}</span>
+                        <span id="commentContent">{comment.content}</span>
                         {session && ownsComment(comment) &&
                             <EditCommentFormModal comment={comment} />
                         }
