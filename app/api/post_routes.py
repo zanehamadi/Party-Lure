@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, session, request
 import datetime
 from app.models import db, User, Post, Comment, Party
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import func
 
 post_routes = Blueprint('posts', __name__)
 
@@ -22,10 +23,12 @@ def post(post_id):
     post = Post.query.get(post_id)
     return post.to_dict()
 
+
 @post_routes.route('/user/<int:user_id>')
 def user_posts(user_id):
     posts = Post.query.filter(Post.user_id == int(user_id))
     return {post.id: post.to_dict() for post in posts}
+
 
 @post_routes.route('/', methods=['POST'])
 def new_post():
@@ -90,7 +93,6 @@ def new_post():
         db.session.add(party)
         db.session.commit()
 
-
         return post.to_dict()
 
 
@@ -109,4 +111,16 @@ def get_post_comments(post_id):
     comments = Comment.query.filter(Comment.post_id == post_id)
     if comments:
         return {comment.id: comment.to_dict() for comment in comments}
+    return "No Comments"
+
+
+# route to get all top 10 most actice posts
+@post_routes.route('/home')
+# @login_required
+def get_top_10():
+    posts = db.session.query(Post).join(Comment).group_by(
+        Post.id).order_by(func.count().desc()).all()
+    data = posts[0:10]
+    if data:
+        return {"posts": [post.to_dict() for post in data]}
     return "No Comments"
