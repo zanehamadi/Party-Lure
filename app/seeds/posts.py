@@ -1,4 +1,5 @@
 from faker import Faker
+from random import randrange
 import datetime
 
 from app.seeds.utils import assign_from_dict, gen_count_dict
@@ -18,8 +19,8 @@ def seed_posts(num_posts = 50):
             title = fake.paragraph(nb_sentences=2),
             content = fake.paragraph(nb_sentences=5),
             user_id = assign_from_dict(user_dict,3),
-            recruit_level = 2,
-            recruit_role = [1,2],
+            recruit_level = randrange(1,50),
+            recruit_role = [randrange(1,4),randrange(1,4)],
             activity_id = assign_from_dict(activity_dict,2),
             open = True,
             created_at=datetime.datetime.now(),
