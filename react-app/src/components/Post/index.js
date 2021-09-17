@@ -155,6 +155,7 @@ export default function Post({ comments, parties }) {
 
     return (
         <div className="postPage">
+            {console.log(party)}
             <h1 className="postTitle postPage">
                 {post?.title}
             </h1>
@@ -165,10 +166,11 @@ export default function Post({ comments, parties }) {
             <div className="partyContainer">
                 {party.users.map(user => 
                     <div className="pMemberContainer">
-                        <img src={user.role_url}/>
+                        <div> <img src={user.profile_url} width="100" height="100"/> </div>
                         <div>{`User: ${user.username} `}</div>
                         <div>{`Level: ${user.level} `}</div>
                         <div>{`Role: ${user.role}`}</div>
+                        <div><img src={user.role_url}/> </div>
                         <div>{`Job: ${user.job}`}</div>
                     </div>
                     )}
