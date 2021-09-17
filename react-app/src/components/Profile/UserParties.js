@@ -9,10 +9,46 @@ import UserMemberParties from "./UserMemberParties"
 
 const UserPartyStyle = styled.div`
     display: flex;
-    flex-direction:
+    flex-direction: row;
+    justify-content: center;
     .content{
         display:flex;
         gap: 10px;
+    }
+    .left-side{
+        background-color: #24282d;
+        margin: 2%;
+        min-height: 300px;
+        padding:2%;
+        border-radius: 10px;
+        min-width: 300px;
+    }
+    .right-side{
+        background-color: #24282d;
+        margin: 2%;
+        padding:2%;
+        border-radius: 10px;
+        min-width: 300px;
+    }
+    .left-side h2{
+        font-size: 20px;
+    }
+    .your-parties{
+        min-height: 150px;
+    }
+`
+
+export const PartyStyle = styled.div`
+    background-color: #32373e;
+    padding: 4%;
+    border-radius: 10px;
+    .title{
+        font-size: 14px;
+    }
+    margin:2%;
+    :hover{
+        background-color:#39414c;
+        cursor: pointer;
     }
 `
 const UserParties = ({ parties, owner, username }) => {
@@ -49,32 +85,36 @@ const UserParties = ({ parties, owner, username }) => {
     return (
         <UserPartyStyle>
             <div className='left-side'>
-                <h2>{!owner ? (username + `'s`) : 'Your'} Parties</h2>
+                <div className ='your-parties'>
+               { parties && <h2>{!owner ? (username + `'s`) : 'Your'} Parties</h2> }
                 {parties.map(party =>
+                <PartyStyle>
                     <div className='content' onClick={() => {
                         setActiveParty(party)
                         handleRequestColor()
                     }} >
                         <div>
-                            <h3>{party?.title}</h3>
+                            <h3 className = 'title'>{party?.title}</h3>
                         </div>
                         <div>
                             <PartyCounter colorBlue={colorBlue} requests={party.requests} />
                         </div>
                     </div>
+                    </PartyStyle>
                 )}
+                </div>
                 <div>
-                    <UserMemberParties />
+                    <UserMemberParties owner = {owner} />
                 </div>
             </div>
             <div className='right-side'>
                 {parties && activePartyMembers &&
                     <PartyMembers members={activePartyMembers} />
                 }
-                {parties && activePartyRequests && activePartyId &&
+                {owner && parties && activePartyRequests && activePartyId &&
                     < ProfileReceivedRequests requests={activePartyRequests} partyId={activePartyId} userId={userId} />
                 }
-                {userId && sentRequests && <ProfileSentRequests requests={sentRequests} userId={userId} />
+                {owner && userId && sentRequests && <ProfileSentRequests requests={sentRequests} userId={userId} />
 
                 }
             </div>

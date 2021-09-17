@@ -17,14 +17,6 @@ export default function Comment({comment}) {
         }
     }
 
-    // useEffect(() => {
-    //     dispatch(getComment(id));
-    // }, [id, dispatch]);
-    // const handleClick = () => {
-    //     hideEdit = !hideEdit
-    //     hideDelete = !hideDelete
-    // }
-
     return (
         <>
         <div key={comment?.id} className="commentContainer postPage">

@@ -30,13 +30,14 @@ export default function Profile({ users, parties, roles, jobs }) {
     const userPosts = Object.values(userPostsState)
 
     useEffect(() => {
+        
         if (id == viewId) {
             dispatch(getReceivedRequests(id))
             dispatch(getSentRequests(id))
             setOwner(true)
             return
         }
-        return
+        return(setOwner(false))
     }, [dispatch, id, viewId])
 
     useEffect(() => {
@@ -112,7 +113,7 @@ export default function Profile({ users, parties, roles, jobs }) {
             <h2>Posts</h2>
             {
                 userPosts && userPosts.map(post =>
-                    <div>
+                    <div key = {post.id}>
                         <Link to={`/posts/${post.id}`}>{post.title}</Link>
                     </div>
                 )

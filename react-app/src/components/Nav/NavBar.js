@@ -22,6 +22,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
   const posts = Object.values(postsSlice)
 
   return (
+
       <div className ='nav-container'>
     <nav>
       <ul>
@@ -92,6 +93,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
         </li>
       </ul>
     </nav>
+
     </div>
   );
 }
