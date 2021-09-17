@@ -7,7 +7,7 @@ import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";
 import EditProfileForm from "./EditProfile";
-import UserParties from "./ProfileParties";
+import UserParties from "./UserParties";
 import './Profile.css'
 
 export default function Profile({ users, parties, roles, jobs }) {

@@ -2,6 +2,7 @@ import { useParams, useHistory } from 'react-router';
 import CreateCommentForm from '../Comments/commentForm';
 import EditPostForm from '../Posts/EditPostForm';
 import { goDeletePost } from '../../store/posts';
+import EditCommentFormModal from '../Comment/editCommentModal';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,8 +32,10 @@ export default function Post({ comments, parties, }) {
     const post = posts?.find(post => post.id === +id)
     const party = parties.find(party => party.post_id === +id)
 
-    let userComments = comments?.filter((comment) => comment?.post_id === post?.id)
+    let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
+
     const session = useSelector(state => state?.session)
+    const sessionUser = useSelector(state => state.session?.user)
     const isLogged = session?.user ? true : false
     const isUser = session?.user ? session?.user.id === post?.user_id : false
 
@@ -40,7 +43,11 @@ export default function Post({ comments, parties, }) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [isPartyFull, setIsPartyFull] = useState(false)
 
-
+    const ownsComment = (comment) => {
+        if (comment?.user_id === sessionUser?.id) {
+            return true
+        }
+    }
 
 
     const deleteFunc = () => {
@@ -207,7 +214,7 @@ export default function Post({ comments, parties, }) {
 
             <div>
 
-                {userComments.map(comment =>
+                {postsComments.map(comment =>
                     <div key={comment?.id} className="commentContainer postPage">
                         <div id="picNamePost">
                             <img src={comment.profile_url} className="commentPP" />
@@ -216,7 +223,9 @@ export default function Post({ comments, parties, }) {
                         </div>
 
                         <Link to={`/comments/${comment?.id}`}>{comment.content}</Link>
-
+                        {session && ownsComment(comment) &&
+                            <EditCommentFormModal comment={comment} />
+                        }
                     </div>
                 )}
 
