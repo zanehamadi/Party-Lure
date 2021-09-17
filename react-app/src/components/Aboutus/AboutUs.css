@@ -1,0 +1,31 @@
+.routeDiv {
+    position: relative;
+    max-width: 60%;
+    height:100vh;
+    margin: auto;
+    padding: 30px;
+
+}
+
+.routeContainer {
+    transform: translate(0%, 78%);
+}
+
+.foohfo {
+    display: flex;
+    justify-content: center;
+}
+
+.top404message {
+    text-align: center;
+}
+
+.bottom404message {
+    text-align:center;
+}
+
+.foohfoimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
