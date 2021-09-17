@@ -1,54 +1,68 @@
 /* TODO Add site wide styles */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,400&display=swap');
-h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
-body, header, nav {
-    font-size: 1rem;
-    color: white;
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    font-weight: normal;
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,400&display=swap");
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+ol,
+li,
+ul,
+div,
+span,
+body,
+header,
+nav {
+  font-size: 1rem;
+  color: white;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-weight: normal;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 a {
-color:orange
+  color: orange;
 }
 
-
-
-#root{
- display:grid;
- grid-template-rows: 50px auto;
- grid-template-columns: 1fr .1fr;
-grid-template-areas: 'banner banner'
-                    'main nav';
- height: 100vh;
-
-}
-html{
-    background-color: #1a1c1f
+a:hover {
+  color: rgb(74, 162, 143);
 }
 
+#root {
+  display: grid;
+  grid-template-rows: 50px auto;
+  grid-template-columns: 1fr 0.1fr;
+  grid-template-areas:
+    "banner banner"
+    "main nav";
+  height: 100vh;
+}
+html {
+  background-color: #1a1c1f;
+}
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
+  width: 10px;
+}
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5em;
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5em;
+}
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
