@@ -13,6 +13,7 @@ import requestReducer from './party_request';
 
 
 import jobs from './job'
+import userPartyReducer from './user-parties';
 
 const rootReducer = combineReducers({
   session,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   comments: commentsReducer,
   activities: activitiesReducer,
   activityTypes: activityTypesReducer,
-  requests: requestReducer
+  requests: requestReducer,
+  userParties: userPartyReducer
 });
 
 

@@ -88,6 +88,13 @@ def get_user_parties(user_id):
     this_users_parties = Party.query.filter(Party.owner_id == int(user_id))
 
     return {el.id:el.to_dict() for el in this_users_parties}
+@party_routes.route('/user/<int:user_id>/member')
+def get_user_member_parties(user_id):
+    user = User.query.get(int(user_id))
+    parties_where_member = Party.query.filter(Party.users.contains(user)).filter(Party.owner_id != int(user_id))
+    return {el.id:el.to_dict() for el in parties_where_member}
+
+
 @party_routes.route('/user/<int:user_id>/sent')
 def get_sent_requests(user_id):
     user = User.query.get(int(user_id))
