@@ -119,11 +119,14 @@ const requestReducer = (state = initialState, action) => {
         case SEND_REQUEST:
             return { ...state, sent: { ...state.sent, [action.request.id]: action.request } }
         case REPLY:
-            let newState = { ...state }
+            let newState = { ...state, sent: {...state.sent}, received: {...state.rece} }
                 console.log('message recieved')
             if (state.received[action.request.id]) {
-                newState.received = {...newState.received, [action.request.id]: action.request}
-                delete newState.received[action.request.id]
+                console.log('changing hands')
+                newState.received = { ...newState.received}
+                newState.received[action.request.id] = {...action.request}
+                newState.received[action.request.id].requests = [...action.request.requests]
+                return { ...newState }
             }
             return newState
         case CANCEL:

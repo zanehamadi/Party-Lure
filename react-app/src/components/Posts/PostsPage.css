@@ -1,3 +1,4 @@
 .posts-container{
     margin: 2% 10% 2% 2%;
+    grid-area: main;
 }
