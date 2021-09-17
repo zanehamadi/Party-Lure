@@ -14,7 +14,7 @@ def seed_roles():
         elif role == 'Magical DPS':
             return "https://partylureawsbucket.s3.amazonaws.com/Magic_Ranged_DPS.png"
         elif role == 'Physical DPS':
-            return "https://partylureawsbucket.s3.amazonaws.com/Healer.png"
+            return "https://partylureawsbucket.s3.amazonaws.com/Melee_DPS.png"
 
     for role in roles:
         new_role = Role(name=role, created_at=datetime.datetime.now(

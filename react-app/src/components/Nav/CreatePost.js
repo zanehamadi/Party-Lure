@@ -86,95 +86,113 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
     };
 
     return (
-        <form className = 'create-post-form'onSubmit={createPost}>
+        <form className='create-post-form' onSubmit={createPost}>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>
-            <div className = 'form-group'>
+            <div className='form-group'>
                 <label htmlFor='title'>Title: </label>
-                <input className = 'form-control' name='title' type='text' placeholder='Set Title Name' value={title} onChange={updateTitle} />
+                <input className='form-control' name='title' type='text' placeholder='Set Title Name' value={title} onChange={updateTitle} />
             </div>
 
-            <div className = 'form-group'>
+            <div className='form-group'>
                 <label htmlFor='description'>Description: </label>
-                <textarea className = 'text-control'name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
-                </div>
-                <div className = 'form-group'>
-                    <label htmlFor='activityType'>Activity Type: </label>
-                    <select name='activityType' type='text' placeholder='Select Activity Type' value={activityType} onChange={updateActivityType}>
+                <textarea className='text-control' name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
+            </div>
+            <div className='form-group'>
+                <label htmlFor='activityType'>Activity Type: </label>
+                <select name='activityType' type='text' placeholder='Select Activity Type' value={activityType} onChange={updateActivityType}>
+                    <option value='' disabled={true}>
+                        Select a type
+                    </option>
+                    {activityTypes.map(activityType => {
+                        return (
+                            <option value={activityType.name} key={activityType.id}>
+                                {activityType.name}
+                            </option>
+                        )
+                    })}
+                </select>
+            </div>
+            {activityType &&
+                < div className='form-group' >
+                    <label htmlFor='activities'>Activities: </label>
+                    <select name='activities' type='text' placeholder='Select Activity' value={activity} onChange={updateActivity}>
                         <option value='' disabled={true}>
-                            Select a type
+                            Select an activity
                         </option>
-                        {activityTypes.map(activityType => {
-                            return (
-                                <option value={activityType.name} key={activityType.id}>
-                                    {activityType.name}
-                                </option>
-                            )
+                        {activities.map(activity => {
+
+                            if (activity.type === activityType) {
+                                return (
+                                    <option value={activity.id} key={activity.id}>
+                                        {activity.name}
+                                    </option>
+                                )
+                            } else {
+                                return null
+                            }
                         })}
                     </select>
                 </div>
-                {activityType &&
-                    < div className = 'form-group' >
-                        <label htmlFor='activities'>Activities: </label>
-                        <select name='activities' type='text' placeholder='Select Activity' value={activity} onChange={updateActivity}>
-                            <option value='' disabled={true}>
-                                Select an activity
-                            </option>
-                            {activities.map(activity => {
+            }
+            <div className='form-group'>
+                <label htmlFor='level'>Level: </label>
+                <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
+            </div>
 
-                                if (activity.type === activityType) {
-                                    return (
-                                        <option value={activity.id} key={activity.id}>
-                                            {activity.name}
-                                        </option>
-                                    )
-                                } else {
-                                    return null
-                                }
-                            })}
-                        </select>
-                    </div>
-                }
-                <div className = 'form-group'>
-                    <label htmlFor='level'>Level: </label>
-                    <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
-                </div>
-
-                <div className = 'form-group'>
-                    <label htmlFor='title'>Role: </label>
-                    <div className = 'role-picker'>
-                    <div className = 'form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
+            <div className='form-group'>
+                <label htmlFor='title'>Role: </label>
+                <div className='role-picker'>
+                    <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
                         <img>
                         </img>
                     </div>
-                    <div className = 'form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                         <img>
+                    <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
+                        <img>
                         </img>
                     </div>
-                    <div className = 'form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
-                         <img>
+                    <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
+                        <img>
                         </img>
                     </div>
-                    </div>
-                    {selectRole &&
-                        <ul className = 'role-selection'>
-                            {
-                                roles.map(role => {
-                                    return (
-                                        <>
-                                                <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
-                                                <label htmlFor={role.name}>{role.name}</label>
-                                        </>
-                                    )
-                                })
-                            }
-                        </ul>
-                    }
                 </div>
-                <button type='submit'>Create</button>
+                {selectRole &&
+                    <ul className='role-selection'>
+                        {
+                            roles.map(role => {
+                                return (
+                                    <>
+                                        <label>
+                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
+                                            {role.name}
+                                            <img src={role.icon_url}></img>
+                                        </label>
+                                        {/* <label>
+                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
+                                            {role.name}
+                                            <img src='https://partylureawsbucket.s3.amazonaws.com/Healer.png'></img>
+                                        </label>
+                                        <label>
+                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
+                                            {role.name}
+                                            <img src='https://partylureawsbucket.s3.amazonaws.com/Tank.png'></img>
+                                        </label>
+                                        <label>
+                                            <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
+                                            {role.name}
+                                            <img src='https://partylureawsbucket.s3.amazonaws.com/Tank.png'></img>
+                                        </label> */}
+                                    </>
+                                )
+                            })
+                        }
+                    </ul>
+                }
+            </div>
+            <button type='submit'>Create</button>
         </form >
     );
 };
