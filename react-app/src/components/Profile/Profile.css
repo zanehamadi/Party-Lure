@@ -68,8 +68,8 @@
 }
 
 #memeFriendPic:hover{
-  box-shadow: 10px 10px 10px black;
-  
+  box-shadow: 10px 10px 10px black;}
+
 .profile-username{
     font-size: 30px;
 }
@@ -79,4 +79,4 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-
+}
