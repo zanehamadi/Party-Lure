@@ -10,6 +10,7 @@ import EditProfileForm from "./EditProfile";
 import UserParties from "./UserParties";
 import './Profile.css'
 import ButtonStyle from "../Button/ButtonStyle";
+import PostDetails from "../Posts/PostDetails";
 
 export default function Profile({ users, parties, roles, jobs }) {
 
@@ -20,7 +21,7 @@ export default function Profile({ users, parties, roles, jobs }) {
     const [focus, setFocus] = useState('Parties')
     const [showEditModal, setShowEditModal] = useState(false)
 
-
+    useSelector(state => state.requests)
     const user = useSelector(state => state.session.profile)
     const viewId = useSelector(state => state.session?.user?.id)
     console.log('THIS IS THE USER ----->', user)
@@ -30,7 +31,7 @@ export default function Profile({ users, parties, roles, jobs }) {
     const userPosts = Object.values(userPostsState)
 
     useEffect(() => {
-        
+
         if (id == viewId) {
             dispatch(getReceivedRequests(id))
             dispatch(getSentRequests(id))
@@ -62,21 +63,11 @@ export default function Profile({ users, parties, roles, jobs }) {
     return (
         <div className='profile-page'>
             <div className='profile-header'>
-                <h1>
+                <div className = 'personal-info'>
+                <h1 className = 'profile-username'>
                     {`${user?.username}`}
                 </h1>
                 <img className='profile-pic' src={user?.profile_url} width={300} height={300} />
-                <div className='game-info'>
-                    <div>
-                        Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
-                    </div>
-                    <div>
-                        Job: {`${user?.job}`}
-                    </div>
-                    <div>
-                        {`Level: ${user?.level}`}
-                    </div>
-                </div>
                 <>
                     {user && user.id === viewId &&
                         <ButtonStyle>
@@ -95,6 +86,19 @@ export default function Profile({ users, parties, roles, jobs }) {
                             </Modal>
                             : <></>}
                 </>
+                </div>
+                <div className='game-info'>
+                    <div>
+                        Role: <img src={user?.role_url} width={24} height={24} /> {`${user?.role}`}
+                    </div>
+                    <div>
+                        Job: {`${user?.job}`}
+                    </div>
+                    <div>
+                        {`Level: ${user?.level}`}
+                    </div>
+                </div>
+
             </div>
             <div className='tab-bar'>
                 <div onClick={() => handleFocus('Parties')}>Parties</div>
@@ -114,7 +118,7 @@ export default function Profile({ users, parties, roles, jobs }) {
             {
                 userPosts && userPosts.map(post =>
                     <div key = {post.id}>
-                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        <PostDetails post = {post}/>
                     </div>
                 )
             }
