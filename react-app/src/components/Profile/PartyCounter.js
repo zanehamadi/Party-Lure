@@ -9,11 +9,11 @@ If the array of requests is greater than 0 and hasn't activated an on click then
 number > 0 && onClick={handleRequestColor} ? 'red' : 'blue'
 else the color is blue?
 */
+const PaintCounter = styled.div`
+color: ${props => props.number > 0 && colorBlue ? 'red' : 'blue'}
+`
 const PartyCounter = ({ requests, colorBlue }) => {
 
-    const PaintCounter = styled.div`
-    color: ${props => props.number > 0 && colorBlue ? 'red' : 'blue'}
-`
 
     let num_reqs = requests.length
 
