@@ -12,6 +12,7 @@
 
 .posts-container {
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
   justify-content: center;
 }
