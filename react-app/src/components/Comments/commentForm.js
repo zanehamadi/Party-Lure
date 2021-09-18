@@ -67,7 +67,7 @@ const CreateCommentForm = ({post}) => {
                     className="commentTextArea"
                 />
                 <ButtonStyle>
-                <button className="edit-btn edit5 commentButton styled-button" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
+                    <button className="edit-btn edit5 commentButton styled-button" type="submit" disabled={showValidations.length > 0}>Create Comment</button>
                 </ButtonStyle>
             </div>
         {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}

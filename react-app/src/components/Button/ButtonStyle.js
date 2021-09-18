@@ -16,7 +16,7 @@ const ButtonStyle = styled.div`
 .styled-button:hover{
     background-color: #689e9296 ;
     transform: scale(1.01);
-    pointer: cursor;
+    cursor: pointer;
 }
 
 `

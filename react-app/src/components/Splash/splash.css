@@ -21,11 +21,12 @@
     font-size: 1.5rem;
     width: 7rem;
     text-decoration: none;
-    
+    color: orange;
 }
 
 .splashLinks:hover{
     background-color: rgb(54, 53, 53);
+    cursor: pointer;
 }
 
 .splashLinkDiv{
@@ -35,5 +36,6 @@
     align-items: center;
     width: 20rem;
     margin-top: 1rem;
+    text-align: center;
 }
 
