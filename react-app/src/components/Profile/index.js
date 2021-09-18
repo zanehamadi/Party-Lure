@@ -105,8 +105,8 @@ export default function Profile({ users, parties, roles, jobs }) {
                     < UserParties parties={userParties} owner={owner} username={user?.username} />
                 }
                 {focus === 'Friends' &&
-                    <div>
-                        <img src='https://memegenerator.net/img/instances/50150131/heres-where-id-put-my-friends-if-i-had-any.jpg'></img>
+                    <div id="memeImgContainer">
+                        <img src='https://memegenerator.net/img/instances/50150131/heres-where-id-put-my-friends-if-i-had-any.jpg' id="memeFriendPic"></img>
                     </div>
                 }
             </div>

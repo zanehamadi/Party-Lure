@@ -42,3 +42,21 @@
   border: none;
   background-color: #7bc2b196;
 }
+
+
+#memeImgContainer{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+#memeFriendPic{
+  border: solid 3px black;
+  transition: box-shadow 2s;
+}
+
+#memeFriendPic:hover{
+  box-shadow: 10px 10px 10px black;
+}
