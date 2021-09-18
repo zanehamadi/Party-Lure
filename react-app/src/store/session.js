@@ -119,7 +119,7 @@ export const getOneUser = (userId) => async (dispatch) => {
   let data;
   if (response.ok) {
     data = await response.json()
-    console.log('GOT USER DATA', data)
+
     dispatch(getUser(data))
   }
 

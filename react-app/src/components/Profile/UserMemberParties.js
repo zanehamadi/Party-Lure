@@ -5,8 +5,32 @@ import { getMemberParties, goLeaveParty } from "../../store/user-parties"
 import ButtonStyle from "../Button/ButtonStyle"
 import {PartyStyle} from './UserParties'
 
+const MemberPartiesStyle = styled.div`
+h1 {
+    font-size: 20px;
+}
+.party-info {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #32373e;
+        padding: 4%;
+        border-radius: 10px;
+        margin:2%;
+        :hover{
+            background-color:#39414c;
+            cursor: pointer;
+        }
+    .title {
+        font-size: 14px;
+    }
+    .leave {
+        justify-self: flex-end;
+    }
+`
+
 const UserMemberParties = ({owner}) =>{
-    console.log('gettig user parties')
+
     const dispatch = useDispatch()
     const userId = useSelector(state => state?.session?.user?.id)
     const [parties,setParties] = useState([])
@@ -28,29 +52,6 @@ const UserMemberParties = ({owner}) =>{
         }
     }, [partiesState])
 
-    const MemberPartiesStyle = styled.div`
-    h1 {
-        font-size: 20px;
-    }
-    .party-info {
-            display:flex;
-            flex-direction: row;
-            justify-content: space-between;
-            background-color: #32373e;
-            padding: 4%;
-            border-radius: 10px;
-            margin:2%;
-            :hover{
-                background-color:#39414c;
-                cursor: pointer;
-            }
-        .title {
-            font-size: 14px;
-        }
-        .leave {
-            justify-self: flex-end;
-        }
-    `
 
     return(
         <MemberPartiesStyle>

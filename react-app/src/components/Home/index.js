@@ -15,12 +15,11 @@ function Home({ sessionUser, authenticated }) {
     const dispatch = useDispatch()
     let [activePosts, setActivePosts] = useState()
 
-
     useEffect(() => {
 
         const fetchData = async () => {
             let dispatchPosts = await dispatch(getActivePosts())
-            console.log("dispatch_POSTS", dispatchPosts)
+
             setActivePosts(dispatchPosts)
         }
         fetchData()
@@ -30,7 +29,6 @@ function Home({ sessionUser, authenticated }) {
     return (
         authenticated ?
             <>
-
                 <div className='home-container'>
                     <h1 id="welcome-text">Welcome back, <span id="username">{sessionUser?.username}</span>. <div> Here's some parties you may be interested in:</div></h1>
                     <div className='posts-container'>{activePosts?.posts && activePosts?.posts.map(post => {

@@ -15,7 +15,7 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
     const [content, setContent] = useState("");
     const updateContent = (e) => setContent(e.target.value);
 
-    console.log('TRYING TO FIND THE COMMENT ---->', comment)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const payload = {
