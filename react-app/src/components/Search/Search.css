@@ -1,6 +1,22 @@
-.search-results{
-    max-height: 200px;
-    overflow: scroll;
-    overflow-x: hidden;
-    padding:3%;
+.search-results {
+  max-height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 3%;
+}
+
+.search-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#search-btn {
+  margin: 15px 20px;
+}
+
+.bar {
+  position: relative;
+  left: 20px;
 }
