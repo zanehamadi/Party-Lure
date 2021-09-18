@@ -23,14 +23,13 @@ export default function Profile({ users, parties, roles, jobs }) {
 
     const user = useSelector(state => state.session.profile)
     const viewId = useSelector(state => state.session?.user?.id)
-    console.log('THIS IS THE USER ----->', user)
-    console.log('THIS IS THE VIEW ID ----->', viewId)
+
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
     const userPostsState = useSelector(state => state.posts?.userPosts)
     const userPosts = Object.values(userPostsState)
 
     useEffect(() => {
-        
+
         if (id == viewId) {
             dispatch(getReceivedRequests(id))
             dispatch(getSentRequests(id))

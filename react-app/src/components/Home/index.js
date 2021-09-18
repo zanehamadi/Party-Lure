@@ -17,10 +17,10 @@ function Home({ sessionUser, authenticated }) {
 
 
     useEffect( () => {
-        
+
         const fetchData = async () => {
             let dispatchPosts = await dispatch(getActivePosts())
-            console.log("dispatch_POSTS", dispatchPosts)
+
             setActivePosts(dispatchPosts)
         }
         fetchData()
@@ -30,7 +30,7 @@ function Home({ sessionUser, authenticated }) {
     return (
         authenticated ?
             <>
-                
+
                 <div className = 'home-container'>
                     <h1 id="welcome-text">Welcome back, <span id="username">{sessionUser?.username}</span>. This is what has been happening since your last visit. . .</h1>
                     <div className = 'posts-container'>{activePosts?.posts && activePosts?.posts.map(post => {
