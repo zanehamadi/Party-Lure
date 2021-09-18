@@ -29,7 +29,7 @@ const PostDetails = ({post}) => {
             </h3>
             <div className = 'wanted-roles'>
                 {post?.recruit_role && post?.recruit_role.map(role => {
-                    console.log(role)
+
                          if(role){return(
 
                     <img className = 'role-icon' src = {roles[`${role}`].icon_url} />)}

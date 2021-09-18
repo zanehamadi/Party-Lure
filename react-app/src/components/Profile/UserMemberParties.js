@@ -6,7 +6,7 @@ import ButtonStyle from "../Button/ButtonStyle"
 import {PartyStyle} from './UserParties'
 
 const UserMemberParties = ({owner}) =>{
-    console.log('gettig user parties')
+  
     const dispatch = useDispatch()
     const userId = useSelector(state => state?.session?.user?.id)
     const [parties,setParties] = useState([])

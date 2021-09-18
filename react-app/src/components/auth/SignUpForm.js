@@ -33,7 +33,7 @@ const SignUpForm = () => {
           return setErrors(data)
       }
     }
-    console.log("REACHED THE ERROR")
+
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
   const updateProfilePic = (e) => {
@@ -101,13 +101,13 @@ const SignUpForm = () => {
             name='jobId'
             id='jobs'
             onChange={updateJob}
-            
+
           >
             <option
               value=''
               disabled
               selected
-              
+
             >
               What's your job?
             </option>
@@ -130,7 +130,7 @@ const SignUpForm = () => {
             max='50'
             value={level}
             onChange={updateLevel}
-            
+
           />
         </div>
         <div className="form-group">
