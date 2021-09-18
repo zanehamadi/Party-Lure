@@ -32,10 +32,10 @@
 .splashLinkDiv{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    width: 20rem;
+    width: 30rem;
     margin-top: 1rem;
     text-align: center;
+    justify-content: space-evenly;
 }
 
