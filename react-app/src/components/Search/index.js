@@ -105,18 +105,18 @@ function Search({posts, activities, activityTypes}) {
 
     return (
         <>
-            <input placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
-            <div className = 'button-container'>
-            <ButtonStyle>
-                <button className = 'styled-button' onClick={handleClick}>
-                    Filters
-                </button>
-            </ButtonStyle>
-            <ButtonStyle>
-                    <button  className = 'styled-button' onClick={() => resetFunc()}>
-                         Reset
+            <input className="bar" placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
+            <div className = 'button-container search-buttons'>
+                <ButtonStyle>
+                    <button className = 'styled-button' id='search-btn' onClick={handleClick}>
+                        Filters
                     </button>
-            </ButtonStyle>
+                </ButtonStyle>
+                <ButtonStyle>
+                        <button  className = 'styled-button' id='search-btn' nClick={() => resetFunc()}>
+                            Reset
+                        </button>
+                </ButtonStyle>
             </div>
             {showModal ?
                 <Modal onClose={() => setShowModal(false)}>
