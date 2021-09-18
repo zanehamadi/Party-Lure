@@ -27,6 +27,7 @@ nav {
 
 a {
   color: orange;
+  text-decoration: none;
 }
 
 a:hover {
@@ -41,7 +42,9 @@ a:hover {
     "banner banner"
     "main nav";
   height: 100vh;
+  overflow:hidden
 }
+
 html {
   background-color: #1a1c1f;
 }
