@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-const PartyMembers = ({members}) => {
-    const MemberListStyle = styled.div`
-        .profile-pic{
-            margin-right: 1.7%;
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            background-color: white;
-            border:none;
-        }
-        .member-content{
-            display:flex;
-            aligin-items:center;
-            gap:10px;
-            margin:10px;
-        }
+const MemberListStyle = styled.div`
+    .profile-pic{
+        margin-right: 1.7%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        background-color: white;
+        border:none;
+    }
+    .member-content{
+        display:flex;
+        aligin-items:center;
+        gap:10px;
+        margin:10px;
+    }
 
-    `
+`
+const PartyMembers = ({members}) => {
     return(
         <MemberListStyle>
         <h4>Members:</h4>
