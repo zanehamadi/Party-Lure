@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const BannerStyle = styled.div`
 display: flex;
@@ -23,11 +24,19 @@ background-color: #1a1c1f;
     margin-right 2%;
 }
 
+#topLeftLogo:hover{
+    color: orange
+}
+
+#topLeftLogo{
+    font-size: .8em;
+}
+
 `
 const Banner = () => {
     return (
         <BannerStyle>
-            <div className='site-name'>Party Lure 🎣</div>
+            <Link className='site-name' to="/" id="topLeftLogo">Party Lure 🎣</Link>
             <div className='logo'>
                 LOGO
             </div>

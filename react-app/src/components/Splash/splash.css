@@ -21,19 +21,21 @@
     font-size: 1.5rem;
     width: 7rem;
     text-decoration: none;
-    
+    color: orange;
 }
 
 .splashLinks:hover{
     background-color: rgb(54, 53, 53);
+    cursor: pointer;
 }
 
 .splashLinkDiv{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    width: 20rem;
+    width: 30rem;
     margin-top: 1rem;
+    text-align: center;
+    justify-content: space-evenly;
 }
 

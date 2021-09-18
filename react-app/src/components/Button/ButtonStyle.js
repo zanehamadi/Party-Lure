@@ -6,7 +6,7 @@ const ButtonStyle = styled.div`
     margin: 3%;
     border-radius: 5px;
     font-weight: bold;
-    color: rgb(191, 191, 191);
+    color: white;
     padding: .3em .7em;
     outline: none;
     border: none;
@@ -16,7 +16,7 @@ const ButtonStyle = styled.div`
 .styled-button:hover{
     background-color: #689e9296 ;
     transform: scale(1.01);
-    pointer: cursor;
+    cursor: pointer;
 }
 
 `
