@@ -10,7 +10,7 @@ number > 0 && onClick={handleRequestColor} ? 'red' : 'blue'
 else the color is blue?
 */
 const PaintCounter = styled.div`
-color: ${props => props.number > 0 && colorBlue ? 'red' : 'blue'}
+color: ${props => props.number > 0 && props.colorBlue ? 'red' : 'blue'}
 `
 const PartyCounter = ({ requests, colorBlue }) => {
 
