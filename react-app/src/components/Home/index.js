@@ -15,8 +15,7 @@ function Home({ sessionUser, authenticated }) {
     const dispatch = useDispatch()
     let [activePosts, setActivePosts] = useState()
 
-
-    useEffect( () => {
+    useEffect(() => {
 
         const fetchData = async () => {
             let dispatchPosts = await dispatch(getActivePosts())
@@ -30,14 +29,14 @@ function Home({ sessionUser, authenticated }) {
     return (
         authenticated ?
             <>
-
-                <div className = 'home-container'>
-                    <h1 id="welcome-text">Welcome back, <span id="username">{sessionUser?.username}</span>. This is what has been happening since your last visit. . .</h1>
-                    <div className = 'posts-container'>{activePosts?.posts && activePosts?.posts.map(post => {
+                <div className='home-container'>
+                    <h1 id="welcome-text">Welcome back, <span id="username">{sessionUser?.username}</span>. <div> Here's some parties you may be interested in:</div></h1>
+                    <div className='posts-container'>{activePosts?.posts && activePosts?.posts.map(post => {
                         if (Object.keys(post).length > 0) {
-                            return(
-                            <PostDetails post = {post} />
-                        )}
+                            return (
+                                <PostDetails post={post} />
+                            )
+                        }
                         return []
                     })}
                     </div>
