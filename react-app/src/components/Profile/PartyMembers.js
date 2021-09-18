@@ -6,7 +6,7 @@ const PartyMembers = ({members}) => {
         .profile-pic{
             margin-right: 1.7%;
             width: 50px;
-            max-height: 50px;
+            height: 50px;
             object-fit: cover;
             border-radius: 50%;
             background-color: white;

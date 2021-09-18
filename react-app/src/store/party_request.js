@@ -119,6 +119,7 @@ const requestReducer = (state = initialState, action) => {
         case SEND_REQUEST:
             return { ...state, sent: { ...state.sent, [action.request.id]: action.request } }
         case REPLY:
+
             let newState = { ...state }
 
             if (state.received[action.request.id]) {
@@ -127,6 +128,7 @@ const requestReducer = (state = initialState, action) => {
                 newState.received.requests = {...state.received.requests}
                 newState.received.requests[action.request.id] = {...action.request}
                 newState.received.requests[action.request.id].requests = [...action.request.requests]
+
                 return { ...newState }
             }
             return newState
