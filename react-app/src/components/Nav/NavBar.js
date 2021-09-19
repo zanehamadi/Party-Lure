@@ -21,76 +21,76 @@ const NavBar = ({ sessionUser, authenticated }) => {
 
   return (
 
-      <div className ='nav-container'>
-    <nav>
-      <ul>
-        <li>
-          <ButtonStyle>
-            <button className="styled-button">
-              <NavLink to='/' exact={true} activeClassName='active'>
-                Home
-              </NavLink>
-            </button>
-          </ButtonStyle>
-        </li>
-        {!authenticated ?
-          <>
-            <li>
-              <ButtonStyle>
-                <button className="styled-button">
-                  <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                    Sign Up
-                  </NavLink>
-                </button>
-              </ButtonStyle>
-            </li>
-            <li>
-              <ButtonStyle>
-                <button className="styled-button">
-                  <NavLink to='/login' exact={true} activeClassName='active'>
-                    Login
-                  </NavLink>
-                </button>
-              </ButtonStyle>
-            </li>
-            <li>
-                <DemoButton/>
-            </li>
-          </>
-          :
-          <>
-            <li>
-              <CreatePostFormModal activityTypes={activityTypes} activities={activities} roles={roles} posts={posts} />
-            </li>
-            <li>
-              <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
-                👤
-              </NavLink>
-            </li>
-            <li>
-              <LogoutButton/>
-            </li>
-          </>
-        }
-        <li>
-          <ButtonStyle>
-            <button className="styled-button">
-              <NavLink to='/posts' exact={true} activeClassName='active'>
-                Posts
-              </NavLink>
-            </button>
-          </ButtonStyle>
-        </li>
-        <li>
-          <NavLink to='/about-us' exact={true} activeClassName='active'>
-            About Us
-          </NavLink>
-        </li>
-        <li>
-          <Search posts={posts} activities={activities} activityTypes={activityTypes} />
-        </li>
-      </ul>
-    </nav>
+    <div className='nav-container'>
+      <nav>
+        <ul>
+          <li>
+            <ButtonStyle>
+              <button className="styled-button">
+                <NavLink to='/' exact={true} activeClassName='active'>
+                  Home
+                </NavLink>
+              </button>
+            </ButtonStyle>
+          </li>
+          {!authenticated ?
+            <>
+              <li>
+                <ButtonStyle>
+                  <button className="styled-button">
+                    <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                      Sign Up
+                    </NavLink>
+                  </button>
+                </ButtonStyle>
+              </li>
+              <li>
+                <ButtonStyle>
+                  <button className="styled-button">
+                    <NavLink to='/login' exact={true} activeClassName='active'>
+                      Login
+                    </NavLink>
+                  </button>
+                </ButtonStyle>
+              </li>
+              <li>
+                <DemoButton />
+              </li>
+            </>
+            :
+            <>
+              <li>
+                <CreatePostFormModal activityTypes={activityTypes} activities={activities} roles={roles} posts={posts} />
+              </li>
+              <li>
+                <NavLink to={`/users/${sessionUser.id}`} exact={true} activeClassName='active'>
+                  <img className='nav-url' src={sessionUser?.profile_url}></img>
+                </NavLink>
+              </li>
+              <li>
+                <LogoutButton />
+              </li>
+            </>
+          }
+          <li>
+            <ButtonStyle>
+              <button className="styled-button">
+                <NavLink to='/posts' exact={true} activeClassName='active'>
+                  Posts
+                </NavLink>
+              </button>
+            </ButtonStyle>
+          </li>
+          <li>
+            <NavLink to='/about-us' exact={true} activeClassName='active'>
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <Search posts={posts} activities={activities} activityTypes={activityTypes} />
+          </li>
+        </ul>
+      </nav>
 
     </div>
   );

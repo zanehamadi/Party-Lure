@@ -15,6 +15,12 @@
     background-color: #1a1c1f;
     grid-area: nav;
 }
+.nav-url{
+    border-radius: 50%;
+    border: 2px solid orange;
+    max-height: 70px;
+    max-width: 60px;
+}
 
 li{
     list-style: none;
