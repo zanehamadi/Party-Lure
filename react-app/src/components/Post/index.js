@@ -153,7 +153,7 @@ export default function Post({ comments, parties, users }) {
     return (
         <div className="postPage">
             <div className="postTitleAndContent">
-                <h1 className="postTitle postPage">
+                <h1 className="postTitle">
                     {post?.title}
                 </h1>
                 <h3 id="posterName"> {'posted by '}
@@ -161,7 +161,7 @@ export default function Post({ comments, parties, users }) {
                         {poster?.username}
                     </Link>
                 </h3>
-                <div className="postBody postPage">
+                <div className="postBody">
                     {post?.content}
                 </div>
                 <h3 id="curPartyTag">Current Party:</h3>

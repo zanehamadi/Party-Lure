@@ -51,7 +51,7 @@ const CreateCommentForm = ({post}) => {
 
     return (
         <form  onSubmit={handleSubmit} hidden={false}>
-            <div className="commentForm postPage">
+            <div className="commentForm">
                 {showValidations ?
                     <>
                         <ul>
