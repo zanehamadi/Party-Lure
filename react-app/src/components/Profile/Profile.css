@@ -8,12 +8,14 @@
   grid-area: main;
   margin-left: 10%;
   box-shadow: 0px 0px 2px 0px;
+  overflow-y: auto;
 }
 .profile-header {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
   gap: 20px;
+
 }
 
 .profile-pic {
@@ -37,7 +39,8 @@
 }
 .tab-bar div:hover{
     font-size: 20px;
-    color: rgb(134, 138, 170)
+    color: rgb(134, 138, 170);
+    cursor: pointer;
 }
 #cancel-edit-profile {
   width: 430px;
@@ -68,7 +71,8 @@
 }
 
 #memeFriendPic:hover{
-  box-shadow: 10px 10px 10px black;}
+  box-shadow: 10px 10px 10px black;
+}
 
 .profile-username{
     font-size: 30px;
