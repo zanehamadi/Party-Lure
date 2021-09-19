@@ -53,10 +53,10 @@ function Search({posts, activities, activityTypes}) {
     }
 
     useEffect(() => {
-        if( (title || userClass) || (role || activity) ){
+        if( (title || userClass) || (role || activity) || level){
             let postsArr = posts
-            postsArr.pop()
-            postsArr.pop()
+            postsArr = postsArr.filter(post => post.comments)
+            
             if(title){
                 setShowResults(true)
                 postsArr = postsArr.filter(post => ((post?.title).toUpperCase()).includes((title.toUpperCase())))
