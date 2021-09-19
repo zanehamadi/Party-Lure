@@ -11,8 +11,8 @@
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
-    overflow-y: auto;
-    scroll-snap-align: start;
+    /* overflow-y: auto;
+    scroll-snap-align: start; */
 
 }
 
@@ -222,4 +222,9 @@
 
 #posterLink:hover{
     background-color: gray;
+}
+
+.post-comments {
+    overflow-y: auto;
+    height: 30%;
 }
