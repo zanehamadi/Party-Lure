@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getReceivedRequests, getSentRequests } from "../../store/party_request";
-import { Link } from "react-router-dom";
 import { getOneUser } from "../../store/session";
 import { getUserPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";

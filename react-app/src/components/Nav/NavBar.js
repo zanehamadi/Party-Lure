@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import CreatePostFormModal from './CreatePostModal';
 import Search from '../Search/index'
-import AboutUs from '../Aboutus'
 import DemoButton from '../auth/DemoButton';
-import { useHistory } from 'react-router';
 import ButtonStyle from '../Button/ButtonStyle'
 import './NavBar.css'
 const NavBar = ({ sessionUser, authenticated }) => {

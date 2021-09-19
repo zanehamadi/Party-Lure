@@ -20,7 +20,6 @@ background-color: #7bc2b196;}
 const EditProfileForm = ({ jobs, closeEditModal }) => {
 
     const user = useSelector(state => state.session.user)
-    const userId = user?.id
 
     const dispatch = useDispatch();
     const history = useHistory();

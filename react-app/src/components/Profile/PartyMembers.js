@@ -27,7 +27,7 @@ const PartyMembers = ({members}) => {
             return(
                 <div className = 'member-content'>
             <div className = 'right'>
-                <img className = 'profile-pic' src = {user.profile_url}/>
+                <img className = 'profile-pic' src = {user.profile_url} alt='profile-pic'/>
             </div>
             <div className = 'left'>
             <div className = 'username'>
@@ -37,7 +37,7 @@ const PartyMembers = ({members}) => {
 
             </div>
             <div className = 'job'>
-                <img src={user?.role_url} width={24} height={24} />{user.job}
+                <img src={user?.role_url} width={24} height={24} alt='role-url' />{user.job}
             </div>
             <div className = 'level'>
                 {`Level: ${user.level}`}

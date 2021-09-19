@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+
 import { useDispatch } from "react-redux"
 import { cancelPartyRequest } from "../../store/party_request"
 import ButtonStyle from "../Button/ButtonStyle"

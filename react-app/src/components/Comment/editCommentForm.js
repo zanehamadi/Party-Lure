@@ -7,7 +7,7 @@ import "./editComment.css"
 
 const EditCommentForm = ({ comment, post, closeModal }) => {
 
-    const postId = post?.id
+
     const user = useSelector(state => state.session.user)
     const userId = user?.id
     const dispatch = useDispatch();

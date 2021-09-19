@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import './PostDetails.css'
@@ -32,7 +32,7 @@ const PostDetails = ({post}) => {
 
                          if(role){return(
 
-                    <img className = 'role-icon' src = {roles[`${role}`].icon_url} />)}
+                    <img className = 'role-icon' src = {roles[`${role}`].icon_url} alt="icon-url" />)}
                 })}
             </div>
         </div>
