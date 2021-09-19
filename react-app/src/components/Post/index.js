@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelPartyRequest, getSentRequests, sendPartyRequest } from '../../store/party_request';
 import { Modal } from "../../context/Modal";
+import ButtonStyle from '../Button/ButtonStyle'
+
 import './post.css'
 
 
