@@ -153,16 +153,16 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                 <label htmlFor='title'>Role: </label>
                 <div className='role-picker'>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
-                        <img alt="icon-1">
+                        <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt="icon-1">
                         </img>
                     </div>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                        <img alt="icon-2">
+                        <img  src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt="icon-2">
                         </img>
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
-                        <img alt = "icon-3">
+                        <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt = "icon-3">
                         </img>
                     </div>
 
