@@ -167,7 +167,15 @@ def get_top_10():
         return {"posts": [post.to_dict() for post in data]}
     return "No Comments"
  ```
+## Features to be implemented later: 
+  * Friends
+    * Authenticated users can add/remove other users as friends on the site
+  
 
+## Bugs that are still being worked on: 
+  - Minor empty post issue causing some crashing issues
+  - Scroll issues on the home page on some monitors
+  - 
 ## Database Structure
 ![](https://github.com/zanehamadi/Party-Lure/blob/main/visualization/Party-Lure-Database-Schema-1.png)
 
