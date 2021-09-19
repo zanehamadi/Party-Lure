@@ -33,7 +33,7 @@ export default function Post({ comments, parties, users }) {
 
     const post = posts?.find(post => post.id === +id)
     const party = parties?.find(party => party.post_id === +id)
-    const poster = users?.find(user => user?.id === post?.user_id )
+    const poster = users?.find(user => user?.id === post?.user_id)
 
     let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
 
@@ -158,7 +158,7 @@ export default function Post({ comments, parties, users }) {
                 </h1>
                 <h3 id="posterName"> {'posted by '}
                     <Link to={`/users/${poster?.id}`} id="posterLink">
-                    {poster?.username}
+                        {poster?.username}
                     </Link>
                 </h3>
                 <div className="postBody postPage">
@@ -168,16 +168,16 @@ export default function Post({ comments, parties, users }) {
                 <div className="partyContainer">
                     {party?.users?.map(user =>
                         <div className="pMemberContainer">
-                            <div> 
+                            <div>
                                 <Link to={`/users/${user.id}`}>
-                                    <img src={user.profile_url} className="userPFP" alt="profile-url"/> 
+                                    <img src={user.profile_url} className="userPFP" alt="profile-url" />
                                 </Link>
                             </div>
                             <div>{`User: ${user.username} `}</div>
                             <div>{`Level: ${user.level} `}</div>
                             <div>
-                                    {`Role: ${user.role}`}
-                                    <img src={user.role_url} id="rolePartyImg" alt="role-url"/>
+                                {`Role: ${user.role}`}
+                                <img src={user.role_url} id="rolePartyImg" alt="role-url" />
                             </div>
                             <div>{`Job: ${user.job}`}</div>
                         </div>
@@ -234,7 +234,7 @@ export default function Post({ comments, parties, users }) {
                     <></>}
             </div>
 
-            <div>
+            <div className='post-comments'>
                 {postsComments.map(comment =>
                     <div>
                         <Comment comment={comment} />
