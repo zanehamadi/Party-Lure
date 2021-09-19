@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import { getMemberParties, goLeaveParty } from "../../store/user-parties"
 import ButtonStyle from "../Button/ButtonStyle"
-import {PartyStyle} from './UserParties'
+
 
 const MemberPartiesStyle = styled.div`
 h1 {
@@ -41,7 +41,7 @@ const UserMemberParties = ({owner}) =>{
             dispatch(getMemberParties(userId))
         }
 
-    }, [userId])
+    }, [userId, dispatch])
 
     const handleLeave = (partyId) => {
         dispatch(goLeaveParty(userId,partyId))

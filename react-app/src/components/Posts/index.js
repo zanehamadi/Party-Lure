@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import PostDetails from "./PostDetails"
 import './PostsPage.css'
 

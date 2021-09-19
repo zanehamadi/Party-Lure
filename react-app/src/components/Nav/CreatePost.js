@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/posts';
 import './CreatePostForm.css'
@@ -71,7 +71,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
     const changeActive = (e) => {
         let active = document.querySelector('.activeRole')
 
-        if(active.tagName == 'IMG'){
+        if(active.tagName === 'IMG'){
             active.classList.remove('activeRole')
             active = active.parentNode
             active.classList.add('activeRole')
@@ -153,16 +153,16 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                 <label htmlFor='title'>Role: </label>
                 <div className='role-picker'>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
-                        <img>
+                        <img alt="icon-1">
                         </img>
                     </div>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                        <img>
+                        <img alt="icon-2">
                         </img>
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
-                        <img>
+                        <img alt = "icon-3">
                         </img>
                     </div>
 
@@ -177,7 +177,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                                         <label>
                                             <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
                                             {role.name}
-                                            <img src={role.icon_url}></img>
+                                            <img src={role.icon_url} alt="icon url"></img>
                                         </label>
                                     </>
                                 )

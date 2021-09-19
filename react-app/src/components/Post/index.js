@@ -3,7 +3,6 @@ import CreateCommentForm from '../Comments/commentForm';
 import EditPostForm from '../Posts/EditPostForm';
 import Comment from '../Comment';
 import { goDeletePost } from '../../store/posts';
-import EditCommentFormModal from '../Comment/editCommentModal';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +36,6 @@ export default function Post({ comments, parties, users }) {
     let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
 
     const session = useSelector(state => state?.session)
-    const sessionUser = useSelector(state => state.session?.user)
     const isLogged = session?.user ? true : false
     const isUser = session?.user ? session?.user.id === post?.user_id : false
 
@@ -72,7 +70,7 @@ export default function Post({ comments, parties, users }) {
 
             dispatch(getSentRequests(userId))
         }
-    }, [userId, hasRequested])
+    }, [userId, hasRequested, dispatch])
 
     let currentUserRequestsState = useSelector(state => state?.requests?.sent)
 
@@ -144,11 +142,11 @@ export default function Post({ comments, parties, users }) {
         setHasRequested(true)
     }
 
-    const handleDelete = async (e) => {
-        e.preventDefault()
-        await dispatch(goDeletePost(post?.id))
-        history.push(`/posts/${post?.post_id}`)
-    }
+    // const handleDelete = async (e) => {
+    //     e.preventDefault()
+    //     await dispatch(goDeletePost(post?.id))
+    //     history.push(`/posts/${post?.post_id}`)
+    // }
 
     return (
         <div className="postPage">
@@ -170,14 +168,14 @@ export default function Post({ comments, parties, users }) {
                         <div className="pMemberContainer">
                             <div> 
                                 <Link to={`/users/${user.id}`}>
-                                    <img src={user.profile_url} className="userPFP"/> 
+                                    <img src={user.profile_url} className="userPFP" alt="profile-url"/> 
                                 </Link>
                             </div>
                             <div>{`User: ${user.username} `}</div>
                             <div>{`Level: ${user.level} `}</div>
                             <div>
                                     {`Role: ${user.role}`}
-                                    <img src={user.role_url} id="rolePartyImg"/>
+                                    <img src={user.role_url} id="rolePartyImg" alt="role-url"/>
                             </div>
                             <div>{`Job: ${user.job}`}</div>
                         </div>
