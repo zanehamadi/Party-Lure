@@ -76,7 +76,7 @@ const NavBar = ({ sessionUser, authenticated }) => {
             <ButtonStyle>
               <button className="styled-button">
                 <NavLink to='/posts' exact={true} activeClassName='active'>
-                  Posts
+                  View Posts
                 </NavLink>
               </button>
             </ButtonStyle>
