@@ -1,5 +1,5 @@
-.postPage{
-    /* display:grid;
+.postPage {
+  /* display:grid;
     grid-template-areas:
                         "title ."
                         "content ."
@@ -7,224 +7,210 @@
                         "commentContainer ."
                         "commentForm ."; */
 
-    display: flex;
-    flex-direction: column;
-    margin-left: 10%;
-    margin-right: 10%;
-    /* overflow-y: auto;
-    scroll-snap-align: start; */
-
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow-y: auto;
+  scroll-snap-align: start;
+  overflow-x: hidden;
 }
 
-
-.postTitle{
-    /* grid-area: "title"; */
-    margin-top: 5%;
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
+.postTitle {
+  /* grid-area: "title"; */
+  margin-top: 5%;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-.postBody{
-    /* grid-area: "content"; */
-    margin-top: 5%;
-    font-size: 1.1rem;
-    margin-bottom: 5rem;
+.postBody {
+  /* grid-area: "content"; */
+  margin-top: 5%;
+  font-size: 1.1rem;
+  margin-bottom: 5rem;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-.requestButtons{
-    font-size: 14px;
-    margin: 3%;
-    border-radius: 5px;
-    font-weight: bold;
-    color: white;
-    padding: .3em .7em;
-    outline: none;
-    border: none;
-    background-color: #7bc2b196;
+.requestButtons {
+  font-size: 14px;
+  margin: 3%;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  padding: 0.3em 0.7em;
+  outline: none;
+  border: none;
+  background-color: #7bc2b196;
 }
 
-.requestButtons:hover{
-    background-color: #689e9296 ;
-    transform: scale(1.01);
-    cursor: pointer;
+.requestButtons:hover {
+  background-color: #689e9296;
+  transform: scale(1.01);
+  cursor: pointer;
 }
-.commentButton{
-    width: 8rem;
-}
-
-#userButtons{
-
-    /* grid-area:"userButtons" */
-    display: flex;
-    margin-left: 10%;
-    margin-right: 10%;
-    justify-content: flex-end;
-
-    /* display: flex; */
-    /* flex-direction: row; */
+.commentButton {
+  width: 8rem;
 }
 
-.userButton:hover{
+#userButtons {
+  /* grid-area:"userButtons" */
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: flex-end;
+
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.userButton:hover {
 }
 
 .commentContainer {
-    display: flex;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    flex-direction: row;
-    align-items: center;
-    /* background-color: #454a52; */
-    border: solid 2px #25282c;
-    color: white;
-    padding-right: 1rem;
-    /* grid-area:"commentContainer" */
-
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  flex-direction: row;
+  align-items: center;
+  /* background-color: #454a52; */
+  border: solid 2px #25282c;
+  color: white;
+  padding-right: 1rem;
+  /* grid-area:"commentContainer" */
 }
 
-#picNamePost{
-    display: flex;
-    flex-direction: column;
-    margin-right: 2rem;
-    background-color: #1e2024;
-    border: solid 2px #25282c;
-    width: 10rem;
+#picNamePost {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+  background-color: #1e2024;
+  border: solid 2px #25282c;
+  width: 10rem;
 
-    align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-
-.commentForm{
-
-    /* grid-area:"commentForm" */
-
-
+.commentForm {
+  margin-left: 10%;
+  margin-right: 10%;
+  max-width: 20px;
 }
 
-#datePrev{
-    font-size: .5rem;
+#datePrev {
+  font-size: 0.5rem;
 }
 
-#usernamePrev{
-    background-color: transparent;
-    background: transparent;
-    border:transparent;
-    /* transition: background-color 2s ease-in-out; */
-    transition: background-color 0.2s linear;
-    color: white;
-    font-size: 1rem;
-
-
-
+#usernamePrev {
+  background-color: transparent;
+  background: transparent;
+  border: transparent;
+  /* transition: background-color 2s ease-in-out; */
+  transition: background-color 0.2s linear;
+  color: white;
+  font-size: 1rem;
 }
 
-#usernamePrev:hover{
-    cursor: pointer;
-    background-color: #b3bece;
-    opacity: 1;
-    /* transition: 10s; */
+#usernamePrev:hover {
+  cursor: pointer;
+  background-color: #b3bece;
+  opacity: 1;
+  /* transition: 10s; */
 }
 
-.commentPP{
-    border-radius: 5%;
-    border: solid 2px #25282c;
-    width: 5rem;
-    height: 5rem;
+.commentPP {
+  border-radius: 5%;
+  border: solid 2px #25282c;
+  width: 5rem;
+  height: 5rem;
 }
 
-#commentContent{
-
-    font-size: 1em;
+#commentContent {
+  font-size: 1em;
 }
 
-.partyContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 1rem;
-    width: 80rem;
+.partyContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 1rem;
+  width: 80rem;
 }
 
-.editCommentBut{
-    font-size: 14px;
-    margin: 3%;
-    border-radius: 5px;
-    font-weight: bold;
-    color: rgb(191, 191, 191);
-    padding: 2% 10%;
-    outline: none;
-    border: none;
-    background-color: #7bc2b196;
+.editCommentBut {
+  font-size: 14px;
+  margin: 3%;
+  border-radius: 5px;
+  font-weight: bold;
+  color: rgb(191, 191, 191);
+  padding: 2% 10%;
+  outline: none;
+  border: none;
+  background-color: #7bc2b196;
 }
 
-.editCommentBut:hover{
-    background-color: #689e9296 ;
-    transform: scale(1.01);
+.editCommentBut:hover {
+  background-color: #689e9296;
+  transform: scale(1.01);
 }
 
-
-.userPFP{
-    width:100px;
-    height:100px;
-    border: solid 2px rgb(61, 61, 61);
-    transition: box-shadow 0.3s linear;
-    transition: border 0.3s linear;
-    /* border-radius: 50%; */
+.userPFP {
+  width: 100px;
+  height: 100px;
+  border: solid 2px rgb(61, 61, 61);
+  transition: box-shadow 0.3s linear;
+  transition: border 0.3s linear;
+  /* border-radius: 50%; */
 }
 
-.userPFP:hover{
-    box-shadow: 10px 10px 10px rgb(36, 36, 36);
-    border: solid 2px rgb(135, 214, 224);
+.userPFP:hover {
+  box-shadow: 10px 10px 10px rgb(36, 36, 36);
+  border: solid 2px rgb(135, 214, 224);
 }
 
-
-.postTitleAndContent{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10rem;
-    border: solid 2px gray;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    height: 40rem;
-    margin-top: 2rem;
+.postTitleAndContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10rem;
+  border: solid 2px gray;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  height: 40rem;
+  margin-top: 2rem;
 }
 
-#rolePartyImg{
-    width: 20px;
+#rolePartyImg {
+  width: 20px;
 }
 
-#curPartyTag{
-    margin-bottom: 100px;
-    font-size: 1rem;
+#curPartyTag {
+  margin-bottom: 100px;
+  font-size: 1rem;
 }
 
-.commentTextArea{
-    resize: none;
-    width: 69rem;
-    height: 5rem;
+.commentTextArea {
+  resize: none;
+  width: 600px;
+  height: 5rem;
 }
 
-#posterName{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-decoration: none;
+#posterName {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
 }
 
-#posterLink{
-    text-decoration: none;
+#posterLink {
+  text-decoration: none;
 }
 
-#posterLink:hover{
-    background-color: gray;
-}
-
-.post-comments {
-    overflow-y: auto;
-    height: 30%;
+#posterLink:hover {
+  background-color: gray;
 }

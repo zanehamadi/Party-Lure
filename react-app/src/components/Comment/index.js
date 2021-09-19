@@ -16,7 +16,7 @@ export default function Comment({comment}) {
 
     return (
         <>
-        <div key={comment?.id} className="commentContainer postPage">
+        <div key={comment?.id} className="commentContainer">
         <div id="picNamePost">
             <img src={comment.profile_url} className="commentPP" alt="profile url"/>
             <Link to={`/users/${comment?.user_id}`}><button id="usernamePrev">{comment.username}</button></Link>
