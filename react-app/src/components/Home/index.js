@@ -31,7 +31,7 @@ function Home({ sessionUser, authenticated }) {
                 <div className='home-container'>
                     <h1 id="welcome-text">Welcome back, <span id="username">{sessionUser?.username}</span>. <div> Here's some parties you may be interested in:</div></h1>
                     <div className='posts-container'>{activePosts?.posts && activePosts?.posts.map(post => {
-                        if (Object.keys(post).length > 0) {
+                        if (post.comments) {
                             return (
                                 <PostDetails post={post} />
                             )

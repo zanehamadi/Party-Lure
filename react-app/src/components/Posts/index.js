@@ -7,7 +7,8 @@ export default function Posts({ posts }) {
         <>
             <div className = 'posts-container'>
                 {posts.map(post =>{
-                    if(Object.keys(post).length > 0){
+                    if(post.comments){
+                        console.log(post, 'postpostpost')
                     return(
                     <PostDetails post = {post} />)}
                     })}
