@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/posts';
 import './CreatePostForm.css'
@@ -64,19 +64,19 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
 
     const setActive = (e) => {
         let currentlyActive = document.querySelectorAll('.activeRole')
-        currentlyActive.forEach(el => {el.classList.remove('activeRole'); })
+        currentlyActive.forEach(el => { el.classList.remove('activeRole'); })
         e.target.classList.add('activeRole')
     };
 
     const changeActive = (e) => {
         let active = document.querySelector('.activeRole')
 
-        if(active.tagName === 'IMG'){
+        if (active.tagName === 'IMG') {
             active.classList.remove('activeRole')
             active = active.parentNode
             active.classList.add('activeRole')
         }
-        active.children[0].src= `${e.target.dataset.url}`
+        active.children[0].src = `${e.target.dataset.url}`
         let roleCopy = { ...role }
         roleCopy[active.id] = e.target.value
         setRole({ ...roleCopy })
@@ -162,11 +162,14 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
+
+
                         <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt = "icon-3">
+
                         </img>
                     </div>
 
-                    </div>
+                </div>
 
                 {selectRole &&
                     <ul className='role-selection'>
@@ -174,10 +177,10 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                             roles.map(role => {
                                 return (
                                     <>
-                                        <label>
+                                        <label className='role-label'>
                                             <input type='radio' value={role.id} key={role.id} name='roles' data-url={role.icon_url} onClick={changeActive} />
                                             {role.name}
-                                            <img src={role.icon_url} alt="icon url"></img>
+                                            <img className='role-img' src={role.icon_url} alt="icon url"></img>
                                         </label>
                                     </>
                                 )

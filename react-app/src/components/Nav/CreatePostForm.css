@@ -8,6 +8,15 @@ border-radius: 3px;
 display: flex;
 flex-direction: column;
 }
+.role-img {
+    max-height: 30px;
+    max-width: 30px;
+}
+.role-label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .form-group {
     display: flex;
     flex-direction: column;
