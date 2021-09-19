@@ -1,4 +1,8 @@
 .posts-container{
     margin: 2% 10% 2% 2%;
     grid-area: main;
+    overflow-y: auto;
+    scroll-snap-align: start;
+    padding-top: 15%;
+
 }

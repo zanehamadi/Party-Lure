@@ -11,7 +11,8 @@
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
-
+    overflow-y: auto;
+    scroll-snap-align: start;
 
 }
 
