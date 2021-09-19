@@ -12,7 +12,7 @@ justify-content: space-between;
 min-height:50px;
 align-items: center;
 box-sizing: border-box;
-padding: .3rem;
+padding: .4rem;
 box-shadow: 0px 0px 2px 0px;
 grid-area: banner;
 background-color: #1a1c1f;
@@ -22,6 +22,12 @@ background-color: #1a1c1f;
 }
 .profile-pic{
     margin-right 2%;
+}
+
+.logo img{
+    width: 90px;
+    max-height: 90px;
+    object-fit: cover
 }
 
 #topLeftLogo:hover{
@@ -38,7 +44,7 @@ const Banner = () => {
         <BannerStyle>
             <Link className='site-name' to="/" id="topLeftLogo">Party Lure 🎣</Link>
             <div className='logo'>
-                LOGO
+                <img src = 'https://partylureawsbucket.s3.amazonaws.com/Untitled42_20210919153126-removebg-preview.png' alt= 'logo'/>
             </div>
             <div className='profile-pic'>
                 PIC
