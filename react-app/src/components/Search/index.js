@@ -113,7 +113,7 @@ function Search({posts, activities, activityTypes}) {
                     </button>
                 </ButtonStyle>
                 <ButtonStyle>
-                        <button  className = 'styled-button' id='search-btn' nClick={() => resetFunc()}>
+                        <button  className = 'styled-button' id='search-btn' onClick={() => resetFunc()}>
                             Reset
                         </button>
                 </ButtonStyle>
