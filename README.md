@@ -1,7 +1,5 @@
 # Party-Lure
 
-# Party-Lure
-
 Party-Lure is a website allowing you to discover and correspond with fellow players of a fictional MMO game called Abyss Adventures set in the ocean. The site can be found at: https://party-lure.herokuapp.com/
 
 ## Development
