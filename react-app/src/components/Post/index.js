@@ -202,8 +202,8 @@ export default function Post({ comments, parties, users }) {
                             : <></>}
 
                         <div id="userButtons">
-                            <button onClick={handleClickEdit} className="userButton">Edit Post</button>
-                            <button onClick={handleClickDelete} className="userButton">Delete Post</button>
+                            <button onClick={handleClickEdit} className="userButton requestButtons">Edit Post</button>
+                            <button onClick={handleClickDelete} className="userButton requestButtons">Delete Post</button>
                         </div>
                         {showDeleteModal ?
                             <Modal onClose={() => setShowDeleteModal(false)}>

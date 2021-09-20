@@ -55,7 +55,8 @@ function App() {
   const rolesSlice = useSelector(state => state.roles)
   const jobsSlice = useSelector(state => state.jobs)
 
-  const posts = Object.values(postsSlice)
+  const preFilteredPosts = Object.values(postsSlice)
+  const posts = preFilteredPosts.filter(post => post.comments)
   const users = Object.values(usersSlice)
   const parties = Object.values(partiesSlice)
   const activities = Object.values(activitiesSlice)
