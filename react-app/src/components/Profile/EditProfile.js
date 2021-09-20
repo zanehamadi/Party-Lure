@@ -95,9 +95,9 @@ const EditProfileForm = ({ jobs, closeEditModal }) => {
                         </select>
                     </div>
                     <SubmitStyle>
-                    <button className = 'styled-button' type="submit">
-                        Submit Edit
-                    </button>
+                        <button className="requestButtons" type="submit">
+                            Submit Edit
+                        </button>
                     </SubmitStyle>
                 </form>
             </div>

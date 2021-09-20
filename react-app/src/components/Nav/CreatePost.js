@@ -105,7 +105,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
 
             <div className='form-group'>
                 <label htmlFor='description'>Description: </label>
-                <textarea className='text-control' name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
+                <textarea className='text-control' name='description' type='textarea' placeholder='Enter description' value={description} onChange={updateDescription} />
             </div>
             <div className='form-group'>
                 <label htmlFor='activityType'>Activity Type: </label>
@@ -189,7 +189,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                     </ul>
                 }
             </div>
-            <button type='submit'>Create</button>
+            <button className="requestButtons" type='submit'>Create</button>
         </form >
     );
 };
