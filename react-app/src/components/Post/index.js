@@ -223,7 +223,7 @@ export default function Post({ comments, parties, users }) {
                 {isLogged ?
 
                     <>
-                        <div>
+                        <div className="comment-form-container">
                             <CreateCommentForm post={post} />
                         </div>
                     </>
