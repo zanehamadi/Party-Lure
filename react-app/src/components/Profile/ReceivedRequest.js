@@ -43,12 +43,12 @@ const ReceivedRequest = ({ partyId, userId, username }) => {
             <div className = 'request-buttons'>
             <ButtonStyle>
             <button className = 'styled-button' onClick={acceptRequest}>
-                accept
+                Accept
             </button>
             </ButtonStyle>
             <ButtonStyle>
             <button className = 'styled-button' onClick={denyRequest}>
-                deny
+                Deny
             </button>
             </ButtonStyle>
             </div>
