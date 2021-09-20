@@ -184,8 +184,8 @@ const EditPostForm = ({ closeModal }) => {
                         }
                     </ul>
                 }
-                <button className="requestButtons" type='submit'>Submit Edit</button>
-                <button className="requestButtons" onClick={closeModal}>
+                <button className="formRequestButtons" type='submit'>Submit Edit</button>
+                <button className="formRequestButtons" onClick={closeModal}>
                     Cancel
                 </button>
             </div>

@@ -207,13 +207,15 @@ export default function Post({ comments, parties, users }) {
                         </div>
                         {showDeleteModal ?
                             <Modal onClose={() => setShowDeleteModal(false)}>
-                                <span>Are you sure you want to delete this post?</span>
-                                <button onClick={deleteFunc}>
-                                    Yes 🐡
-                                </button>
-                                <button onClick={closeDeleteModal}>
-                                    No
-                                </button>
+                                <div className="delete-form-group">
+                                    <span>Are you sure you want to delete this post?</span>
+                                    <button className="formRequestButtons" onClick={deleteFunc}>
+                                        Yes 🐡
+                                    </button>
+                                    <button className="formRequestButtons" onClick={closeDeleteModal}>
+                                        No
+                                    </button>
+                                </div>
                             </Modal>
                             : <></>}
                     </>

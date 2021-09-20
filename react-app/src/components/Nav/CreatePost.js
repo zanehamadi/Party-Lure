@@ -189,7 +189,7 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
                     </ul>
                 }
             </div>
-            <button className="requestButtons" type='submit'>Create</button>
+            <button className="formRequestButtons" type='submit'>Create</button>
         </form >
     );
 };

@@ -45,12 +45,12 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
                         value={content}
                         onChange={updateContent}
                         className='form-control' />
-                    <button className="requestButtons" type="submit">Submit Edit</button>
+                    <button className="formRequestButtons" type="submit">Submit Edit</button>
                 </form>
             </div>
             <div className='form-group'>
                 <form onSubmit={handleDelete}>
-                    <button className="requestButtons" id="del-comment" type="submit">Delete Comment</button>
+                    <button className="formRequestButtons" id="del-comment" type="submit">Delete Comment</button>
                 </form>
             </div>
         </section>
