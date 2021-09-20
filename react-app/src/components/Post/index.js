@@ -197,10 +197,7 @@ export default function Post({ comments, parties, users }) {
 
                         {showEditModal ?
                             <Modal onClose={() => setShowEditModal(false)}>
-                                <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities} />
-                                <button onClick={closeEditModal}>
-                                    Cancel
-                                </button>
+                                <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities} closeModal = {closeEditModal} />
                             </Modal>
                             : <></>}
 

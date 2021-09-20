@@ -97,7 +97,7 @@ const UserParties = ({ parties, owner, username }) => {
                             <h3 className = 'title'>{party?.title}</h3>
                         </div>
                         <div>
-                            <PartyCounter colorBlue={colorBlue} requests={party.requests} />
+                            {owner && <PartyCounter colorBlue={colorBlue} requests={party.requests} />}
                         </div>
                     </div>
                     </PartyStyle>
