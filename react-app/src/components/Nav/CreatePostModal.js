@@ -38,8 +38,8 @@ export default function CreatePostFormModal({ activityTypes, activities, roles, 
     return (
         <>
             <PostButtonStyle>
-                <a href="#" onClick={handleClick}>Create Post
-                </a>
+                <button className="formRequestButtons" onClick={handleClick}> Create Post
+                </button>
             </PostButtonStyle>
             {showModal && <Modal onClose={() => setShowModal(false)}>
                 <CreatePostForm closeModal={closeModal} activityTypes={activityTypes} roles={roles} posts={posts} activities={activities} />

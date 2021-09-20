@@ -49,6 +49,23 @@
   position: relative;
   bottom: 220px;
 }
+.formRequestButtons {
+  font-size: 14px;
+  margin: 3%;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  padding: 0.3em 0.7em;
+  outline: none;
+  border: none;
+  background-color: #7bc2b196;
+}
+
+.formRequestButtons:hover {
+  background-color: #689e9296;
+  transform: scale(1.01);
+  cursor: pointer;
+}
 
 .requestButtons:hover {
   background-color: #689e9296;
@@ -229,4 +246,12 @@
 .post-comments {
   position: relative;
   bottom: 200px;
+}
+
+.delete-form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 12%;
+  gap: 20px;
+  text-align: center;
 }
