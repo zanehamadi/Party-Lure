@@ -46,6 +46,8 @@
   outline: none;
   border: none;
   background-color: #7bc2b196;
+  position: relative;
+  bottom: 220px;
 }
 
 .requestButtons:hover {
@@ -63,6 +65,9 @@
   margin-left: 10%;
   margin-right: 10%;
   justify-content: flex-end;
+  position: relative;
+  /* bottom: 220px; */
+  left: 80px;
 
   /* display: flex; */
   /* flex-direction: row; */
@@ -213,4 +218,15 @@
 
 #posterLink:hover {
   background-color: gray;
+}
+
+.comment-form-container {
+  position: relative;
+  bottom: 200px;
+  left: 50px;
+}
+
+.post-comments {
+  position: relative;
+  bottom: 200px;
 }
