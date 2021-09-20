@@ -20,6 +20,7 @@
   padding: 10px;
 }
 
+
 .div-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -37,9 +38,13 @@
   margin: 0px 0px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: white;
-  /* border: 1px solid red; */
+  border:none;
+  border-bottom: 1px solid rgb(106, 98, 98);
+  background-color: transparent;
   box-sizing: border-box;
+}
+.form-input:focus {
+  outline: none;
 }
 .signupButton {
   width: 312px;

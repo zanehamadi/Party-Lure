@@ -45,11 +45,11 @@ const LoginForm = () => {
             ))}
           </div>
           <div className="div-container">
-            <label className="form-label"  htmlFor='email'>Credential: </label>
+            <label className="form-label" htmlFor='email'>Credential: </label>
             <input
               name='email'
               type='text'
-              placeholder='Username or Email'
+              placeholder='Enter username or email'
               value={email}
               onChange={updateEmail}
               className="form-input"
@@ -60,7 +60,7 @@ const LoginForm = () => {
             <input
               name='password'
               type='password'
-              placeholder='Password'
+              placeholder='Enter password'
               value={password}
               onChange={updatePassword}
               className="form-input"
