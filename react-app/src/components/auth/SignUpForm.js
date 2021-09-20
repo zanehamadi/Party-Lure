@@ -30,7 +30,7 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, jobId, level, image))
       if (data) {
-          return setErrors(data)
+        return setErrors(data)
       }
     }
 
@@ -67,7 +67,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className= "form-container">
+    <div className="form-container">
       <form className="create-post-form" onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
@@ -86,18 +86,20 @@ const SignUpForm = () => {
           />
         </div>
         <div className="form-group">
-          <label className="form-label">User Name:</label>
+          <label className="form-label">Username:</label>
           <input
             type='text'
             name='username'
             onChange={updateUsername}
             value={username}
             className="form-control"
+            placeholder='Enter username'
           ></input>
         </div>
         <div className="form-group" id="job-div">
           <label className="form-label">Job:</label>
           <select
+            className='job-dropdown'
             name='jobId'
             id='jobs'
             onChange={updateJob}
@@ -124,6 +126,7 @@ const SignUpForm = () => {
         <div className="form-group">
           <label className="form-label">Level:</label>
           <input
+            className='level-dropdown'
             type='number'
             name='level'
             min='1'
@@ -141,6 +144,7 @@ const SignUpForm = () => {
             onChange={updateEmail}
             value={email}
             className="form-control"
+            placeholder='Enter email'
           ></input>
         </div>
         <div className="form-group">
@@ -151,6 +155,7 @@ const SignUpForm = () => {
             onChange={updatePassword}
             value={password}
             className="form-control"
+            placeholder='Enter password'
           ></input>
         </div>
         <div className="form-group">
@@ -162,6 +167,7 @@ const SignUpForm = () => {
             value={repeatPassword}
             required={true}
             className="form-control"
+            placeholder='Repeat password'
           ></input>
         </div >
         <button className="signupButton" type='submit'>Sign Up</button>

@@ -1,5 +1,4 @@
 .create-post-form{
-background-color: #454a52; ;
 width:500px;
 height: auto;
 padding:7%;
@@ -7,6 +6,20 @@ box-sizing: border-box;
 border-radius: 3px;
 display: flex;
 flex-direction: column;
+}
+.job-dropdown{
+    background-color: transparent;
+}
+.level-dropdown{
+    background-color: transparent;
+    color:white;
+    border:none;
+    border-bottom: 1px solid rgb(106, 98, 98);
+    outline: none;
+    padding: 2%;
+}
+.level-dropdown:focus{
+    outline:none
 }
 .role-img {
     max-height: 30px;

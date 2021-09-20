@@ -146,25 +146,25 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
             }
             <div className='form-group'>
                 <label htmlFor='level'>Level: </label>
-                <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
+                <input className='level-dropdown' name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
             </div>
 
             <div className='form-group'>
                 <label htmlFor='title'>Role: </label>
                 <div className='role-picker'>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
-                        <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt="icon-1">
+                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-1">
                         </img>
                     </div>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                        <img  src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt="icon-2">
+                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-2">
                         </img>
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
 
 
-                        <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt = "icon-3">
+                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-3">
 
                         </img>
                     </div>
