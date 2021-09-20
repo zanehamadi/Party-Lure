@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { createNewPost } from '../../store/posts';
 
-const EditPostForm = ({closeModal}) => {
+const EditPostForm = ({ closeModal }) => {
 
     const aTypeSlice = useSelector(state => state.activityTypes)
     const activitySlice = useSelector(state => state.activities)
@@ -35,7 +35,7 @@ const EditPostForm = ({closeModal}) => {
     const editPost = async e => {
         e.preventDefault()
         const payload = {
-            postId:post.id,
+            postId: post.id,
             userId: sessionUser.id,
             title: title,
             content: description,
@@ -88,7 +88,7 @@ const EditPostForm = ({closeModal}) => {
     };
 
     return (
-        <form className = 'create-post-form' onSubmit={editPost}>
+        <form className='create-post-form' onSubmit={editPost}>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -101,7 +101,7 @@ const EditPostForm = ({closeModal}) => {
 
             <div className='form-group'>
                 <label htmlFor='description'>Description: </label>
-                <textarea className='text-control' name='description' type='textarea' placeholder='Description' value={description} onChange={updateDescription} />
+                <textarea className='text-control' name='description' type='textarea' placeholder='Enter description' value={description} onChange={updateDescription} />
             </div>
             <div className='form-group'>
                 <label htmlFor='activityType'>Activity Type: </label>
@@ -142,25 +142,25 @@ const EditPostForm = ({closeModal}) => {
             }
             <div className='form-group'>
                 <label htmlFor='level'>Level: </label>
-                <input name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
+                <input className='level-dropdown' name='level' type='number' placeholder='Set Required Level' value={level} onChange={updateLevel} min='1' max='50' />
             </div>
 
             <div className='form-group'>
                 <label htmlFor='title'>Role: </label>
                 <div className='role-picker'>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
-                        <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt="icon-1">
+                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-1">
                         </img>
                     </div>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                        <img  src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt="icon-2">
+                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-2">
                         </img>
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
 
 
-                        <img src = 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png'alt = "icon-3">
+                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-3">
 
                         </img>
                     </div>
@@ -184,10 +184,10 @@ const EditPostForm = ({closeModal}) => {
                         }
                     </ul>
                 }
-                <button type='submit'>Subit Edit</button>
-                <button onClick={closeModal}>
-                                    Cancel
-                                </button>
+                <button className="requestButtons" type='submit'>Submit Edit</button>
+                <button className="requestButtons" onClick={closeModal}>
+                    Cancel
+                </button>
             </div>
         </form >
     );

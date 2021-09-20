@@ -41,16 +41,16 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
                     <label htmlFor='edit'>Edit: </label>
                     <input
                         type="text"
-                        placeholder="your edit. . ."
+                        placeholder="Enter comment change"
                         value={content}
                         onChange={updateContent}
                         className='form-control' />
-                    <button className="edit-comment-btn submit" type="submit">Submit Edit</button>
+                    <button className="requestButtons" type="submit">Submit Edit</button>
                 </form>
             </div>
             <div className='form-group'>
                 <form onSubmit={handleDelete}>
-                    <button className="edit-comment-btn del-btn" id="del-comment"type="submit">Delete Comment</button>
+                    <button className="requestButtons" id="del-comment" type="submit">Delete Comment</button>
                 </form>
             </div>
         </section>
