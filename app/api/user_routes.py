@@ -1,8 +1,10 @@
 import os
+
+from boto3 import session
 from app.api.aws import public_file_upload
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Comment, db
+from app.models import User, Comment, db, users_friend_requests, users_friends
 from werkzeug.utils import secure_filename
 
 user_routes = Blueprint('users', __name__)
@@ -60,3 +62,10 @@ def edit_user(user_id):
     db.session.commit()
 
     return user.to_dict()
+
+
+@user_routes.route('/<int:id>/requests/received')
+def received_requests(id):
+    requests = db.session.query(users_friend_requests).filter_by(receiver_id = id)
+
+    
