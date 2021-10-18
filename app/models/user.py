@@ -29,6 +29,18 @@ class User(db.Model, UserMixin):
     party_requests = db.relationship(
         'Party', secondary='parties_requests', back_populates='requests')
 
+
+    friend_requests = db.relationship(
+        'User', lambda: users_friend_requests,
+        primaryjoin = lambda: User.id == users_friend_requests.c.sender_id,
+        secondaryjoin = lambda: User.id == users_friend_requests.c.receiver_id
+    )
+
+    friends = db.relationship(
+        'User', lambda: users_friends,
+        primaryjoin = lambda: User.id == users_friends.c.user1_id,
+        secondaryjoin = lambda: User.id == users_friends.c.user2_id,
+    )
     @property
     def password(self):
         return self.hashed_password
@@ -58,3 +70,15 @@ class User(db.Model, UserMixin):
             'profile_url': self.profile_url,
             'role_url': self.job.icon_url
         }
+
+
+
+users_friend_requests = db.Table('users_friend_requests',
+    db.Column('sender_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+    db.Column('receiver_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+)
+
+users_friends = db.Table('users_friends',
+    db.Column('user1_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+    db.Column('user2_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+)
