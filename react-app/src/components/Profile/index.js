@@ -11,6 +11,8 @@ import './Profile.css'
 import ButtonStyle from "../Button/ButtonStyle";
 import PostDetails from "../Posts/PostDetails";
 import { deleteFriendRequest, goGetReceivedFriendRequests, goGetSentFriendRequests, goSendFriendRequest } from "../../store/friend_requests";
+import ProfileFriends from "./ProfileFriends";
+import { goGetFriends } from "../../store/friends";
 
 export default function Profile({ users, parties, roles, jobs }) {
 
@@ -21,6 +23,7 @@ export default function Profile({ users, parties, roles, jobs }) {
     const [isFriend, setIsFriend] = useState()
     const [hasAlreadyRequested, setHasAlreadyRequested] = useState()
     const [friendRequestId, setFriendRequestId] = useState()
+    const [friends, setFriends] = useState([])
     const [focus, setFocus] = useState('Parties')
     const [showEditModal, setShowEditModal] = useState(false)
 
@@ -44,10 +47,12 @@ export default function Profile({ users, parties, roles, jobs }) {
             dispatch(getSentRequests(id))
             dispatch(goGetReceivedFriendRequests(id))
             dispatch(goGetSentFriendRequests(id))
+            dispatch(goGetFriends(id))
             setOwner(true)
             return
         } if(id != viewId){
             dispatch(goGetSentFriendRequests(viewId))
+            dispatch(goGetFriends(id))
         }
         return () => {
             (setOwner(false)) }
@@ -61,6 +66,12 @@ export default function Profile({ users, parties, roles, jobs }) {
         }
     }, [id])
 
+
+    useEffect(() => {
+        if (userFriends){
+            setFriends([...Object.values(userFriends)])
+        }
+    }, [userFriends])
     useEffect(() => {
         if(userSentRequests
             && viewId){
@@ -76,7 +87,7 @@ export default function Profile({ users, parties, roles, jobs }) {
             console.log('you havent requested')
             setHasAlreadyRequested(false)
         }
-    }, [userSentRequests])
+    }, [userSentRequests, id, viewId])
 
     useEffect(() => {
         if(viewId && userFriends && viewId != id){
@@ -86,7 +97,7 @@ export default function Profile({ users, parties, roles, jobs }) {
                     setIsFriend(false)
                 }
         }
-    }, [viewId, userFriends])
+    }, [viewId, userFriends, id])
     const handleFocus = (focus) => {
         setFocus(focus)
     }
@@ -139,11 +150,9 @@ export default function Profile({ users, parties, roles, jobs }) {
                                     <button className = 'styled-button' onClick = {() => {
                                         cancelFriendRequest(friendRequestId)
                                     }} >
-                                        Cancel Friend Request 
+                                        Cancel Friend Request
                                     </button>
                                 }
-
-
                             </ButtonStyle>
                         }
 
@@ -170,10 +179,13 @@ export default function Profile({ users, parties, roles, jobs }) {
                 {focus === 'Parties' &&
                     < UserParties parties={userParties} owner={owner} username={user?.username} />
                 }
-                {focus === 'Friends' &&
+                {focus === 'Friends' && userFriends &&
+                <>
                     <div id="memeImgContainer">
                         <img src='https://memegenerator.net/img/instances/50150131/heres-where-id-put-my-friends-if-i-had-any.jpg' id="memeFriendPic"></img>
                     </div>
+                    <ProfileFriends friends = {friends} />
+                    </>
                 }
             </div>
             <h2>Posts</h2>
