@@ -17,7 +17,7 @@ from .api.role_routes import role_routes
 from .api.activity_routes import activity_routes
 from .api.activity_type_routes import activity_type_routes
 from .api.friend_request_routes import friend_request_routes
-
+from .api.friend_routes import friend_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -48,6 +48,9 @@ app.register_blueprint(role_routes, url_prefix='/api/roles')
 app.register_blueprint(activity_routes, url_prefix='/api/activities')
 app.register_blueprint(activity_type_routes, url_prefix='/api/activity')
 app.register_blueprint(friend_request_routes, url_prefix = '/api/requests')
+app.register_blueprint(friend_routes, url_prefix = '/api/friends')
+
+
 db.init_app(app)
 Migrate(app, db)
 

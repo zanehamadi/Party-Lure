@@ -84,6 +84,20 @@ class User(db.Model, UserMixin):
         else:
             print('a bond once forged')
 
+            
+    def remove_friend(self, user_id):
+        user = User.query.get(user_id)
+
+        if user in self.friends:
+            self.friends.remove(user)
+            user.friends.remove(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+
+
 users_friends = db.Table('users_friends',
     db.Column('user1_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
     db.Column('user2_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
