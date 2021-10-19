@@ -30,9 +30,9 @@ class User(db.Model, UserMixin):
         'Party', secondary='parties_requests', back_populates='requests')
 
 
-    sent_requests = db.relationship('FriendRequest', back_populates = 'sender', foreign_keys = 'FriendRequest.sender_id')
+    sent_requests = db.relationship('FriendRequest', back_populates ='sender', foreign_keys ='FriendRequest.sender_id')
 
-    received_requests = db.relationship('FriendRequest', back_populates = 'receiver', foreign_keys = 'FriendRequest.receiver_id')
+    received_requests = db.relationship('FriendRequest', back_populates ='receiver', foreign_keys ='FriendRequest.receiver_id')
 
 
     friends = db.relationship(
@@ -70,7 +70,19 @@ class User(db.Model, UserMixin):
             'role_url': self.job.icon_url
         }
 
+    def make_friend(self, user_id):
+        user = User.query.get(user_id)
 
+        if not user in self.friends:
+            self.friends.append(user)
+            user.friends.append(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+        else:
+            print('a bond once forged')
 
 users_friends = db.Table('users_friends',
     db.Column('user1_id', db.Integer, db.ForeignKey(User.id), primary_key=True),

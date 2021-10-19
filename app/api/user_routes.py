@@ -80,7 +80,7 @@ def sent_requests(id):
     return {sent_request.id: sent_request.to_dict() for sent_request in friend_requests}
 
 
-@user('/requests/send', methods = ['POST'])
+@user_routes.route('/requests/send', methods = ['POST'])
 def send_request():
     data = request.get_json()
 
@@ -88,13 +88,33 @@ def send_request():
 
     receiver_id = data['receiver_id']
 
-    new_request = FriendRequest(
+
+    print('sender', sender_id, 'rec', receiver_id)
+
+    new_friend_request = FriendRequest(
         sender_id = sender_id,
         receiver_id = receiver_id
     )
-
-    db.session.add(new_request)
+    db.session.add(new_friend_request)
 
     db.session.commit()
 
-    return new_request.to_dict()
+    return new_friend_request.to_dict()
+
+
+@user_routes.route('/request/<int:id>/accept', methods = ['POST'])
+def accept_request(id):
+    data = request.get_json()
+
+    sender_id = data['sender_id']
+    receiver_id = data['receiver_id']
+
+    friend_request = FriendRequest.query.get(id)
+    user = User.query.get(receiver_id)
+
+    user.make_friend(sender_id)
+
+    db.session.add(user)
+    db.session.delete(friend_request)
+    db.session.commit()
+    return {'deleted':id}
