@@ -30,11 +30,10 @@ class User(db.Model, UserMixin):
         'Party', secondary='parties_requests', back_populates='requests')
 
 
-    friend_requests = db.relationship(
-        'User', lambda: users_friend_requests,
-        primaryjoin = lambda: User.id == users_friend_requests.c.sender_id,
-        secondaryjoin = lambda: User.id == users_friend_requests.c.receiver_id
-    )
+    sent_requests = db.relationship('FriendRequest', back_populates = 'sender', foreign_keys = 'FriendRequest.sender_id')
+
+    received_requests = db.relationship('FriendRequest', back_populates = 'receiver', foreign_keys = 'FriendRequest.receiver_id')
+
 
     friends = db.relationship(
         'User', lambda: users_friends,
@@ -72,11 +71,6 @@ class User(db.Model, UserMixin):
         }
 
 
-
-users_friend_requests = db.Table('users_friend_requests',
-    db.Column('sender_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
-    db.Column('receiver_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
-)
 
 users_friends = db.Table('users_friends',
     db.Column('user1_id', db.Integer, db.ForeignKey(User.id), primary_key=True),

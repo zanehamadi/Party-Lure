@@ -78,3 +78,23 @@ def sent_requests(id):
     friend_requests = FriendRequest.query.filter(FriendRequest.sender_id == id)
 
     return {sent_request.id: sent_request.to_dict() for sent_request in friend_requests}
+
+
+@user('/requests/send', methods = ['POST'])
+def send_request():
+    data = request.get_json()
+
+    sender_id = data['sender_id']
+
+    receiver_id = data['receiver_id']
+
+    new_request = FriendRequest(
+        sender_id = sender_id,
+        receiver_id = receiver_id
+    )
+
+    db.session.add(new_request)
+
+    db.session.commit()
+
+    return new_request.to_dict()
