@@ -1,5 +1,6 @@
 const GET_RECEIVED = 'friendRequests/GET_RECEIVED'
 const GET_SENT = 'friendRequests/GET_SENT'
+const SEND = 'friendRequests/SEND'
 const REMOVE = 'friendsRequests/REMOVE'
 
 
@@ -14,13 +15,16 @@ const getSent = (requests) => ({
     type: GET_SENT,
     requests
 })
-
+const send = (request) => ({
+    type: SEND,
+    request
+})
 const remove = (id) =>  ({
     type: REMOVE,
     id
 })
 
-export const goGetReceived = (user_id) => async(dispatch) => {
+export const goGetReceivedFriendRequests = (user_id) => async(dispatch) => {
     let res = await fetch(`/api/requests/user/${user_id}/received`)
 
 
@@ -31,7 +35,7 @@ export const goGetReceived = (user_id) => async(dispatch) => {
 
  }
 
- export const goGetSent = (user_id) => async(dispatch) => {
+ export const goGetSentFriendRequests = (user_id) => async(dispatch) => {
     let res = await fetch(`/api/requests/user/${user_id}/sent`)
 
 
@@ -41,7 +45,23 @@ export const goGetReceived = (user_id) => async(dispatch) => {
     }
  }
 
- export const acceptRequest = (id) => async (dispatch) => {
+ export const goSendFriendRequest = (sender_id, receiver_id) => async (dispatch) => {
+     let res = await fetch('/api/requests/send',{
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+             sender_id,
+             receiver_id
+         })
+     })
+
+     if(res.ok){
+         let data = await res.json()
+
+        dispatch(send(data))
+     }
+ }
+ export const acceptFriendRequest = (id) => async (dispatch) => {
      let res = await fetch(`/api/requests/${id}/accept`, {
          method: 'POST'
      })
@@ -52,7 +72,7 @@ export const goGetReceived = (user_id) => async(dispatch) => {
      }
  }
 
- export const deleteRequest = (id) => async (dispatch) => {
+ export const deleteFriendRequest = (id) => async (dispatch) => {
     let res = await fetch(`/api/requests/${id}/delete`, {
         method :'DELETE'
     })
@@ -74,6 +94,9 @@ const friendRequestReducer = (state = initialState, action) => {
         }
         case GET_SENT:{
             return{...state, sent:{...action.requests}}
+        }
+        case SEND: {
+            return{ ... state, sent: {...state.sent, [action.request.id]: {...action.request}}}
         }
         case REMOVE: {
             let removeState = {...state, sent: {...state.sent}, received: {...state.received}}
