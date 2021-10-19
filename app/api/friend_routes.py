@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Blueprint, request
 
 
@@ -16,6 +17,7 @@ def get_friends(id):
 def remove_friend(id):
 
     data = request.get_json()
+    print('this is friend datat', data)
     user = User.query.get(id)
 
     friend_id = data['friend_id']

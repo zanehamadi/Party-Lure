@@ -5,7 +5,7 @@ from app.models import User, Comment, db, FriendRequest, friend_request
 friend_request_routes = Blueprint('requests', __name__)
 
 
-@friend_request_routes.route('/user/<int:id>//received')
+@friend_request_routes.route('/user/<int:id>/received')
 def received_requests(id):
     friend_requests = FriendRequest.query.filter(FriendRequest.receiver_id == id)
 
@@ -46,10 +46,12 @@ def send_request():
 def accept_request(id):
     data = request.get_json()
 
-    sender_id = data['sender_id']
-    receiver_id = data['receiver_id']
 
     friend_request = FriendRequest.query.get(id)
+
+    sender_id = friend_request.sender_id
+    receiver_id = friend_request.receiver_id
+
     user = User.query.get(receiver_id)
 
     user.make_friend(sender_id)
@@ -57,6 +59,7 @@ def accept_request(id):
     db.session.add(user)
     db.session.delete(friend_request)
     db.session.commit()
+
     return {'deleted':id}
 
 
