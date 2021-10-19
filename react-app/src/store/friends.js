@@ -20,3 +20,5 @@ const friendReducer = (state = initialState, action) => {
 
     }
 }
+
+export default friendReducer

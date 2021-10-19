@@ -1,6 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+
+
 import session from './session'
+import jobs from './job'
 
 import postReducer from './posts'
 import userReducer from './users'
@@ -10,10 +13,8 @@ import commentsReducer from './comments';
 import activitiesReducer from './activities';
 import activityTypesReducer from './activity_types.js';
 import requestReducer from './party_request';
-
-
-import jobs from './job'
 import userPartyReducer from './user-parties';
+import friendReducer from './friends';
 
 const rootReducer = combineReducers({
   session,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   activities: activitiesReducer,
   activityTypes: activityTypesReducer,
   requests: requestReducer,
-  userParties: userPartyReducer
+  userParties: userPartyReducer,
+  friends: friendReducer
 });
 
 
