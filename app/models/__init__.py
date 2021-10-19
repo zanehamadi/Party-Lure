@@ -7,3 +7,4 @@ from .user import User, users_friends, users_friend_requests
 from .post import Post
 from .comment import Comment
 from .party import Party
+from .friend_request import FriendRequest
