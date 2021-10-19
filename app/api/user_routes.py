@@ -71,3 +71,10 @@ def received_requests(id):
 
 
     return {received_request.id: received_request.to_dict() for received_request in friend_requests}
+
+
+@user_routes.route('/<int:id>/requests/sent')
+def sent_requests(id):
+    friend_requests = FriendRequest.query.filter(FriendRequest.sender_id == id)
+
+    return {sent_request.id: sent_request.to_dict() for sent_request in friend_requests}
