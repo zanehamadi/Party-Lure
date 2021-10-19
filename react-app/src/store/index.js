@@ -15,6 +15,7 @@ import activityTypesReducer from './activity_types.js';
 import requestReducer from './party_request';
 import userPartyReducer from './user-parties';
 import friendReducer from './friends';
+import friendRequestReducer from './friend_requests';
 
 const rootReducer = combineReducers({
   session,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   activityTypes: activityTypesReducer,
   requests: requestReducer,
   userParties: userPartyReducer,
-  friends: friendReducer
+  friends: friendReducer,
+  friendRequests: friendRequestReducer
 });
 
 
