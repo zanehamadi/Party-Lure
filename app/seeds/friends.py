@@ -8,7 +8,7 @@ def seed_friends():
 
     user = User.query.get(1)
 
-    for i in range(2,10):
+    for i in range(2,5):
         friend = User.query.get(i)
         user.friends.append(friend)
         friend.friends.append(user)
