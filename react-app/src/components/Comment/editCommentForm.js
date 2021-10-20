@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunk_editComment, thunk_deleteComment } from '../../store/comments';
 import "./editComment.css"
+import { useEffect } from 'react';
 
 
 const EditCommentForm = ({ comment, post, closeModal }) => {
@@ -14,18 +15,33 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
     const history = useHistory();
     const [content, setContent] = useState("");
     const updateContent = (e) => setContent(e.target.value);
+    const [validations, setValidations] = useState([])
+    const [showValidations, setShowValidations] = useState([])
 
+     useEffect(() => {
+
+        let valid = []
+        setShowValidations([])
+
+        if(+content.length >= 200) valid.push('Comment too long(200 character limit.)')
+        if(+content.length <= 0) valid.push('Please add a valid comment(Comment too short)')
+        setValidations(valid)
+
+    }, [content])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const payload = {
-            ...comment,
-            content: content,
-            user_id: userId,
-        };
-        await dispatch(thunk_editComment(payload));
-        closeModal()
-        history.push(`/posts/${payload?.post_id}`)
+        if (!validations.length > 0) {
+            const payload = {
+                ...comment,
+                content: content,
+                user_id: userId,
+            };
+            await dispatch(thunk_editComment(payload));
+            closeModal()
+            history.push(`/posts/${payload?.post_id}`)
+        }
+        setShowValidations(validations)
     };
 
     const handleDelete = async (e) => {
@@ -38,6 +54,14 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
         <section className="create-post-form">
             <div>
                 <form className='form-group' onSubmit={handleSubmit}>
+                    {showValidations ?
+                    <>
+                        <ul className="val-container">
+                            {showValidations.map(validation => <li className="val-error">{validation}</li>)}
+                        </ul>
+                    </>
+                :
+                <></>}
                     <label htmlFor='edit'>Edit: </label>
                     <input
                         type="text"
