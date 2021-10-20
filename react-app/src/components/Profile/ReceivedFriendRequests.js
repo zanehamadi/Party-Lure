@@ -8,7 +8,6 @@ const ReceivedFriendRequests = ({requests}) => {
        <div>
            {requests &&
             requests.map(request => {
-
                 return <OneReceivedFriendRequest request = {request} />
             })
            }

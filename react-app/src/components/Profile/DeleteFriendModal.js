@@ -22,7 +22,7 @@ const DeleteFriendModal = ({user_id, friend_id}) => {
         <>
             <ButtonStyle>
                 <button className = 'styled-button' onClick = {handleClick}>
-                    Remove Friend
+                    Remove
                 </button>
             </ButtonStyle>
 

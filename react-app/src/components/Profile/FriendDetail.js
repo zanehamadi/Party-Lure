@@ -17,6 +17,14 @@ const MemberListStyle = styled.div`
         aligin-items:center;
         gap:10px;
         margin:10px;
+        margin-botton: 25px;
+
+    }
+    .sever-button{
+        margin-left: auto;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
 `
@@ -44,7 +52,9 @@ const FriendDetail = ({friend, owner, user_id}) => {
             {`Level: ${friend.level}`}
         </div>
         </div>
+        <div className = 'sever-button'>
            {owner && <DeleteFriendModal friend_id = {friend.id} user_id = {user_id} /> }
+           </div>
         </div>
         </MemberListStyle>
     )

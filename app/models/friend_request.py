@@ -25,5 +25,7 @@ class FriendRequest(db.Model):
             "sender_id": self.sender_id,
             "receiver_id": self.receiver_id,
             "sender": self.sender.username,
-            "receiver": self.receiver.username
+            "receiver": self.receiver.username,
+            "sender_pic": self.sender.profile_url,
+            "receiver_pic": self.receiver.profile_url
         }

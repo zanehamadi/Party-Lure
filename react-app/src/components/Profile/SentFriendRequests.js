@@ -7,6 +7,7 @@ const SentFriendRequests = ({requests}) => {
     return (
 
         <div>
+            <h2> Sent Friend Requests </h2>
        {requests &&
         requests.map(request => {
 
