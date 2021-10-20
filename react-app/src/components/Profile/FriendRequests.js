@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { goGetReceivedFriendRequests, goGetSentFriendRequests } from "../../store/friend_requests"
 import SentFriendRequests from "./SentFriendRequests"
-
-
+import ReceivedFriendRequests from "./ReceivedFriendRequests"
 
 const FriendRequests = () => {
 
@@ -38,10 +37,9 @@ const FriendRequests = () => {
 
     return (
         <div>
-            <ReceivedFriendRequests />
-            <SentFriendRequests /
-
-        ></div>
+            <ReceivedFriendRequests requests = {receivedRequests}/>
+            <SentFriendRequests requests = {sentRequests} />
+        </div>
     )
 }
 

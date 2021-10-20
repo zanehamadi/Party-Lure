@@ -1,10 +1,19 @@
+import OneSentFriendRequest from "./OneSentFriendRequest"
 
 
 
-const SentFriendRequests = () => {
-
+const SentFriendRequests = ({requests}) => {
+    console.log('these are the requests you sent', requests )
     return (
-        null
+
+        <div>
+       {requests &&
+        requests.map(request => {
+
+            return <OneSentFriendRequest request = {request} />
+        })
+    }
+    </div>
     )
 }
 

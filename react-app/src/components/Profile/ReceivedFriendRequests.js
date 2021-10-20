@@ -1,9 +1,20 @@
+import OneReceivedFriendRequest from "./OneReceivedFriendRequest"
 
 
-const ReceivedFriendRequests = () => {
-
+const ReceivedFriendRequests = ({requests}) => {
+    console.log('these are the requests you received', requests )
 
     return (
-        null
+       <div>
+           {requests &&
+            requests.map(request => {
+
+                return <OneReceivedFriendRequest request = {request} />
+            })
+           }
+       </div>
     )
 }
+
+
+export default ReceivedFriendRequests
