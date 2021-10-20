@@ -28,7 +28,7 @@ const DeleteFriendModal = ({user_id, friend_id}) => {
 
             {showModal &&
                 <Modal onClose={() => setShowModal(false)}>
-                    <DeleteFriend user_id = {user_id} friend_id = {friend_id} />
+                    <DeleteFriend user_id = {user_id} friend_id = {friend_id} closeModal = {closeModal}/>
                 </Modal>
 
             }

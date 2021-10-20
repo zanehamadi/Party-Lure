@@ -27,9 +27,14 @@ const UserPartyStyle = styled.div`
         padding:2%;
         border-radius: 10px;
         min-width: 300px;
+        max-height: 300px;
+        overflow-y: scroll;
     }
     .left-side h2{
         font-size: 20px;
+    }
+    .right-side h2{
+        margin-bottom: 10px;
     }
     .your-parties{
         min-height: 150px;
