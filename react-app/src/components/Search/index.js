@@ -120,7 +120,7 @@ function Search({posts, activities, activityTypes}) {
             </div>
             {showModal ?
                 <Modal onClose={() => setShowModal(false)}>
-                    <form>
+                    <form className="searchModal">
                         <label> Level
                             <span> <input type='range' min='1' max='50' value={level} onChange={e => setLevel(e.target.value)}></input> {level}</span>
                         </label>
@@ -132,7 +132,7 @@ function Search({posts, activities, activityTypes}) {
                             <>
                                 <select value={activity} onChange={e => setActivity(e.target.value)}>
 
-                                    <option>All Activities</option>
+                                    <option className="allActivitySearch">All Activities</option>
                                     {listActivities.map(eActivity =>
                                         <option>{eActivity.name}</option>
                                     )}
