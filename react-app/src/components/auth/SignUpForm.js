@@ -69,9 +69,9 @@ const SignUpForm = () => {
   return (
     <div className="form-container">
       <form className="create-post-form" onSubmit={onSignUp}>
-        <div>
+        <div className="val-container">
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className="val-error" key={ind}>{error}</div>
           ))}
         </div>
         <div className="form-group">
@@ -83,6 +83,7 @@ const SignUpForm = () => {
             // value = {image}
             onChange={updateProfilePic}
             className="form-control"
+            required={true}
           />
         </div>
         <div className="form-group">
@@ -94,6 +95,7 @@ const SignUpForm = () => {
             value={username}
             className="form-control"
             placeholder='Enter username'
+            required={true}
           ></input>
         </div>
         <div className="form-group" id="job-div">
@@ -103,6 +105,7 @@ const SignUpForm = () => {
             name='jobId'
             id='jobs'
             onChange={updateJob}
+            required={true}
 
           >
             <option
@@ -133,18 +136,20 @@ const SignUpForm = () => {
             max='50'
             value={level}
             onChange={updateLevel}
+            required={true}
 
           />
         </div>
         <div className="form-group">
           <label className="form-label">Email:</label>
           <input
-            type='text'
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}
             className="form-control"
             placeholder='Enter email'
+            required={true}
           ></input>
         </div>
         <div className="form-group">
@@ -156,6 +161,7 @@ const SignUpForm = () => {
             value={password}
             className="form-control"
             placeholder='Enter password'
+            required={true}
           ></input>
         </div>
         <div className="form-group">

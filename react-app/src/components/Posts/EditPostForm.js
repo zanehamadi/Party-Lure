@@ -89,9 +89,9 @@ const EditPostForm = ({ closeModal }) => {
 
     return (
         <form className='create-post-form' onSubmit={editPost}>
-            <div>
+           <div className="val-container">
                 {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                    <div className="val-error"  key={ind}>{error}</div>
                 ))}
             </div>
             <div className='form-group'>

@@ -71,3 +71,13 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.val-error {
+  color: red;
+  text-align: center;
+}
+
+.val-container2 {
+  position: relative;
+  left: 250px;
+}
