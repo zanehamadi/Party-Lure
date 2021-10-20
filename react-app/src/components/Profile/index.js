@@ -53,10 +53,14 @@ export default function Profile({ users, parties, roles, jobs }) {
         } if(id != viewId){
             dispatch(goGetSentFriendRequests(viewId))
             dispatch(goGetFriends(id))
+            setOwner(false)
         }
         return () => {
-            (setOwner(false)) }
-    }, [dispatch, id, viewId])
+            console.log('')
+            setOwner(false)
+            setFocus('Parties')
+        }
+    }, [dispatch, id, viewId, user])
 
     useEffect(() => {
         if (id) {

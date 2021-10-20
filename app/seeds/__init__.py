@@ -7,6 +7,7 @@ from .roles import seed_roles, undo_roles
 from .activity_type import seed_types, undo_types
 from .activities import seed_activities, undo_activities
 from .posts import seed_posts, undo_posts
+from .friends import seed_friends, undo_friends
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -23,12 +24,14 @@ def seed():
     seed_posts()
     seed_comments()
     seed_parties()
+    seed_friends()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_friends()
     undo_parties()
     undo_comments()
     undo_posts()

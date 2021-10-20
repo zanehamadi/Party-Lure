@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import FriendDetail from "./FriendDetail"
 import styled from "styled-components"
+import FriendRequests from "./FriendRequests"
 
 const UserPartyStyle = styled.div`
     display: flex;
@@ -17,6 +18,8 @@ const UserPartyStyle = styled.div`
         padding:2%;
         border-radius: 10px;
         min-width: 300px;
+        max-height: 300px;
+        overflow-y: scroll;
     }
     .right-side{
         background-color: #24282d;
@@ -34,10 +37,11 @@ const UserPartyStyle = styled.div`
 `
 
 const ProfileFriends = ({friends, owner, username, user_id}) => {
+
     return(
         <UserPartyStyle>
             <div className = 'left-side'>
-            { friends && <h2>{!owner ? (username+ `'s`) : 'Your'} Friends</h2> }
+            { friends && <h2> Friends</h2> }
                 {
                 friends && friends.map(friend => {
                     return(
@@ -45,6 +49,12 @@ const ProfileFriends = ({friends, owner, username, user_id}) => {
                 })
                 }
             </div>
+           {owner &&
+                <div className = 'right-side'>
+                    <FriendRequests />
+               </div>
+
+               }
 
         </UserPartyStyle>
     )

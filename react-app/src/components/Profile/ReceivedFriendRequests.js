@@ -1,0 +1,9 @@
+
+
+const ReceivedFriendRequests = () => {
+
+
+    return (
+        null
+    )
+}

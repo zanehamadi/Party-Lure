@@ -44,7 +44,7 @@ const FriendDetail = ({friend, owner, user_id}) => {
             {`Level: ${friend.level}`}
         </div>
         </div>
-            <DeleteFriendModal friend_id = {friend.id} user_id = {user_id} /> 
+           {owner && <DeleteFriendModal friend_id = {friend.id} user_id = {user_id} /> }
         </div>
         </MemberListStyle>
     )

@@ -19,7 +19,7 @@ const DeleteFriend = ({user_id, friend_id, }) => {
             Sever Friendship?
         </h1>
         <ButtonStyle>
-        <button onClick = {() => { deleteFriend(user_id, friend_id) }}>
+        <button className = 'styled-button'onClick = {() => { deleteFriend(user_id, friend_id) }}>
             Sever
         </button>
         </ButtonStyle>
