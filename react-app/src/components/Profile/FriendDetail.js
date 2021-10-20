@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import DeleteFriendModal from "./DeleteFriendModal"
 
 const MemberListStyle = styled.div`
     .profile-pic{
@@ -20,7 +21,7 @@ const MemberListStyle = styled.div`
 
 `
 
-const FriendDetail = ({friend, owner}) => {
+const FriendDetail = ({friend, owner, user_id}) => {
 
     console.log('getting a space ready for you', friend)
     return (
@@ -43,6 +44,7 @@ const FriendDetail = ({friend, owner}) => {
             {`Level: ${friend.level}`}
         </div>
         </div>
+            <DeleteFriendModal friend_id = {friend.id} user_id = {user_id} /> 
         </div>
         </MemberListStyle>
     )

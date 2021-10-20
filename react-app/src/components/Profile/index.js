@@ -180,11 +180,8 @@ export default function Profile({ users, parties, roles, jobs }) {
                     < UserParties parties={userParties} owner={owner} username={user?.username} />
                 }
                 {focus === 'Friends' && userFriends &&
-                <>
-                    <div id="memeImgContainer">
-                        <img src='https://memegenerator.net/img/instances/50150131/heres-where-id-put-my-friends-if-i-had-any.jpg' id="memeFriendPic"></img>
-                    </div>
-                    <ProfileFriends friends = {friends} />
+                    <>
+                    <ProfileFriends friends = {friends} owner={owner} user_id = {viewId} />
                     </>
                 }
             </div>
