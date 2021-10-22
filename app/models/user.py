@@ -29,6 +29,17 @@ class User(db.Model, UserMixin):
     party_requests = db.relationship(
         'Party', secondary='parties_requests', back_populates='requests')
 
+
+    sent_requests = db.relationship('FriendRequest', back_populates ='sender', foreign_keys ='FriendRequest.sender_id')
+
+    received_requests = db.relationship('FriendRequest', back_populates ='receiver', foreign_keys ='FriendRequest.receiver_id')
+
+
+    friends = db.relationship(
+        'User', lambda: users_friends,
+        primaryjoin = lambda: User.id == users_friends.c.user1_id,
+        secondaryjoin = lambda: User.id == users_friends.c.user2_id,
+    )
     @property
     def password(self):
         return self.hashed_password
@@ -58,3 +69,36 @@ class User(db.Model, UserMixin):
             'profile_url': self.profile_url,
             'role_url': self.job.icon_url
         }
+
+    def make_friend(self, user_id):
+        user = User.query.get(user_id)
+
+        if not user in self.friends:
+            self.friends.append(user)
+            user.friends.append(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+        else:
+            print('a bond once forged')
+
+            
+    def remove_friend(self, user_id):
+        user = User.query.get(user_id)
+
+        if user in self.friends:
+            self.friends.remove(user)
+            user.friends.remove(self)
+
+            db.session.add(self)
+            db.session.add(user)
+
+            db.session.commit()
+
+
+users_friends = db.Table('users_friends',
+    db.Column('user1_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+    db.Column('user2_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+)
