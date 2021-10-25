@@ -153,18 +153,18 @@ const EditPostForm = ({ closeModal, post }) => {
                 <label htmlFor='title'>Role: </label>
                 <div className='role-picker'>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
-                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-1">
+                        <img src={!role['Role1'] ? 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png': roles[+role['Role1'] - 1].icon_url} alt="icon-1">
                         </img>
                     </div>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-2">
+                        <img src={!role['Role2'] ? 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png': roles[+role['Role2'] - 1].icon_url}alt="icon-2">
                         </img>
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
 
 
-                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-3">
+                        <img src={!role['Role3'] ? 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png': roles[(+role['Role3'] - 1)].icon_url}alt="icon-3">
 
                         </img>
                     </div>
