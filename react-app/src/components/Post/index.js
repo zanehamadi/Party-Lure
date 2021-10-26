@@ -35,7 +35,7 @@ export default function Post({ comments, parties, users }) {
     const party = parties?.find(party => party.post_id === +id)
     const poster = users?.find(user => user?.id === post?.user_id)
 
-    let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
+    let postsComments = comments?.filter((comment) => comment?.post_id === post?.id).reverse()
 
     const session = useSelector(state => state?.session)
     const isLogged = session?.user ? true : false
