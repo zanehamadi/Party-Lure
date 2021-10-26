@@ -32,6 +32,7 @@ class Post(db.Model):
             "user": self.user.username,
             "type": self.activity.type.name,
             "mission": self.activity.name,
+            "activity_id": self.activity.id,
             "recruit_level": self.recruit_level,
             "recruit_role": self.recruit_role,
             "comments": [comment.to_dict() for comment in self.comments]

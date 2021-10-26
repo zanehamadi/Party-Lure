@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { createNewPost } from '../../store/posts';
 
-const EditPostForm = ({ closeModal }) => {
+const EditPostForm = ({ closeModal, post }) => {
 
     const aTypeSlice = useSelector(state => state.activityTypes)
     const activitySlice = useSelector(state => state.activities)
@@ -17,16 +17,20 @@ const EditPostForm = ({ closeModal }) => {
 
 
     const { id } = useParams();
-    const post = posts?.find(post => post.id === +id)
+
 
     const [errors, setErrors] = useState([]);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [level, setLevel] = useState(1);
-    const [role, setRole] = useState({ 'Role1': null, 'Role2': null, 'Role3': null, 'Role4': null });
+    const [title, setTitle] = useState(post.title || '');
+    const [description, setDescription] = useState(post.content || '');
+    const [level, setLevel] = useState(post.recruit_level || 1);
+    const [role, setRole] = useState({
+        'Role1': post.recruit_role[0] || null,
+        'Role2': post.recruit_role[1] || null,
+        'Role3': post.recruit_role[2] || null,
+        'Role4': post.recruit_role[3] || null });
     const [selectRole, setSelectRole] = useState('');
-    const [activityType, setActivityType] = useState('');
-    const [activity, setActivity] = useState('');
+    const [activityType, setActivityType] = useState(post.type || '');
+    const [activity, setActivity] = useState(post.activity_id || '' );
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -109,10 +113,10 @@ const EditPostForm = ({ closeModal }) => {
                     <option value='' disabled={true}>
                         Select a type
                     </option>
-                    {activityTypes.map(activityType => {
+                    {activityTypes.map(mapActivityType => {
                         return (
-                            <option value={activityType.name} key={activityType.id}>
-                                {activityType.name}
+                            <option selected = {mapActivityType.name === activityType}value={mapActivityType.name} key={mapActivityType.id}>
+                                {mapActivityType.name}
                             </option>
                         )
                     })}
@@ -125,12 +129,12 @@ const EditPostForm = ({ closeModal }) => {
                         <option value='' disabled={true}>
                             Select an activity
                         </option>
-                        {activities.map(activity => {
+                        {activities.map(mapActivity => {
 
-                            if (activity.type === activityType) {
+                            if (mapActivity.type === activityType) {
                                 return (
-                                    <option value={activity.id} key={activity.id}>
-                                        {activity.name}
+                                    <option selected = {+mapActivity.id === activity} value={mapActivity.id} key={mapActivity.id}>
+                                        {mapActivity.name}
                                     </option>
                                 )
                             } else {
@@ -149,18 +153,18 @@ const EditPostForm = ({ closeModal }) => {
                 <label htmlFor='title'>Role: </label>
                 <div className='role-picker'>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role1'>
-                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-1">
+                        <img src={!role['Role1'] ? 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png': roles[+role['Role1'] - 1].icon_url} alt="icon-1">
                         </img>
                     </div>
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role2'>
-                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-2">
+                        <img src={!role['Role2'] ? 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png': roles[+role['Role2'] - 1].icon_url}alt="icon-2">
                         </img>
                     </div>
 
                     <div className='form-role-icon' onClick={(e) => { setActive(e); setSelectRole(true) }} id='Role3'>
 
 
-                        <img src='https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png' alt="icon-3">
+                        <img src={!role['Role3'] ? 'https://elixrawsbucket.s3.amazonaws.com/empty-sqaure.png': roles[(+role['Role3'] - 1)].icon_url}alt="icon-3">
 
                         </img>
                     </div>
