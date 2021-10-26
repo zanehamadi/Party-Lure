@@ -13,7 +13,7 @@ const EditCommentForm = ({ comment, post, closeModal }) => {
     const userId = user?.id
     const dispatch = useDispatch();
     const history = useHistory();
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(comment.content || "");
     const updateContent = (e) => setContent(e.target.value);
     const [validations, setValidations] = useState([])
     const [showValidations, setShowValidations] = useState([])

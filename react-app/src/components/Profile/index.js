@@ -38,7 +38,7 @@ export default function Profile({ users, parties, roles, jobs }) {
 
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
     const userPostsState = useSelector(state => state.posts?.userPosts)
-    const userPosts = Object.values(userPostsState)
+    const userPosts = Object.values(userPostsState).reverse()
 
     useEffect(() => {
 
