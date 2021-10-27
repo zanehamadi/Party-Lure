@@ -2,33 +2,93 @@
 .nav-container{
     display: flex;
     flex-direction: column;
-    align-self: flex-end;
-    justify-content: space-around;
     position: fixed;
     margin-top: 0px;
     margin-bottom: 0px;
     max-width: 200px;
     top: 0;
-    border-left: 1px solid white;
+    border-left: 2px solid white;
     height: 100vh;
     right: 0;
     background-color: #1a1c1f;
     grid-area: nav;
+    padding-left: 0px;
+    margin-left: 0px;
 }
 .nav-url{
     border-radius: 50%;
     border: 2px solid orange;
-    max-height: 70px;
+    height: 30px;
     max-width: 60px;
 }
 
-li{
-    list-style: none;
-    margin:5%;
+
+.navButton{
+    background-color: transparent;
+    color: #FFA500;
+    border: none;
+    left: 0px;
+    width: 200px;
 }
-ul{
+
+.navButton:hover{
+    background-color: #2f2727;
+    cursor: pointer;
+}
+
+
+a{
+    font-size: 15pt;
+}
+
+a:hover{
+    color: #FFA500;
+    cursor:pointer;
+}
+
+button.navButton{
+    font-size: 15pt;
+    display: flex;
+    padding-left: 1vw;
+    height: fit-content;
+    left: 0;
+    height: 6vh;
+    align-items: center;
+}
+
+#aboutUsButton{
+    font-size: 15pt;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-link-container{
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
 }
+
+
+button.navButton a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+#navLogo{
+    top: 0;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#navLogo:hover{
+    cursor: pointer;
+}
+
+

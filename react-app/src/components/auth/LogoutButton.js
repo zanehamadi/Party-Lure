@@ -17,11 +17,10 @@ const LogoutButton = () => {
   };
 
   return (
-  <ButtonStyle>
-      <button className = 'styled-button' onClick={onLogout}>
+      <button className = 'navButton' onClick={onLogout}>
           Logout
       </button>
-  </ButtonStyle>);
+  );
 };
 
 export default LogoutButton;
