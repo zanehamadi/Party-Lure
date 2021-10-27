@@ -153,7 +153,7 @@ function Search({posts, activities, activityTypes}) {
             : <></>}
             {showResults ?
                 <div className = "search-results">
-                    <h2>results for: {title}</h2>
+                    <h2>Results for: {title}</h2>
                     {searchPosts.map(post => 
                         <span className="specSearchResult">
                             <Link to={`/posts/${post.id}`} onClick={resetFunc}>{post.title}</Link>
