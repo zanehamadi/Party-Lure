@@ -1,8 +1,8 @@
 .search-results {
-  max-height: 200px;
+  height: 245px;
   overflow: scroll;
   overflow-x: hidden;
-  padding: 3%;
+  padding: 5%;
 }
 
 .search-buttons {
@@ -10,15 +10,34 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
-#search-btn {
-  margin: 15px 20px;
+.search-btn {
+  background-color: transparent;
+  color: #ffa500;
+  font-size: 18px;
+  background-color: transparent;
+  border: 0;
+  width: 50%;
+}
+
+.search-btn a{
+  width: 100%
+}
+
+.search-btn:hover{
+  background-color: #2f2727;
+  cursor: pointer;
+  transition: background-color .2s;
 }
 
 .bar {
   position: relative;
   left: 20px;
+  width: fit-content;
 }
 
 .searchModal{
@@ -26,4 +45,25 @@
   padding-right: 1vw;
   padding-top: 0.5vh;
   padding-bottom: 0.5vh;
+}
+
+
+#searchInputContainer{
+  margin-top: 30px;
+  width: 100%;
+  margin-right: 15px;
+  align-self: center;
+}
+
+.specSearchResult a{
+  font-size: 18px;
+}
+
+.specSearchResult a:hover{
+  color: white;
+  transition: color .2s
+}
+.specSearchResult{
+  margin-top: 10px;
+  display: inline-block
 }

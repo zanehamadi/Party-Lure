@@ -105,18 +105,16 @@ function Search({posts, activities, activityTypes}) {
 
     return (
         <>
-            <input className="bar" placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
-            <div className = 'button-container search-buttons'>
-                <ButtonStyle>
-                    <button className = 'styled-button' id='search-btn' onClick={handleClick}>
+            <div id="searchInputContainer">
+                <input className="bar" placeholder='Search' value={title} onChange={e => setTitle(e.target.value)}></input>
+            </div>
+            <div className = 'search-buttons'>
+                    <button className='search-btn' onClick={handleClick}>
                         Filters
                     </button>
-                </ButtonStyle>
-                <ButtonStyle>
-                        <button  className = 'styled-button' id='search-btn' onClick={() => resetFunc()}>
-                            Reset
-                        </button>
-                </ButtonStyle>
+                    <button  className='search-btn' onClick={() => resetFunc()}>
+                        Reset
+                    </button>
             </div>
             {showModal ?
                 <Modal onClose={() => setShowModal(false)}>
@@ -156,7 +154,11 @@ function Search({posts, activities, activityTypes}) {
             {showResults ?
                 <div className = "search-results">
                     <h2>results for: {title}</h2>
-                    {searchPosts.map(post => <div><Link to={`/posts/${post.id}`} onClick={resetFunc}>{post.title}</Link></div>)}
+                    {searchPosts.map(post => 
+                        <span className="specSearchResult">
+                            <Link to={`/posts/${post.id}`} onClick={resetFunc}>{post.title}</Link>
+                        </span>)
+                }
                 </div>
 
             :<></>}

@@ -12,7 +12,7 @@ const DemoButton = () => {
 
     return (
         <ButtonStyle>
-            <button onClick={demoLogin} className="styled-button">Demo</button >
+            <button onClick={demoLogin} className="navButton">Demo</button >
         </ButtonStyle>
     )
 }
