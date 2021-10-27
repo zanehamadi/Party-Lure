@@ -10,10 +10,8 @@ import commentsReducer from './comments';
 import activitiesReducer from './activities';
 import activityTypesReducer from './activity_types.js';
 import requestReducer from './party_request';
-
-
-import jobs from './job'
 import userPartyReducer from './user-parties';
+import jobs from './job'
 
 const rootReducer = combineReducers({
   session,

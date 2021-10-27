@@ -17,6 +17,8 @@ const deleteComment = (id) => ({
     id
 })
 
+
+
 export const getComments = () => async (dispatch) => {
     const res = await fetch('/api/comments/');
     if (res.ok) {
