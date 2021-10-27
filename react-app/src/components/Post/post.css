@@ -110,10 +110,9 @@
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
-  background-color: #1e2024;
+  backgroun
   border: solid 2px #25282c;
-  width: 10rem;
-
+  min-width: 10rem;
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -151,6 +150,7 @@
   border: solid 2px #25282c;
   width: 5rem;
   height: 5rem;
+  background-color: white;
 }
 
 #commentContent {
@@ -188,7 +188,7 @@
   border: solid 2px rgb(61, 61, 61);
   transition: box-shadow 0.3s linear;
   transition: border 0.3s linear;
-  /* border-radius: 50%; */
+  background-color: white;
 }
 
 .userPFP:hover {

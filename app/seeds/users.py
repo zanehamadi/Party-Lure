@@ -32,12 +32,14 @@ def seed_users(num_users = 25):
         else:
             username = fake.name_nonbinary()
 
+        job_id = assign_from_dict(jobs_dict, 2)
+        profile_url = f'https://partylureawsbucket.s3.amazonaws.com/party_lure_job_pics/{job_id}.png'
         new_user = User(
             username = username,
             email = fake.email(),
-            profile_url = fake.image_url(),
+            job_id = job_id,
+            profile_url = profile_url,
             password = 'password',
-            job_id = assign_from_dict(jobs_dict, 2),
             level = random.randrange(50),
             created_at=datetime.datetime.now(),
             updated_at = datetime.datetime.now()
