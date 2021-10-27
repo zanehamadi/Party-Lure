@@ -54,8 +54,8 @@ const CreateCommentForm = ({post}) => {
             <div className="commentForm">
                 {showValidations ?
                     <>
-                        <ul>
-                            {showValidations.map(validation => <li>{validation}</li>)}
+                        <ul className="val-container2">
+                            {showValidations.map(validation => <li className="val-error">{validation}</li>)}
                         </ul>
                     </>
                 :

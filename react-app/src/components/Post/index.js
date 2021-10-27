@@ -35,7 +35,7 @@ export default function Post({ comments, parties, users }) {
     const party = parties?.find(party => party.post_id === +id)
     const poster = users?.find(user => user?.id === post?.user_id)
 
-    let postsComments = comments?.filter((comment) => comment?.post_id === post?.id)
+    let postsComments = comments?.filter((comment) => comment?.post_id === post?.id).reverse()
 
     const session = useSelector(state => state?.session)
     const isLogged = session?.user ? true : false
@@ -91,6 +91,8 @@ export default function Post({ comments, parties, users }) {
         }
         return false
     }
+
+
     const checkParty = () => {
         let currentParty = party?.users
 
@@ -102,12 +104,7 @@ export default function Post({ comments, parties, users }) {
         return false
 
     }
-    useEffect(() => {
-        if (party) {
-            setIsMember(checkMember())
-            setIsPartyFull(checkParty())
-        }
-    }, [party])
+
     const doesUserHaveRequest = () => {
         if (currentUserRequests.length > 0) {
 
@@ -121,6 +118,28 @@ export default function Post({ comments, parties, users }) {
         return false
     }
 
+
+        const cancelRequest = () => {
+            if (userId) {
+                dispatch(cancelPartyRequest(userId, party.id))
+            }
+            setHasRequested(false)
+        }
+
+
+        const requestToJoin = () => {
+            dispatch(sendPartyRequest(userId, party.id))
+            setHasRequested(true)
+        }
+    useEffect(() => {
+        if (party) {
+            setIsMember(checkMember())
+            setIsPartyFull(checkParty())
+        }
+    }, [party])
+
+
+
     useEffect(() => {
         if (currentUserRequests[0] && party) {
             setHasRequested(doesUserHaveRequest())
@@ -130,19 +149,6 @@ export default function Post({ comments, parties, users }) {
 
 
 
-
-    const cancelRequest = () => {
-        if (userId) {
-            dispatch(cancelPartyRequest(userId, party.id))
-        }
-        setHasRequested(false)
-    }
-
-
-    const requestToJoin = () => {
-        dispatch(sendPartyRequest(userId, party.id))
-        setHasRequested(true)
-    }
 
     // const handleDelete = async (e) => {
     //     e.preventDefault()
@@ -197,7 +203,7 @@ export default function Post({ comments, parties, users }) {
 
                         {showEditModal ?
                             <Modal onClose={() => setShowEditModal(false)}>
-                                <EditPostForm posts={posts} roles={roles} activityTypes={activityTypes} activities={activities} closeModal = {closeEditModal} />
+                                <EditPostForm post = {post} roles={roles} activityTypes={activityTypes} activities={activities} closeModal = {closeEditModal} />
                             </Modal>
                             : <></>}
 

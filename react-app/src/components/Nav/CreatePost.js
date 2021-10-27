@@ -93,9 +93,9 @@ const CreatePostForm = ({ roles, activityTypes, posts, activities, closeModal })
 
     return (
         <form className='create-post-form' onSubmit={createPost}>
-            <div>
+            <div className="val-container">
                 {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                    <div className="val-error" key={ind}>{error}</div>
                 ))}
             </div>
             <div className='form-group'>

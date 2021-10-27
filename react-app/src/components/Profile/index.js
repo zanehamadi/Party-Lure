@@ -10,6 +10,9 @@ import UserParties from "./UserParties";
 import './Profile.css'
 import ButtonStyle from "../Button/ButtonStyle";
 import PostDetails from "../Posts/PostDetails";
+import { deleteFriendRequest, goGetReceivedFriendRequests, goGetSentFriendRequests, goSendFriendRequest } from "../../store/friend_requests";
+import ProfileFriends from "./ProfileFriends";
+import { goGetFriends } from "../../store/friends";
 
 export default function Profile({ users, parties, roles, jobs }) {
 
@@ -17,6 +20,10 @@ export default function Profile({ users, parties, roles, jobs }) {
     const { id } = useParams()
 
     const [owner, setOwner] = useState(false)
+    const [isFriend, setIsFriend] = useState()
+    const [hasAlreadyRequested, setHasAlreadyRequested] = useState()
+    const [friendRequestId, setFriendRequestId] = useState()
+    const [friends, setFriends] = useState([])
     const [focus, setFocus] = useState('Parties')
     const [showEditModal, setShowEditModal] = useState(false)
 
@@ -24,20 +31,36 @@ export default function Profile({ users, parties, roles, jobs }) {
     const user = useSelector(state => state.session.profile)
     const viewId = useSelector(state => state.session?.user?.id)
 
+    const userSentRequests = useSelector(state => state.friendRequests.sent)
+    const userReceivedRequests = useSelector (state => state.friendRequests.received)
+
+    const userFriends = useSelector(state => state.friends)
+
     const userParties = parties?.filter(revParties => +revParties.owner_id === +id)
     const userPostsState = useSelector(state => state.posts?.userPosts)
-    const userPosts = Object.values(userPostsState)
+    const userPosts = Object.values(userPostsState).reverse()
 
     useEffect(() => {
 
         if (id == viewId) {
             dispatch(getReceivedRequests(id))
             dispatch(getSentRequests(id))
+            dispatch(goGetReceivedFriendRequests(id))
+            dispatch(goGetSentFriendRequests(id))
+            dispatch(goGetFriends(id))
             setOwner(true)
             return
+        } if(id != viewId){
+            dispatch(goGetSentFriendRequests(viewId))
+            dispatch(goGetFriends(id))
+            setOwner(false)
         }
-        return(setOwner(false))
-    }, [dispatch, id, viewId])
+        return () => {
+            console.log('')
+            setOwner(false)
+            setFocus('Parties')
+        }
+    }, [dispatch, id, viewId, user])
 
     useEffect(() => {
         if (id) {
@@ -47,6 +70,38 @@ export default function Profile({ users, parties, roles, jobs }) {
         }
     }, [id])
 
+
+    useEffect(() => {
+        if (userFriends){
+            setFriends([...Object.values(userFriends)])
+        }
+    }, [userFriends])
+    useEffect(() => {
+        if(userSentRequests
+            && viewId){
+            console.log('gonna check now')
+            for(let req in userSentRequests){
+                if(+userSentRequests[req].receiver_id === +id){
+                    console.log('got it')
+                    setHasAlreadyRequested(true)
+                    setFriendRequestId(+userSentRequests[req].id)
+                    return
+                }
+            }
+            console.log('you havent requested')
+            setHasAlreadyRequested(false)
+        }
+    }, [userSentRequests, id, viewId])
+
+    useEffect(() => {
+        if(viewId && userFriends && viewId != id){
+                if(userFriends[viewId]){
+                    setIsFriend(true)
+                }else{
+                    setIsFriend(false)
+                }
+        }
+    }, [viewId, userFriends, id])
     const handleFocus = (focus) => {
         setFocus(focus)
     }
@@ -57,7 +112,12 @@ export default function Profile({ users, parties, roles, jobs }) {
     const closeEditModal = () => {
         setShowEditModal(false)
     }
-
+    const sendFriendRequest = (sender_id, receiver_id) => {
+        dispatch(goSendFriendRequest(sender_id,receiver_id))
+    }
+    const cancelFriendRequest = (id) => {
+        dispatch(deleteFriendRequest(id))
+    }
     return (
         <div className='profile-page'>
             <div className='profile-header'>
@@ -83,6 +143,23 @@ export default function Profile({ users, parties, roles, jobs }) {
                                 </button>
                             </Modal>
                             : <></>}
+                        {user && viewId && !owner && isFriend === false &&
+                            <ButtonStyle>
+                                {hasAlreadyRequested === false &&
+                                <button className = 'styled-button' onClick = { () => {
+                                    sendFriendRequest(viewId, user.id)
+                                }}>Send Friend Request</button>
+                                }{
+                                    hasAlreadyRequested === true &&
+                                    <button className = 'styled-button' onClick = {() => {
+                                        cancelFriendRequest(friendRequestId)
+                                    }} >
+                                        Cancel Friend Request
+                                    </button>
+                                }
+                            </ButtonStyle>
+                        }
+
                 </>
                 </div>
                 <div className='game-info'>
@@ -106,10 +183,10 @@ export default function Profile({ users, parties, roles, jobs }) {
                 {focus === 'Parties' &&
                     < UserParties parties={userParties} owner={owner} username={user?.username} />
                 }
-                {focus === 'Friends' &&
-                    <div id="memeImgContainer">
-                        <img src='https://memegenerator.net/img/instances/50150131/heres-where-id-put-my-friends-if-i-had-any.jpg' id="memeFriendPic"></img>
-                    </div>
+                {focus === 'Friends' && userFriends &&
+                    <>
+                    <ProfileFriends friends = {friends} owner={owner} user_id = {viewId} />
+                    </>
                 }
             </div>
             <h2>Posts</h2>

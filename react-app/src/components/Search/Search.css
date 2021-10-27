@@ -20,3 +20,10 @@
   position: relative;
   left: 20px;
 }
+
+.searchModal{
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+}
