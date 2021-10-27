@@ -14,8 +14,10 @@ import activitiesReducer from './activities';
 import activityTypesReducer from './activity_types.js';
 import requestReducer from './party_request';
 import userPartyReducer from './user-parties';
+import jobs from './job'
 import friendReducer from './friends';
 import friendRequestReducer from './friend_requests';
+
 
 const rootReducer = combineReducers({
   session,
