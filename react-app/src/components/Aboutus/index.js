@@ -16,7 +16,7 @@ export default function AboutUs() {
                         <div className='cam-card'>
                             <div>
                                 <Link className='' to={{ pathname: 'https://github.com/CamChandler98' }} target='true'><img className='gitHubImage' alt="githubLogo" src='https://partylureawsbucket.s3.amazonaws.com/github.png'></img></Link>
-                                {/* <span><Link className='gitHubLink' to={{ pathname: '' }} target='true'><img className='gitHubImage' alt="githubLogo" src='https://partylureawsbucket.s3.amazonaws.com/linkedin.png'></img></Link></span> */}
+                                <span><Link className='gitHubLink' to={{ pathname: 'https://www.linkedin.com/in/cameron-chandler-dev/' }} target='true'><img className='gitHubImage' alt="githubLogo" src='https://partylureawsbucket.s3.amazonaws.com/linkedin.png'></img></Link></span>
                             </div>
                             Cam Chandler
                         </div>

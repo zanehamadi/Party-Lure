@@ -9,8 +9,8 @@ function Splash() {
 
     const dispatch = useDispatch();
     useSelector(state => state.session.user)
-
-    let credential = 'gran@blue.io'
+    
+    let credential = 'Demo Fish'
     let password = 'password'
     let demoLogin = () => { return dispatch(sessionActions.login(credential, password)) }
 
